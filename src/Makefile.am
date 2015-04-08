@@ -22,7 +22,9 @@ bin_PROGRAMS = mapascromosomicos
 mapascromosomicos_SOURCES = \
 	main.c \
 	mapascromosomicos.h \
-	mapascromosomicos.c	
+	mapascromosomicos.c \
+	mapascromosomicos.callbacks.c \
+	gridview.c	
 
 
 mapascromosomicos_LDFLAGS = \

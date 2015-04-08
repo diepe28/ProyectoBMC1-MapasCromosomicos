@@ -67,7 +67,7 @@ static void mapascromosomicos_new_window(GApplication *app, GFile *file) {
 	
 	/* ANJUTA: Widgets initialization for mapascromosomicos.ui - DO NOT REMOVE */
 
-	window_init(builder);
+	builder_init(builder);
 	
 	g_object_unref(builder);
 	

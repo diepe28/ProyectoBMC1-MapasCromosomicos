@@ -24,28 +24,32 @@
 
 G_BEGIN_DECLS
 
-#define MAPASCROMOSOMICOS_TYPE_APPLICATION             (mapascromosomicos_get_type())
-#define MAPASCROMOSOMICOS_APPLICATION(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), MAPASCROMOSOMICOS_TYPE_APPLICATION, Mapascromosomicos))
-#define MAPASCROMOSOMICOS_APPLICATION_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST((klass),  MAPASCROMOSOMICOS_TYPE_APPLICATION, MapascromosomicosClass))
-#define MAPASCROMOSOMICOS_IS_APPLICATION(obj)          (G_TYPE_CHECK_INSTANCE_TYPE((obj), MAPASCROMOSOMICOS_TYPE_APPLICATION))
-#define MAPASCROMOSOMICOS_IS_APPLICATION_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE((klass),  MAPASCROMOSOMICOS_TYPE_APPLICATION))
-#define MAPASCROMOSOMICOS_APPLICATION_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS((obj),  MAPASCROMOSOMICOS_TYPE_APPLICATION, MapascromosomicosClass))
+#define MAPASCROMOSOMICOS_TYPE_APPLICATION             (mapascromosomicos_get_type ())
+#define MAPASCROMOSOMICOS_APPLICATION(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), MAPASCROMOSOMICOS_TYPE_APPLICATION, Mapascromosomicos))
+#define MAPASCROMOSOMICOS_APPLICATION_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), MAPASCROMOSOMICOS_TYPE_APPLICATION, MapascromosomicosClass))
+#define MAPASCROMOSOMICOS_IS_APPLICATION(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), MAPASCROMOSOMICOS_TYPE_APPLICATION))
+#define MAPASCROMOSOMICOS_IS_APPLICATION_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), MAPASCROMOSOMICOS_TYPE_APPLICATION))
+#define MAPASCROMOSOMICOS_APPLICATION_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), MAPASCROMOSOMICOS_TYPE_APPLICATION, MapascromosomicosClass))
 
 typedef struct _MapascromosomicosClass MapascromosomicosClass;
 typedef struct _Mapascromosomicos Mapascromosomicos;
 typedef struct _MapascromosomicosPrivate MapascromosomicosPrivate;
 
-struct _MapascromosomicosClass {
+struct _MapascromosomicosClass
+{
 	GtkApplicationClass parent_class;
 };
 
-struct _Mapascromosomicos {
+struct _Mapascromosomicos
+{
 	GtkApplication parent_instance;
+
 	MapascromosomicosPrivate *priv;
+
 };
 
-GType mapascromosomicos_get_type(void) G_GNUC_CONST;
-Mapascromosomicos *mapascromosomicos_new(void);
+GType mapascromosomicos_get_type (void) G_GNUC_CONST;
+Mapascromosomicos *mapascromosomicos_new (void);
 
 /* Callbacks */
 
