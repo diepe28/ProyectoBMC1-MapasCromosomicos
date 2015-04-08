@@ -1,5 +1,0 @@
-#include <gtk/gtk.h>
-
-void btmap_clicked(GtkButton *object) {
-	g_critical("btmap clicked!");
-}
