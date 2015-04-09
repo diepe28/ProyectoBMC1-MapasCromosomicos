@@ -30,11 +30,14 @@ mapascromosomicos_SOURCES = \
 	IntList.h \
 	mapascromosomicos.callbacks.c	
 
-mapascromosomicos_CFLAGS = -lm 
+mapascromosomicos_CFLAGS = -lm \
+	-I/usr/include/genometools/ \
+	-I/usr/local/include/genometools/ 
 
 
 mapascromosomicos_LDFLAGS = \
-	-Wl,--export-dynamic
+	-Wl,--export-dynamic \
+	-lgenometools
 
 mapascromosomicos_LDADD = $(MAPASCROMOSOMICOS_LIBS)
 
