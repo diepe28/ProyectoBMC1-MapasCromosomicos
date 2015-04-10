@@ -19,7 +19,6 @@
 #include "mapascromosomicos.h"
 
 #include <glib/gi18n.h>
-#include <genometools.h>
 
 /* For testing propose use the local (not installed) ui file */
 /* #define UI_FILE PACKAGE_DATA_DIR"/ui/mapascromosomicos.ui" */

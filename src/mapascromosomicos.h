@@ -21,6 +21,7 @@
 #define _MAPASCROMOSOMICOS_
 
 #include <gtk/gtk.h>
+#include <genometools.h>
 
 G_BEGIN_DECLS
 

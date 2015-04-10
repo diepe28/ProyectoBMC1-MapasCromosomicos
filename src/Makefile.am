@@ -28,7 +28,9 @@ mapascromosomicos_SOURCES = \
 	gridview.c \
 	IntList.c \
 	IntList.h \
-	mapascromosomicos.callbacks.c	
+	mapascromosomicos.callbacks.c \
+	GenomeToolsSupport.c \
+	GenomeToolsSupport.h	
 
 mapascromosomicos_CFLAGS = -lm \
 	-I/usr/include/genometools/ \
