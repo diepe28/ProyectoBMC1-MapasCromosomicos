@@ -30,6 +30,7 @@ void gridview_row_activated(GtkTreeView *sender, GtkTreePath *path, GtkTreeViewC
 
 int totalNumberOfMaps = 0;
 int currentMap = 0;
+float currentImageScale = 1.0;
 
 static void update_map_nav(gint currentMap, gint totalMaps) 
 {
@@ -52,11 +53,25 @@ void btmap_clicked(GtkButton *sender) {
 		mapList = maps;
 	//
 
-	if (numMaps > 0)
-		update_map_nav (1, numMaps);
-	else
-		update_map_nav(0, 0);
+	GtkWidget* prevButton = GTK_WIDGET(gtk_builder_get_object(builder, "tbprev"));
+	GtkWidget* nextButton = GTK_WIDGET(gtk_builder_get_object(builder, "tbnext"));
 	
+	if (numMaps > 0) {
+		GtkImage* image = GTK_IMAGE(gtk_builder_get_object (builder, "image"));
+		GtkWidget* viewport = GTK_WIDGET(gtk_builder_get_object (builder, "viewport"));
+		gulong allocated_width_for_viewport = gtk_widget_get_allocated_width (viewport);
+		
+		currentImageScale = 1.0;
+		// cairo_t* cairo_context = create_cairo_surface_from_data (mapList[0], number_of_genes, allocated_width_for_viewport, currentImageScale);
+		// gtk_image_set_from_surface (image, cairo_context);
+		update_map_nav (1, numMaps);
+	}
+	else {
+		update_map_nav(0, 0);
+		gtk_widget_set_sensitive (nextButton, FALSE);
+	}
+	
+	gtk_widget_set_sensitive (prevButton, FALSE);
 }
 /* ---------------------------------------------------------------- */
 void btcalc_clicked(GtkButton *sender) {

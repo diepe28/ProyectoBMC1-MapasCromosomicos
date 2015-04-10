@@ -1,7 +1,7 @@
 
 #include "GenomeToolsSupport.h"
 
-cairo_t*  createCairoSurfaceFromData(gdouble** data, gint width, gint height, gfloat scale) 
+cairo_t* create_cairo_surface_from_data(gdouble* mapData, gint numberOfGenes, gint mapWidth, gfloat mapScale)
 {
 	return NULL;
 }
