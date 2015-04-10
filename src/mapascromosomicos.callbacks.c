@@ -30,11 +30,12 @@ void btmap_clicked(GtkButton *sender) {
 	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "spinbutton"));
 	gdouble number_of_genes = gtk_spin_button_get_value(spin_button);
 
-	// TODO: Simulate call to algorithm. Replace with the proper code.
+	// TODO: Simulating call to algorithm. Replace with the proper code.
 		numMaps = 2;
-	    double map1[3] = {0, 30, 40};
-		double map2[3] = {30, 0, 40};
-		double* maps[2] = {map1, map2};
+		gdouble maps[2][3] = {
+			{0.0, 30.0, 40.0},
+			{30.0, 0.0, 40.0}
+		};
 		mapList = maps;
 	//
 	
