@@ -210,7 +210,37 @@ void createMaps(double** matrix, int nGenes){
 	}
 }
 
+/*
+#include "Algoritmo.h"
 
+extern double** mapList;
+extern int numMaps;
+
+int main ( int arc, char **argv ) {
+	int i, numGenes = 5;
+	double** mat = (double**) (malloc(numGenes * sizeof(double*))); 
+	
+	for(i = 0; i < numGenes; i++){
+		mat[i] = (double*) malloc(numGenes * sizeof(double));
+	}
+
+	mat[0][0] = -1; 	mat[0][1] = 0.4; 	mat[0][2] = -1;		mat[0][3] = 0.2 ;	mat[0][4] = -1;
+	mat[1][0] = 0.4; 	mat[1][1] = -1; 	mat[1][2] = 0.2;	mat[1][3] = -1;		mat[1][4] = -1;
+	mat[2][0] = -1; 	mat[2][1] = 0.2; 	mat[2][2] = -1; 	mat[2][3] = -1;		mat[2][4] = 0.1;
+	mat[3][0] = 0.2; 	mat[3][1] = -1; 	mat[3][2] = -1; 	mat[3][3] = -1;		mat[3][4] = -1;
+	mat[4][0] = -1; 	mat[4][1] = -1; 	mat[4][2] = 0.1; 	mat[4][3] = -1;		mat[4][4] = -1;
+
+	//mat[0][0] = -1; 	mat[0][1] = 0.2; 	mat[0][2] = 0.3;	mat[0][3] = 0.4;	
+	//mat[1][0] = 0.2; 	mat[1][1] = -1; 	mat[1][2] = -1;		mat[1][3] = -1;		
+	//mat[2][0] = 0.3; 	mat[2][1] = -1; 	mat[2][2] = -1; 	mat[2][3] = 0.1;		
+	//mat[3][0] = 0.4; 	mat[3][1] = -1; 	mat[3][2] = 0.1; 	mat[3][3] = -1;		
+
+	createMaps(mat, numGenes);
+	for(i = 0; i < numMaps; i++){
+		printMap(mapList[i], numGenes);
+		printf ("\n\n");
+	}
+*/
 
 
 
