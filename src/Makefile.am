@@ -30,7 +30,8 @@ mapascromosomicos_SOURCES = \
 	IntList.h \
 	mapascromosomicos.callbacks.c \
 	GenomeToolsSupport.c \
-	GenomeToolsSupport.h	
+	GenomeToolsSupport.h \
+	default.style	
 
 mapascromosomicos_CFLAGS = -lm \
 	-I/usr/include/genometools/ \

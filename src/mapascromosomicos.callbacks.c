@@ -62,8 +62,10 @@ void btmap_clicked(GtkButton *sender) {
 		gulong allocated_width_for_viewport = gtk_widget_get_allocated_width (viewport);
 		
 		currentImageScale = 1.0;
-		// cairo_t* cairo_context = create_cairo_surface_from_data (mapList[0], number_of_genes, allocated_width_for_viewport, currentImageScale);
-		// gtk_image_set_from_surface (image, cairo_context);
+		// cairo_surface_t* cairo_surface = create_cairo_surface_from_data (mapList[0], number_of_genes, allocated_width_for_viewport, currentImageScale);
+		cairo_surface_t* cairo_surface = create_cairo_surface_from_data (maps[0], number_of_genes, allocated_width_for_viewport, currentImageScale);
+		gtk_image_set_from_surface (image, cairo_surface);
+		cairo_surface_destroy (cairo_surface);
 		update_map_nav (1, numMaps);
 	}
 	else {
