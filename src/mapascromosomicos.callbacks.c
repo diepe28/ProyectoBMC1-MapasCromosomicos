@@ -1,4 +1,6 @@
 #include <gtk/gtk.h>
+#include <genometools.h>
+#include "Algoritmo.h"
 
 void window_init(GtkBuilder *sender) {
 	GtkWidget *gridview = GTK_WIDGET(gtk_builder_get_object(sender, "gridview"));

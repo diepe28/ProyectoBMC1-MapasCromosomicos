@@ -10,9 +10,9 @@ typedef struct{
 
 // Lista de vecinos de cada nodo
 List** adjacentNodes;
-const double EPSILON;
-double ** mapList;
-int numMaps;
+extern const double EPSILON;
+extern double ** mapList;
+extern int numMaps;
 
 int equals(double, double);
 void printPositions(double *, int );

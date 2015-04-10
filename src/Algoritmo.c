@@ -1,8 +1,8 @@
 #include "Algoritmo.h"
 
-extern const double EPSILON = 0.000000001;
-extern double** mapList;
-extern int numMaps;
+const double EPSILON = 0.000000001;
+double** mapList;
+int numMaps;
 
 int equals(double a, double b){
 	return (fabs(a - b) < EPSILON);
