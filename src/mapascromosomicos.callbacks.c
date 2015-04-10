@@ -1,10 +1,12 @@
 #include <gtk/gtk.h>
-#include <genometools.h>
 #include "Algoritmo.h"
 
+GtkBuilder *builder = NULL;
+
 void window_init(GtkBuilder *sender) {
+	// Storing a reference to gtk_builder. So every callback function has access to it.
+	builder = g_object_ref (sender);
 	GtkWidget *gridview = GTK_WIDGET(gtk_builder_get_object(sender, "gridview"));
-	
 	gridview_init(gridview, 3);
 }
 /* ---------------------------------------------------------------- */
@@ -25,7 +27,17 @@ void gridview_row_activated(GtkTreeView *sender, GtkTreePath *path, GtkTreeViewC
 }
 /* ---------------------------------------------------------------- */
 void btmap_clicked(GtkButton *sender) {
-	g_critical("btmap clicked!");
+	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "spinbutton"));
+	gdouble number_of_genes = gtk_spin_button_get_value(spin_button);
+
+	// TODO: Simulate call to algorithm. Replace with the proper code.
+		numMaps = 2;
+	    double map1[3] = {0, 30, 40};
+		double map2[3] = {30, 0, 40};
+		double* maps[2] = {map1, map2};
+		mapList = maps;
+	//
+	
 }
 /* ---------------------------------------------------------------- */
 void btcalc_clicked(GtkButton *sender) {
