@@ -136,7 +136,7 @@
                   <object class="GtkImage" id="image">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="stock">gtk-missing-image</property>
+                    <property name="pixbuf">chromosomes_fit.jpg</property>
                   </object>
                 </child>
               </object>

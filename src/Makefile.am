@@ -31,7 +31,8 @@ mapascromosomicos_SOURCES = \
 	mapascromosomicos.callbacks.c \
 	GenomeToolsSupport.c \
 	GenomeToolsSupport.h \
-	default.style	
+	default.style \
+	chromosomes_fit.jpg	
 
 mapascromosomicos_CFLAGS = -lm \
 	-I/usr/include/genometools/ \
