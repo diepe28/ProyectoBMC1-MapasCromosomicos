@@ -117,16 +117,16 @@ void btmap_clicked(GtkButton *sender) {
 		geneNames[2] = g_malloc(sizeof(gchar) * 10);
 		g_stpcpy(geneNames[0], "Gen 1");
 		g_stpcpy(geneNames[1], "Gen 2");
-		g_stpcpy(geneNames[2], "Gen 3");
+		g_stpcpy(geneNames[2], "Gen grand");
 
 		gdouble** maps;
 		maps = g_malloc(sizeof(gdouble*) * 2);
 		maps[0] = g_malloc(sizeof(gdouble) * 3);
 		maps[1] = g_malloc(sizeof(gdouble) * 3);
 		maps[0][0] = 0.0;
-		maps[0][1] = 30.0;
-		maps[0][2] = 40.0;
-		maps[1][0] = 30.0;
+		maps[0][1] = 5.0;
+		maps[0][2] = 50.0;
+		maps[1][0] = 10.0;
 		maps[1][1] = 0.0;
 		maps[1][2] = 20.0;
 

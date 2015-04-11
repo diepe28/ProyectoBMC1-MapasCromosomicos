@@ -1,8 +1,6 @@
 
 #include "GenomeToolsSupport.h"
 
-const gint GENE_LENGTH = 2;
-
 static gdouble get_upper_bound(gdouble* mapData, gint numberOfGenes) 
 {
 	gint i = 0;
@@ -10,7 +8,7 @@ static gdouble get_upper_bound(gdouble* mapData, gint numberOfGenes)
 	for (i = 0; i < numberOfGenes; i++)
 		if (mapData[i] > max)
 			max = mapData[i];
-	return max + 2;
+	return max;
 }
 
 static void handle_error(GtError *err)
@@ -19,7 +17,7 @@ static void handle_error(GtError *err)
   exit(EXIT_FAILURE);
 }
 
-static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gint numberOfGenes, gdouble upperBound)
+static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gint numberOfGenes, gdouble upperBound, gint geneLength)
 {
 	GtArray *features;
 	GtGenomeNode *gene, *chromosome;
@@ -29,11 +27,11 @@ static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gi
 	features = gt_array_new(sizeof (GtGenomeNode*));
 	seqid = gt_str_new_cstr("linkage_map");
 	
-	chromosome = gt_feature_node_new(seqid, "chromosomes", 0, upperBound, GT_STRAND_FORWARD);
+	chromosome = gt_feature_node_new(seqid, "chromosomes", 0, upperBound + geneLength, GT_STRAND_FORWARD);
 	gt_feature_node_set_attribute((GtFeatureNode*)chromosome, "Name", "Chr1");
 
 	for (i = 0; i < numberOfGenes; i++) {
-		gene = gt_feature_node_new(seqid, "genes", mapData[i], mapData[i] + GENE_LENGTH, GT_STRAND_FORWARD);
+		gene = gt_feature_node_new(seqid, "genes", mapData[i], mapData[i] + geneLength, GT_STRAND_FORWARD);
 		gt_feature_node_set_attribute((GtFeatureNode*)gene, "Name", geneNames[i]);
 		gt_array_add(features, gene);
 	}
@@ -51,10 +49,30 @@ static void delete_example_features(GtArray *features)
   gt_array_delete(features);
 }
 
+static gint getBestWidth(gdouble upperBound, gfloat mapScale) 
+{
+	gint geneWidth = (upperBound * 2) / 40;
+	if (geneWidth < 1)
+		geneWidth = 1;
+	if (mapScale > 1.3)
+		if (mapScale < 1.6)
+			geneWidth *= 0.8;
+		else
+			geneWidth *= 0.4;
+	return geneWidth;
+}
+
 cairo_surface_t* create_cairo_surface_from_data(gdouble* mapData, gchar** geneNames, gint numberOfGenes, gint mapWidth, gfloat mapScale)
 {
-	gdouble upperBound = get_upper_bound(mapData, numberOfGenes); 
-	GtRange range = { 0, upperBound};
+	gdouble upperBound = get_upper_bound(mapData, numberOfGenes);
+	gint geneWidth = 0;
+
+	if (upperBound <= 10)
+		geneWidth = 0;
+	else
+		geneWidth = getBestWidth(upperBound, mapScale);
+		
+	GtRange range = { 0, upperBound + geneWidth};
 	GtStyle *style;
 	GtDiagram *diagram;
 	GtLayout *layout;
@@ -75,7 +93,7 @@ cairo_surface_t* create_cairo_surface_from_data(gdouble* mapData, gchar** geneNa
 		handle_error(err);
 
 	/* create diagram */
-	GtArray* features = create_array_of_features (mapData, geneNames, numberOfGenes, upperBound);
+	GtArray* features = create_array_of_features (mapData, geneNames, numberOfGenes, upperBound, geneWidth);
 	diagram = gt_diagram_new_from_array(features, &range, style);
 
 	if (!diagram || mapWidth <= 30) return FALSE;
