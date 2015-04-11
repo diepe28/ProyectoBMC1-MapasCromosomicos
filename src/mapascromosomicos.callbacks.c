@@ -28,9 +28,9 @@ void gridview_row_activated(GtkTreeView *sender, GtkTreePath *path, GtkTreeViewC
 }
 /* ---------------------------------------------------------------- */
 
-int totalNumberOfMaps = 0;
-int currentMap = 0;
-float currentImageScale = 1.0;
+gint totalNumberOfMaps = 0;
+gint currentMap = 0;
+gfloat currentImageScale = 1.0;
 
 static void update_map_nav(gint currentMap, gint totalMaps) 
 {
@@ -41,17 +41,37 @@ static void update_map_nav(gint currentMap, gint totalMaps)
 }
 
 void btmap_clicked(GtkButton *sender) {
-	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "spinbutton"));
-	gdouble number_of_genes = gtk_spin_button_get_value(spin_button);
 
 	// TODO: Simulating call to algorithm. Replace with the proper code.
 		numMaps = 2;
-		gdouble maps[2][3] = {
+	
+		gchar* geneNames[3];
+	    geneNames[0] = g_malloc(sizeof(gchar) * 10);
+		geneNames[1] = g_malloc(sizeof(gchar) * 10);
+		geneNames[2] = g_malloc(sizeof(gchar) * 10);
+		g_stpcpy(geneNames[0], "Gen 1");
+		g_stpcpy(geneNames[1], "Gen 2");
+		g_stpcpy(geneNames[2], "Gen 3");
+
+		gdouble* maps[2];
+		maps[0] = g_malloc(sizeof(gdouble) * 3);
+		maps[1] = g_malloc(sizeof(gdouble) * 3);
+		maps[0][0] = 0.0;
+		maps[0][1] = 30.0;
+		maps[0][2] = 40.0;
+		maps[1][0] = 30.0;
+		maps[1][1] = 0.0;
+		maps[1][2] = 40.0;
+		
+		/*gdouble maps[2][3] = {
 			{0.0, 30.0, 40.0},
 			{30.0, 0.0, 40.0}
-		};
+		};*/
 		mapList = maps;
 	//
+	
+	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "spinbutton"));
+	gdouble number_of_genes = gtk_spin_button_get_value(spin_button);
 
 	GtkWidget* prevButton = GTK_WIDGET(gtk_builder_get_object(builder, "tbprev"));
 	GtkWidget* nextButton = GTK_WIDGET(gtk_builder_get_object(builder, "tbnext"));
@@ -63,7 +83,7 @@ void btmap_clicked(GtkButton *sender) {
 		
 		currentImageScale = 1.0;
 		// cairo_surface_t* cairo_surface = create_cairo_surface_from_data (mapList[0], number_of_genes, allocated_width_for_viewport, currentImageScale);
-		cairo_surface_t* cairo_surface = create_cairo_surface_from_data (maps[0], number_of_genes, allocated_width_for_viewport, currentImageScale);
+		cairo_surface_t* cairo_surface = create_cairo_surface_from_data (mapList[0], geneNames, number_of_genes, allocated_width_for_viewport, currentImageScale);
 		gtk_image_set_from_surface (image, cairo_surface);
 		cairo_surface_destroy (cairo_surface);
 		update_map_nav (1, numMaps);
@@ -74,6 +94,15 @@ void btmap_clicked(GtkButton *sender) {
 	}
 	
 	gtk_widget_set_sensitive (prevButton, FALSE);
+
+	/* Freeing test memory */
+	//TODO remove later
+	g_free(geneNames[0]);
+	g_free(geneNames[1]);
+	g_free(geneNames[2]);
+	g_free(maps[0]);
+	g_free(maps[1]);
+	
 }
 /* ---------------------------------------------------------------- */
 void btcalc_clicked(GtkButton *sender) {

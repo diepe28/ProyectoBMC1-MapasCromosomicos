@@ -1,7 +1,7 @@
 
 #include "GenomeToolsSupport.h"
 
-const gint GENE_LENGTH = 3;
+const gint GENE_LENGTH = 2;
 
 static gdouble get_upper_bound(gdouble* mapData, gint numberOfGenes) 
 {
@@ -10,7 +10,7 @@ static gdouble get_upper_bound(gdouble* mapData, gint numberOfGenes)
 	for (i = 0; i < numberOfGenes; i++)
 		if (mapData[i] > max)
 			max = mapData[i];
-	return max;
+	return max + 2;
 }
 
 static void handle_error(GtError *err)
@@ -19,7 +19,7 @@ static void handle_error(GtError *err)
   exit(EXIT_FAILURE);
 }
 
-static GtArray* create_array_of_features(gdouble* mapData, gint numberOfGenes, gdouble upperBound)
+static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gint numberOfGenes, gdouble upperBound)
 {
 	GtArray *features;
 	GtGenomeNode *gene, *chromosome;
@@ -34,7 +34,7 @@ static GtArray* create_array_of_features(gdouble* mapData, gint numberOfGenes, g
 
 	for (i = 0; i < numberOfGenes; i++) {
 		gene = gt_feature_node_new(seqid, "gene", mapData[i], mapData[i] + GENE_LENGTH, GT_STRAND_FORWARD);
-		//TODO Use gene name gt_feature_node_set_attribute((GtFeatureNode*)gene, "ID", "Gene 1");
+		gt_feature_node_set_attribute((GtFeatureNode*)gene, "ID", geneNames[i]);
 		gt_feature_node_add_child((GtFeatureNode*) chromosome, (GtFeatureNode*) gene);
 	}
 	
@@ -51,7 +51,7 @@ static void delete_example_features(GtArray *features)
   gt_array_delete(features);
 }
 
-cairo_surface_t* create_cairo_surface_from_data(gdouble* mapData, gint numberOfGenes, gint mapWidth, gfloat mapScale)
+cairo_surface_t* create_cairo_surface_from_data(gdouble* mapData, gchar** geneNames, gint numberOfGenes, gint mapWidth, gfloat mapScale)
 {
 	gdouble upperBound = get_upper_bound(mapData, numberOfGenes); 
 	GtRange range = { 0, upperBound};
@@ -75,7 +75,7 @@ cairo_surface_t* create_cairo_surface_from_data(gdouble* mapData, gint numberOfG
 		handle_error(err);
 
 	/* create diagram */
-	GtArray* features = create_array_of_features (mapData, numberOfGenes, upperBound);
+	GtArray* features = create_array_of_features (mapData, geneNames, numberOfGenes, upperBound);
 	diagram = gt_diagram_new_from_array(features, &range, style);
 
 	if (!diagram || mapWidth <= 30) return FALSE;
@@ -93,6 +93,7 @@ cairo_surface_t* create_cairo_surface_from_data(gdouble* mapData, gint numberOfG
 	cairo_t* cairo_context = cairo_create (surface);
 	cairo_scale (cairo_context, mapScale, mapScale);
 	cairo_rectangle(cairo_context, 0, 0, mapWidth, height);
+	cairo_clip(cairo_context);
 
 	canvas = gt_canvas_cairo_context_new(style, cairo_context, 0, mapWidth,
 	                                     height, NULL, err);
@@ -101,7 +102,6 @@ cairo_surface_t* create_cairo_surface_from_data(gdouble* mapData, gint numberOfG
 	gt_layout_sketch(layout, canvas, err);
 
 	cairo_destroy (cairo_context);
-	// cairo_surface_destroy (surface);
 	gt_canvas_delete(canvas);
 	gt_layout_delete(layout);
 	gt_diagram_delete(diagram);
