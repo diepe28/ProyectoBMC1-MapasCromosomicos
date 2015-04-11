@@ -13,6 +13,17 @@ gint global_currentNumberOfGenes = 0;
 gint global_currentMap = 0;
 gfloat global_currentImageScale = 1.0;
 
+static void append_to_log(gchar *text)
+{
+  GtkTextBuffer *tbuffer;
+  GtkTextIter ei;
+  GtkTextView *textview = GTK_TEXT_VIEW(gtk_builder_get_object(global_builder, "trace"));
+
+  tbuffer = gtk_text_view_get_buffer(textview);
+  gtk_text_buffer_get_end_iter(tbuffer, &ei);
+  gtk_text_buffer_insert(tbuffer, &ei, text, -1);
+}
+
 // Private helper functions
 static void update_map_nav() 
 {
@@ -68,7 +79,17 @@ void window_init(GtkBuilder *sender) {
 	GtkWidget *gridview = GTK_WIDGET(gtk_builder_get_object(sender, "gridview"));
 	gridview_init(gridview, 3);
 	update_map_nav();
-	change_zoom_controls(FALSE); 
+	change_zoom_controls(FALSE);
+
+	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	
 }
 /* ---------------------------------------------------------------- */
 void spinbutton_valuechanged(GtkSpinButton *sender, gpointer args) {
