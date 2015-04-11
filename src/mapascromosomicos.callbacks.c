@@ -91,15 +91,14 @@ void gridview_row_activated(GtkTreeView *sender, GtkTreePath *path, GtkTreeViewC
 void btmap_clicked(GtkButton *sender) {
 	
 	// Freeing memory and reseting current data.
-	// TODO Adjust freeing strategy depending of how data is stored.
 	gint i = 0;
-	if (global_currentGeneNames != NULL) {
+	if (global_currentGeneNames != NULL && mapList != NULL) {
 		for (i = 0; i < global_currentNumberOfGenes; i++) 
-		{
 			g_free(global_currentGeneNames[i]);
-			g_free(mapList[i]);
-		}
 		g_free(global_currentGeneNames);
+
+		for (i = 0; i < numMaps; i++)
+			g_free(mapList[i]);
 		g_free(mapList);
 	}
 	global_currentGeneNames = NULL;
