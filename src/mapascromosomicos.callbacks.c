@@ -13,15 +13,21 @@ gint global_currentNumberOfGenes = 0;
 gint global_currentMap = 0;
 gfloat global_currentImageScale = 1.0;
 
+gint global_current_log_entry = 0;
+
 static void append_to_log(gchar *text)
 {
 	GtkTextBuffer *tbuffer;
 	GtkTextIter ei;
 	GtkTextView *textview = GTK_TEXT_VIEW(gtk_builder_get_object(global_builder, "trace"));
+	gchar text_to_append[100];
+
+	global_current_log_entry++;
+	g_snprintf (text_to_append, sizeof(text_to_append), "%d --- %s", global_current_log_entry, text);
 
 	tbuffer = gtk_text_view_get_buffer(textview);
 	gtk_text_buffer_get_end_iter(tbuffer, &ei);
-	gtk_text_buffer_insert(tbuffer, &ei, text, -1);
+	gtk_text_buffer_insert(tbuffer, &ei, text_to_append, -1);
 }
 
 // Private helper functions
