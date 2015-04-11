@@ -1,13 +1,15 @@
 
 #include "GenomeToolsSupport.h"
 
-static gdouble get_upper_bound(gdouble* mapData, gint numberOfGenes) 
+static gdouble get_upper_bound(gdouble* mapData, gint numberOfGenes, gint* index) 
 {
 	gint i = 0;
 	gdouble max = 0.0;
 	for (i = 0; i < numberOfGenes; i++)
-		if (mapData[i] > max)
+		if (mapData[i] > max) {
+			*index = i;
 			max = mapData[i];
+		}
 	return max;
 }
 
@@ -64,15 +66,24 @@ static gint getBestWidth(gdouble upperBound, gfloat mapScale)
 
 cairo_surface_t* create_cairo_surface_from_data(gdouble* mapData, gchar** geneNames, gint numberOfGenes, gint mapWidth, gfloat mapScale)
 {
-	gdouble upperBound = get_upper_bound(mapData, numberOfGenes);
+	// Code for adjusting gene widths and optimal diagram configuration.
+	gint gene_index_with_upper = 0;
+	gdouble upperBound = get_upper_bound(mapData, numberOfGenes, &gene_index_with_upper);
 	gint geneWidth = 0;
 
 	if (upperBound <= 10)
 		geneWidth = 0;
 	else
 		geneWidth = getBestWidth(upperBound, mapScale);
-		
-	GtRange range = { 0, upperBound + geneWidth};
+
+	GtStr* gtString = gt_str_new_cstr(geneNames[gene_index_with_upper]);
+	gulong stringLength = gt_str_length(gtString);
+	gint extension = stringLength / 3;
+	if (extension < 1)
+		extension = 1;
+	gt_str_delete(gtString);
+	
+	GtRange range = { 0, upperBound + (geneWidth * extension)};
 	GtStyle *style;
 	GtDiagram *diagram;
 	GtLayout *layout;
