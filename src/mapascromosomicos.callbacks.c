@@ -41,7 +41,7 @@ static void change_zoom_controls(gboolean enable)
 	GtkWidget* zoom_out_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomout"));
 	GtkWidget* fit_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "btfit"));
 	gtk_widget_set_sensitive (zoom_in_button, enable);
-	gtk_widget_set_sensitive (zoom_out_button, enable);
+	gtk_widget_set_sensitive (zoom_out_button, FALSE);
 	gtk_widget_set_sensitive (fit_button, enable);
 }
 
@@ -168,14 +168,31 @@ void btnext_clicked(GtkButton *sender) {
 }
 /* ---------------------------------------------------------------- */
 void btzoomin_clicked(GtkButton *sender) {
-	g_critical("btzoomin clicked!");
+	global_currentImageScale += 0.1;
+	render_current_map ();
+	GtkWidget* zoom_in_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomin"));
+	GtkWidget* zoom_out_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomout"));
+	if (global_currentImageScale >= 2.0) 
+		gtk_widget_set_sensitive (zoom_in_button, FALSE);
+	gtk_widget_set_sensitive (zoom_out_button, TRUE);
 }
 /* ---------------------------------------------------------------- */
 void btfit_clicked(GtkButton *sender) {
-	g_critical("btfit clicked!");
+	GtkWidget* zoom_in_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomin"));
+	GtkWidget* zoom_out_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomout"));
+	global_currentImageScale = 1.0;
+	render_current_map ();
+	gtk_widget_set_sensitive (zoom_out_button, FALSE);
+	gtk_widget_set_sensitive (zoom_in_button, TRUE);
 }
 /* ---------------------------------------------------------------- */
 void btzoomout_clicked(GtkButton *sender) {
-	g_critical("btzoomout clicked!");
+	global_currentImageScale -= 0.1;
+	render_current_map ();
+	GtkWidget* zoom_in_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomin"));
+	GtkWidget* zoom_out_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomout"));
+	if (global_currentImageScale == 1.0) 
+		gtk_widget_set_sensitive (zoom_out_button, FALSE);
+	gtk_widget_set_sensitive (zoom_in_button, TRUE);
 }
 /* ---------------------------------------------------------------- */
