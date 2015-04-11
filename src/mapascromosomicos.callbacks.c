@@ -15,13 +15,13 @@ gfloat global_currentImageScale = 1.0;
 
 static void append_to_log(gchar *text)
 {
-  GtkTextBuffer *tbuffer;
-  GtkTextIter ei;
-  GtkTextView *textview = GTK_TEXT_VIEW(gtk_builder_get_object(global_builder, "trace"));
+	GtkTextBuffer *tbuffer;
+	GtkTextIter ei;
+	GtkTextView *textview = GTK_TEXT_VIEW(gtk_builder_get_object(global_builder, "trace"));
 
-  tbuffer = gtk_text_view_get_buffer(textview);
-  gtk_text_buffer_get_end_iter(tbuffer, &ei);
-  gtk_text_buffer_insert(tbuffer, &ei, text, -1);
+	tbuffer = gtk_text_view_get_buffer(textview);
+	gtk_text_buffer_get_end_iter(tbuffer, &ei);
+	gtk_text_buffer_insert(tbuffer, &ei, text, -1);
 }
 
 // Private helper functions
@@ -82,14 +82,6 @@ void window_init(GtkBuilder *sender) {
 	change_zoom_controls(FALSE);
 
 	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
-	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
-	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
-	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
-	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
-	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
-	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
-	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
-	
 }
 /* ---------------------------------------------------------------- */
 void spinbutton_valuechanged(GtkSpinButton *sender, gpointer args) {
@@ -163,7 +155,8 @@ void btmap_clicked(GtkButton *sender) {
 		global_currentNumberOfGenes = gtk_spin_button_get_value(spin_button);
 		global_currentMap = 1;
 		render_current_map();
-		change_zoom_controls(TRUE); 
+		change_zoom_controls(TRUE);
+		append_to_log("Mapas graficados correctamente.\n");
 	}
 	else {
 		change_zoom_controls(FALSE); 
@@ -217,3 +210,13 @@ void btzoomout_clicked(GtkButton *sender) {
 	gtk_widget_set_sensitive (zoom_in_button, TRUE);
 }
 /* ---------------------------------------------------------------- */
+
+void on_trace_size_allocate (GtkWidget    *widget,
+               GdkRectangle *allocation,
+               gpointer      user_data) 
+{
+	GtkScrolledWindow *scrolledWindow = GTK_SCROLLED_WINDOW(gtk_builder_get_object(global_builder, "scrolls"));
+	GtkAdjustment* adjustment = gtk_scrolled_window_get_vadjustment (scrolledWindow);
+	gtk_adjustment_set_value (adjustment, gtk_adjustment_get_upper (adjustment));
+}
+
