@@ -2,13 +2,73 @@
 #include "Algoritmo.h"
 #include "GenomeToolsSupport.h"
 
-GtkBuilder *builder = NULL;
+// Extern variables from Algoritmo.h
+gint numMaps;
+gdouble** mapList;
 
+// Global variables
+GtkBuilder* global_builder = NULL;
+gchar** global_currentGeneNames = NULL;
+gint global_currentNumberOfGenes = 0;
+gint global_currentMap = 0;
+gfloat global_currentImageScale = 1.0;
+
+// Private helper functions
+static void update_map_nav() 
+{
+	GtkWidget* prevButton = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbprev"));
+	GtkWidget* nextButton = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbnext"));
+	
+	GtkLabel* map_navigation_label = GTK_LABEL(gtk_builder_get_object(global_builder, "mapnav"));
+	gchar label_text[8];
+	g_snprintf (label_text, sizeof(label_text), "%d/%d", global_currentMap, numMaps);
+	gtk_label_set_text (map_navigation_label, label_text);
+
+	if (global_currentMap == 0 || global_currentMap == 1)
+		gtk_widget_set_sensitive (prevButton, FALSE);
+	else
+		gtk_widget_set_sensitive (prevButton, TRUE);
+
+	if (global_currentMap == numMaps)
+		gtk_widget_set_sensitive (nextButton, FALSE);
+	else
+		gtk_widget_set_sensitive (nextButton, TRUE);
+}
+
+static void change_zoom_controls(gboolean enable) 
+{
+	GtkWidget* zoom_in_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomin"));
+	GtkWidget* zoom_out_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbzoomout"));
+	GtkWidget* fit_button = GTK_WIDGET(gtk_builder_get_object(global_builder, "btfit"));
+	gtk_widget_set_sensitive (zoom_in_button, enable);
+	gtk_widget_set_sensitive (zoom_out_button, enable);
+	gtk_widget_set_sensitive (fit_button, enable);
+}
+
+static void render_current_map() 
+{
+	GtkImage* image = GTK_IMAGE(gtk_builder_get_object (global_builder, "image"));
+	GtkWidget* viewport = GTK_WIDGET(gtk_builder_get_object (global_builder, "viewport"));
+	gulong allocated_width_for_viewport = gtk_widget_get_allocated_width (viewport);
+	cairo_surface_t* cairo_surface = 
+		create_cairo_surface_from_data (mapList[global_currentMap-1], 
+		                                global_currentGeneNames, 
+		                                global_currentNumberOfGenes, 
+		                                allocated_width_for_viewport, 
+		                                global_currentImageScale);
+	gtk_image_set_from_surface (image, cairo_surface);
+	cairo_surface_destroy (cairo_surface);
+}
+
+// Callbacks
 void window_init(GtkBuilder *sender) {
 	// Storing a reference to gtk_builder. So every callback function has access to it.
-	builder = g_object_ref (sender);
+	global_builder = g_object_ref (sender);
+	
 	GtkWidget *gridview = GTK_WIDGET(gtk_builder_get_object(sender, "gridview"));
 	gridview_init(gridview, 3);
+	update_map_nav();
+	change_zoom_controls(FALSE); 
 }
 /* ---------------------------------------------------------------- */
 void spinbutton_valuechanged(GtkSpinButton *sender, gpointer args) {
@@ -28,24 +88,31 @@ void gridview_row_activated(GtkTreeView *sender, GtkTreePath *path, GtkTreeViewC
 }
 /* ---------------------------------------------------------------- */
 
-gint totalNumberOfMaps = 0;
-gint currentMap = 0;
-gfloat currentImageScale = 1.0;
-
-static void update_map_nav(gint currentMap, gint totalMaps) 
-{
-	GtkLabel* map_navigation_label = GTK_LABEL(gtk_builder_get_object(builder, "mapnav"));
-	gchar label_text[8];
-	g_snprintf (label_text, sizeof(label_text), "%d/%d", currentMap, totalMaps);
-	gtk_label_set_text (map_navigation_label, label_text);
-}
-
 void btmap_clicked(GtkButton *sender) {
-
-	// TODO: Simulating call to algorithm. Replace with the proper code.
-		numMaps = 2;
 	
-		gchar* geneNames[3];
+	// Freeing memory and reseting current data.
+	// TODO Adjust freeing strategy depending of how data is stored.
+	gint i = 0;
+	if (global_currentGeneNames != NULL) {
+		for (i = 0; i < global_currentNumberOfGenes; i++) 
+		{
+			g_free(global_currentGeneNames[i]);
+			g_free(mapList[i]);
+		}
+		g_free(global_currentGeneNames);
+		g_free(mapList);
+	}
+	global_currentGeneNames = NULL;
+	global_currentNumberOfGenes = 0;
+	global_currentMap = 0;
+	global_currentImageScale = 1.0;
+	mapList = NULL;
+	numMaps = 0;
+	
+	
+	// TODO: Extracting genes names and simulating call to algorithm. Replace with the proper code.
+		gchar** geneNames;
+		geneNames = g_malloc(sizeof(gchar*) * 3);
 	    geneNames[0] = g_malloc(sizeof(gchar) * 10);
 		geneNames[1] = g_malloc(sizeof(gchar) * 10);
 		geneNames[2] = g_malloc(sizeof(gchar) * 10);
@@ -53,7 +120,8 @@ void btmap_clicked(GtkButton *sender) {
 		g_stpcpy(geneNames[1], "Gen 2");
 		g_stpcpy(geneNames[2], "Gen 3");
 
-		gdouble* maps[2];
+		gdouble** maps;
+		maps = g_malloc(sizeof(gdouble*) * 2);
 		maps[0] = g_malloc(sizeof(gdouble) * 3);
 		maps[1] = g_malloc(sizeof(gdouble) * 3);
 		maps[0][0] = 0.0;
@@ -61,60 +129,43 @@ void btmap_clicked(GtkButton *sender) {
 		maps[0][2] = 40.0;
 		maps[1][0] = 30.0;
 		maps[1][1] = 0.0;
-		maps[1][2] = 40.0;
-		
-		/*gdouble maps[2][3] = {
-			{0.0, 30.0, 40.0},
-			{30.0, 0.0, 40.0}
-		};*/
-		mapList = maps;
-	//
-	
-	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "spinbutton"));
-	gdouble number_of_genes = gtk_spin_button_get_value(spin_button);
+		maps[1][2] = 20.0;
 
-	GtkWidget* prevButton = GTK_WIDGET(gtk_builder_get_object(builder, "tbprev"));
-	GtkWidget* nextButton = GTK_WIDGET(gtk_builder_get_object(builder, "tbnext"));
+		// These variables are setted by algorithm
+		mapList = maps;
+		numMaps = 2;
+	//		
 	
 	if (numMaps > 0) {
-		GtkImage* image = GTK_IMAGE(gtk_builder_get_object (builder, "image"));
-		GtkWidget* viewport = GTK_WIDGET(gtk_builder_get_object (builder, "viewport"));
-		gulong allocated_width_for_viewport = gtk_widget_get_allocated_width (viewport);
-		
-		currentImageScale = 1.0;
-		// cairo_surface_t* cairo_surface = create_cairo_surface_from_data (mapList[0], number_of_genes, allocated_width_for_viewport, currentImageScale);
-		cairo_surface_t* cairo_surface = create_cairo_surface_from_data (mapList[0], geneNames, number_of_genes, allocated_width_for_viewport, currentImageScale);
-		gtk_image_set_from_surface (image, cairo_surface);
-		cairo_surface_destroy (cairo_surface);
-		update_map_nav (1, numMaps);
+		GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
+		global_currentGeneNames = geneNames;
+		global_currentImageScale = 1.0;
+		global_currentNumberOfGenes = gtk_spin_button_get_value(spin_button);
+		global_currentMap = 1;
+		render_current_map();
+		change_zoom_controls(TRUE); 
 	}
 	else {
-		update_map_nav(0, 0);
-		gtk_widget_set_sensitive (nextButton, FALSE);
+		change_zoom_controls(FALSE); 
 	}
-	
-	gtk_widget_set_sensitive (prevButton, FALSE);
-
-	/* Freeing test memory */
-	//TODO remove later
-	g_free(geneNames[0]);
-	g_free(geneNames[1]);
-	g_free(geneNames[2]);
-	g_free(maps[0]);
-	g_free(maps[1]);
-	
+	update_map_nav();
 }
+
 /* ---------------------------------------------------------------- */
 void btcalc_clicked(GtkButton *sender) {
 	g_critical("btcalc clicked!");
 }
 /* ---------------------------------------------------------------- */
 void btprev_clicked(GtkButton *sender) {
-	g_critical("btprev clicked!");
+	global_currentMap--;
+	render_current_map();
+	update_map_nav ();
 }
 /* ---------------------------------------------------------------- */
 void btnext_clicked(GtkButton *sender) {
-	g_critical("btnext clicked!");
+	global_currentMap++;
+	render_current_map();
+	update_map_nav ();
 }
 /* ---------------------------------------------------------------- */
 void btzoomin_clicked(GtkButton *sender) {
