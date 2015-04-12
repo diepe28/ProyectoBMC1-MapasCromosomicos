@@ -181,6 +181,7 @@ void btmap_clicked(GtkButton *sender) {
 		append_to_log("Mapas generados correctamente.\n");
 	}
 	else {
+		append_to_log("Los datos introducidos son inconsistentes o están incompletos.\n");
 		change_zoom_controls(FALSE); 
 	}
 	update_map_nav();
