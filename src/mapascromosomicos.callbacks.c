@@ -119,7 +119,7 @@ void gridview_row_activated(GtkTreeView *sender, GtkTreePath *path, GtkTreeViewC
 void btmap_clicked(GtkButton *sender) {
 	
 	// Freeing memory and reseting current data.
-	gint i = 0;
+	gint i, j = 0;
 	if (global_currentGeneNames != NULL && mapList != NULL) {
 		for (i = 0; i < global_currentNumberOfGenes; i++) 
 			g_free(global_currentGeneNames[i]);
@@ -135,39 +135,46 @@ void btmap_clicked(GtkButton *sender) {
 	global_currentImageScale = 1.0;
 	mapList = NULL;
 	numMaps = 0;
-	
-	
-	// TODO: Extracting genes names and simulating call to algorithm. Replace with the proper code.
-		gchar** geneNames;
-		geneNames = g_malloc(sizeof(gchar*) * 3);
-	    geneNames[0] = g_malloc(sizeof(gchar) * 10);
-		geneNames[1] = g_malloc(sizeof(gchar) * 10);
-		geneNames[2] = g_malloc(sizeof(gchar) * 10);
-		g_stpcpy(geneNames[0], "Gen 1");
-		g_stpcpy(geneNames[1], "Gen 2");
-		g_stpcpy(geneNames[2], "Gen 3");
 
-		gdouble** maps;
-		maps = g_malloc(sizeof(gdouble*) * 2);
-		maps[0] = g_malloc(sizeof(gdouble) * 3);
-		maps[1] = g_malloc(sizeof(gdouble) * 3);
-		maps[0][0] = 0.0;
-		maps[0][1] = 5.0;
-		maps[0][2] = 50.0;
-		maps[1][0] = 10.0;
-		maps[1][1] = 0.0;
-		maps[1][2] = 20.0;
+	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
+	gint numberOfGenes = gtk_spin_button_get_value_as_int (spin_button);
 
-		// These variables are setted by algorithm
-		mapList = maps;
-		numMaps = 2;
-	//		
+	// TODO: Simulating gene names and grid data
+	gchar** geneNames;
+	geneNames = g_malloc(sizeof(gchar*) * 3);
+	geneNames[0] = g_malloc(sizeof(gchar) * 10);
+	geneNames[1] = g_malloc(sizeof(gchar) * 10);
+	geneNames[2] = g_malloc(sizeof(gchar) * 10);
+	g_stpcpy(geneNames[0], "Gen 1");
+	g_stpcpy(geneNames[1], "Gen 2");
+	g_stpcpy(geneNames[2], "Gen 3");
+
+	gdouble** data = g_malloc(sizeof(gdouble*) * 3);
+	data[0] = g_malloc(sizeof(gdouble) * 3);
+	data[1] = g_malloc(sizeof(gdouble) * 3);
+	data[2] = g_malloc(sizeof(gdouble) * 3);
+	data[0][0] = 0.0; data[0][1] = 0.2; data[0][2] = 0.4;
+	data[1][0] = 0.2; data[1][1] = 0.0; data[1][2] = 0.2;
+	data[2][0] = 0.4; data[2][1] = 0.2; data[2][2] = 0.0;
+	// End simulation
+
+	// Call algorithm to populate numMaps and mapList extern variables
+	createMaps(data, numberOfGenes);
+
+	// Convert percentages to cM
+	for (i = 0; i < numMaps; i++)
+		for (j = 0; j < numberOfGenes; j++)
+			mapList[i][j] *= 100;
+
+	// Clean input data memory
+	for (i = 0; i < numberOfGenes; i++) 
+		g_free(data[i]);
+	g_free(data);
 	
 	if (numMaps > 0) {
-		GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
 		global_currentGeneNames = geneNames;
 		global_currentImageScale = 1.0;
-		global_currentNumberOfGenes = gtk_spin_button_get_value(spin_button);
+		global_currentNumberOfGenes = numberOfGenes;
 		global_currentMap = 1;
 		render_current_map();
 		change_zoom_controls(TRUE);
