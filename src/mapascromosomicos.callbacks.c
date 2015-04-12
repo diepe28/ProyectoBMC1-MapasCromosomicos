@@ -88,6 +88,7 @@ void window_init(GtkBuilder *sender) {
 	change_zoom_controls(FALSE);
 
 	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
+	append_to_log("Introduzca las probabilidades de recombinación entre un grupo de genes y presione el botón 'Mapear'.\n");
 }
 /* ---------------------------------------------------------------- */
 void spinbutton_valuechanged(GtkSpinButton *sender, gpointer args) {
