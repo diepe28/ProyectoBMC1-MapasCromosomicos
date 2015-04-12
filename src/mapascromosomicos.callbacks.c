@@ -20,7 +20,7 @@ static void append_to_log(gchar *text)
 	GtkTextBuffer *tbuffer;
 	GtkTextIter ei;
 	GtkTextView *textview = GTK_TEXT_VIEW(gtk_builder_get_object(global_builder, "trace"));
-	gchar text_to_append[100];
+	gchar text_to_append[150];
 
 	global_current_log_entry++;
 	g_snprintf (text_to_append, sizeof(text_to_append), "%d --- %s", global_current_log_entry, text);
@@ -163,7 +163,7 @@ void btmap_clicked(GtkButton *sender) {
 		global_currentMap = 1;
 		render_current_map();
 		change_zoom_controls(TRUE);
-		append_to_log("Mapas graficados correctamente.\n");
+		append_to_log("Mapas generados correctamente.\n");
 	}
 	else {
 		change_zoom_controls(FALSE); 
