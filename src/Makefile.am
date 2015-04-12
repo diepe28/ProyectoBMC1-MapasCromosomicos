@@ -32,7 +32,9 @@ mapascromosomicos_SOURCES = \
 	GenomeToolsSupport.c \
 	GenomeToolsSupport.h \
 	default.style \
-	chromosomes_fit.jpg	
+	chromosomes_fit.jpg \
+	icon.png \
+	icon_window.png	
 
 mapascromosomicos_CFLAGS = -lm \
 	-I/usr/include/genometools/ \

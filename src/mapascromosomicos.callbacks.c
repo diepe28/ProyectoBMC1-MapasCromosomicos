@@ -85,6 +85,10 @@ static void render_current_map()
 void window_init(GtkBuilder *sender) {
 	// Storing a reference to gtk_builder. So every callback function has access to it.
 	global_builder = g_object_ref (sender);
+
+	GtkWindow* mainWindow = GTK_WINDOW(gtk_builder_get_object (global_builder, "window"));
+	gtk_window_set_icon_from_file (mainWindow, "src/icon_window.png", NULL);
+	gtk_window_set_default_icon_from_file ("src/icon_window.png", NULL);
 	
 	GtkWidget *gridview = GTK_WIDGET(gtk_builder_get_object(sender, "gridview"));
 	gridview_init(gridview, 3);
@@ -237,6 +241,39 @@ on_menuitem_exit (GtkMenuItem *menuitem,
 {
 	GtkWindow* mainWindow = GTK_WINDOW(gtk_builder_get_object(global_builder, "window"));
 	GtkApplication* application = gtk_window_get_application (mainWindow);
-	g_application_quit (application);
+	g_application_quit (G_APPLICATION(application));
+}
+
+void
+on_helpmenuitem_activate (GtkMenuItem *menuitem,
+               gpointer     user_data) 
+{
+	GtkAboutDialog *dialog = GTK_ABOUT_DIALOG(gtk_about_dialog_new());
+	gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(dialog), "Graficador de Mapas Cromosómicos");
+	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), 
+	                              "Proyecto #1 del curso: Introducción a la Biología Molecular Computacional.");
+
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file("src/icon.png", NULL);
+	gtk_about_dialog_set_logo(dialog, pixbuf);
+    g_object_unref(pixbuf);
+	pixbuf = NULL; 
+	
+	gchar **authors = g_malloc(sizeof(gchar*) * 4);
+	authors[0] = g_malloc(sizeof(gchar) * 30);
+	authors[1] = g_malloc(sizeof(gchar) * 30);
+	authors[2] = g_malloc(sizeof(gchar) * 30);
+	authors[3] = NULL;
+	g_stpcpy(authors[0], "Olger Calderón Achío");
+	g_stpcpy(authors[1], "Wilberth Castro Fuentes");
+	g_stpcpy(authors[2], "Diego Pérez Arroyo");
+	gtk_about_dialog_set_authors(dialog, authors);
+
+	gtk_dialog_run(GTK_DIALOG (dialog));
+	g_free(authors[0]);
+	g_free(authors[1]);
+	g_free(authors[2]);
+	g_free(authors[3]);
+	g_free(authors);
+	gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
