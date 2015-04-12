@@ -81,6 +81,48 @@ static void render_current_map()
 	cairo_surface_destroy (cairo_surface);
 }
 
+// Function for retrieving data from grid.
+void static getDataFromGrid(gdouble** data, gchar** geneNames, gint numberOfGenes) 
+{
+	GtkTreeIter iter;
+	gboolean valid = FALSE;
+	gint row_count = 0;
+	gint i, j = 0;
+	GtkTreeView* grid = GTK_TREE_VIEW(gtk_builder_get_object(global_builder, "gridview"));
+	GtkTreeModel* list_store = gtk_tree_view_get_model (grid);
+	gchar *str_data;
+	
+	valid = gtk_tree_model_get_iter_first (list_store,
+	                                       &iter);
+	if (valid)
+	{
+		for (i = 0; i < numberOfGenes && valid; i++) {
+
+			gtk_tree_model_get (list_store, &iter,
+			                    0, &geneNames[i],
+			                    -1);
+
+			for (j = 0; j < numberOfGenes && valid; j++) {
+				gtk_tree_model_get (list_store, &iter,
+			                    j+1, &str_data,
+			                    -1);
+
+				if (str_data[0] == '\0')
+					data[i][j] = -1;
+				else {
+					gdouble result = g_ascii_strtod(str_data, NULL);
+					data[i][j] = result;
+				}
+				g_free(str_data);
+			}
+
+			valid = gtk_tree_model_iter_next (list_store,
+			                                  &iter);
+		}
+
+	}
+}
+
 // Callbacks
 void window_init(GtkBuilder *sender) {
 	// Storing a reference to gtk_builder. So every callback function has access to it.
@@ -139,24 +181,16 @@ void btmap_clicked(GtkButton *sender) {
 	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
 	gint numberOfGenes = gtk_spin_button_get_value_as_int (spin_button);
 
-	// TODO: Simulating gene names and grid data
-	gchar** geneNames;
-	geneNames = g_malloc(sizeof(gchar*) * 3);
-	geneNames[0] = g_malloc(sizeof(gchar) * 10);
-	geneNames[1] = g_malloc(sizeof(gchar) * 10);
-	geneNames[2] = g_malloc(sizeof(gchar) * 10);
-	g_stpcpy(geneNames[0], "Gen 1");
-	g_stpcpy(geneNames[1], "Gen 2");
-	g_stpcpy(geneNames[2], "Gen 3");
+	// Retrieving data from grid.
+	gdouble** data = g_malloc(sizeof(gdouble*) * numberOfGenes);
+	gchar** geneNames = g_malloc(sizeof(gchar*) * numberOfGenes);
+	for (i = 0; i < numberOfGenes; i++) {
+		data[i] = g_malloc(sizeof(gdouble) * numberOfGenes);
+		geneNames[i] = g_malloc(sizeof(gchar) * 50);
+	}
 
-	gdouble** data = g_malloc(sizeof(gdouble*) * 3);
-	data[0] = g_malloc(sizeof(gdouble) * 3);
-	data[1] = g_malloc(sizeof(gdouble) * 3);
-	data[2] = g_malloc(sizeof(gdouble) * 3);
-	data[0][0] = 0.0; data[0][1] = 0.4; data[0][2] = -1;
-	data[1][0] = 0.4; data[1][1] = 0.0; data[1][2] = 0.2;
-	data[2][0] = -1; data[2][1] = 0.2; data[2][2] = 0.0;
-	// End simulation
+	// Populate data y geneNames
+	getDataFromGrid(data, geneNames, numberOfGenes);
 
 	// Call algorithm to populate numMaps and mapList extern variables
 	createMaps(data, numberOfGenes);
@@ -181,6 +215,13 @@ void btmap_clicked(GtkButton *sender) {
 		append_to_log("Mapas generados correctamente.\n");
 	}
 	else {
+		// Clear unstored geneNames
+		for (i = 0; i < numberOfGenes; i++) 
+			g_free(geneNames[i]);
+		g_free(geneNames);
+		
+		global_currentGeneNames = NULL;
+		mapList = NULL;
 		append_to_log("Los datos introducidos son inconsistentes o están incompletos.\n");
 		change_zoom_controls(FALSE); 
 	}
