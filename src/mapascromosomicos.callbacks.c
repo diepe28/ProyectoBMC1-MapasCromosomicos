@@ -1,10 +1,14 @@
 #include <gtk/gtk.h>
+#include "mapascromosomicos.h"
 #include "Algoritmo.h"
 #include "GenomeToolsSupport.h"
 
 // Extern variables from Algoritmo.h
 gint numMaps;
 gdouble** mapList;
+
+// Extern variables from mapascromosomicos.h
+GApplication* application;
 
 // Global variables
 GtkBuilder* global_builder = NULL;
@@ -225,5 +229,14 @@ void on_trace_size_allocate (GtkWidget    *widget,
 	GtkScrolledWindow *scrolledWindow = GTK_SCROLLED_WINDOW(gtk_builder_get_object(global_builder, "scrolls"));
 	GtkAdjustment* adjustment = gtk_scrolled_window_get_vadjustment (scrolledWindow);
 	gtk_adjustment_set_value (adjustment, gtk_adjustment_get_upper (adjustment));
+}
+
+void
+on_menuitem_exit (GtkMenuItem *menuitem,
+               gpointer     user_data) 
+{
+	GtkWindow* mainWindow = GTK_WINDOW(gtk_builder_get_object(global_builder, "window"));
+	GtkApplication* application = gtk_window_get_application (mainWindow);
+	g_application_quit (application);
 }
 
