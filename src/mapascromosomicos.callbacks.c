@@ -153,9 +153,9 @@ void btmap_clicked(GtkButton *sender) {
 	data[0] = g_malloc(sizeof(gdouble) * 3);
 	data[1] = g_malloc(sizeof(gdouble) * 3);
 	data[2] = g_malloc(sizeof(gdouble) * 3);
-	data[0][0] = 0.0; data[0][1] = 0.2; data[0][2] = 0.4;
-	data[1][0] = 0.2; data[1][1] = 0.0; data[1][2] = 0.2;
-	data[2][0] = 0.4; data[2][1] = 0.2; data[2][2] = 0.0;
+	data[0][0] = 0.0; data[0][1] = 0.4; data[0][2] = -1;
+	data[1][0] = 0.4; data[1][1] = 0.0; data[1][2] = 0.2;
+	data[2][0] = -1; data[2][1] = 0.2; data[2][2] = 0.0;
 	// End simulation
 
 	// Call algorithm to populate numMaps and mapList extern variables
