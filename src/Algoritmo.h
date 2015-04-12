@@ -28,4 +28,8 @@ void createMapsAux(double ** , int , double* , int , Node * , List* );
 void resetPositions(double * , int );
 void createMaps(double** , int );
 
+int predictFor(int, int, double**, int, double*);
+int predict(double** , int );
+
 #endif
+
