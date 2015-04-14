@@ -28,13 +28,13 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkMenuItem" id="menuitem1">
+              <object class="GtkMenuItem" id="mifile">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu" id="menu1">
+                  <object class="GtkMenu" id="mfile">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -56,12 +56,13 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem3">
+                      <object class="GtkImageMenuItem" id="imisave">
                         <property name="label">gtk-save</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <signal name="activate" handler="imisave_activate" object="gridview" swapped="no"/>
                       </object>
                     </child>
                     <child>
@@ -321,7 +322,6 @@
                     <property name="can_focus">True</property>
                     <property name="search_column">0</property>
                     <property name="enable_grid_lines">both</property>
-                    <signal name="row-activated" handler="gridview_row_activated" object="gridviewselection" swapped="no"/>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection" id="gridviewselection"/>
                     </child>

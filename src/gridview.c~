@@ -68,7 +68,7 @@ void cell_edited(GtkCellRendererText *cellrenderer, gchar *pathstring, gchar *ne
 
 	if (row + 1 < column) {
 		gridview_model_set_value(model, row, column, newtext);
-		gridview_model_set_value(model, column - 1, row + 1, newtext);
+		gridview_model_set_value(model, row + 1, column - 1, newtext);
 	}
 }
 /* ---------------------------------------------------------------- */

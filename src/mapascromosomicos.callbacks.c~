@@ -19,6 +19,12 @@ void spinbutton_valuechanged(GtkSpinButton *sender, gpointer args) {
 	g_critical("spinbutton value changed!");
 }
 /* ---------------------------------------------------------------- */
+void gridview_row_activated(GtkTreeView *sender, GtkTreePath *path, GtkTreeViewColumn *column, gpointer args) {
+	
+
+	g_critical("row activated, path: %s", gtk_tree_path_to_string(path));
+}
+/* ---------------------------------------------------------------- */
 void btmap_clicked(GtkButton *sender) {
 	g_critical("btmap clicked!");
 }
