@@ -268,6 +268,12 @@ void btzoomout_clicked(GtkButton *sender) {
 	gtk_widget_set_sensitive (zoom_in_button, TRUE);
 }
 /* ---------------------------------------------------------------- */
+void iminew_activate(GtkMenuItem *sender, gpointer args) {
+	gridview_set_dimensions(args, 3);
+	
+	g_critical("iminew clicked!");
+}
+/* ---------------------------------------------------------------- */
 void imiopen_activate(GtkMenuItem *sender, gpointer args) {
 	GtkWidget *dialog = gtk_file_chooser_dialog_new(
 		"Open",
