@@ -98,7 +98,8 @@ am_mapascromosomicos_OBJECTS = mapascromosomicos-main.$(OBJEXT) \
 	mapascromosomicos-Algoritmo.$(OBJEXT) \
 	mapascromosomicos-gridview.$(OBJEXT) \
 	mapascromosomicos-IntList.$(OBJEXT) \
-	mapascromosomicos-mapascromosomicos.callbacks.$(OBJEXT)
+	mapascromosomicos-mapascromosomicos.callbacks.$(OBJEXT) \
+	mapascromosomicos-GenomeToolsSupport.$(OBJEXT)
 mapascromosomicos_OBJECTS = $(am_mapascromosomicos_OBJECTS)
 am__DEPENDENCIES_1 =
 mapascromosomicos_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -368,11 +369,21 @@ mapascromosomicos_SOURCES = \
 	gridview.c \
 	IntList.c \
 	IntList.h \
-	mapascromosomicos.callbacks.c	
+	mapascromosomicos.callbacks.c \
+	GenomeToolsSupport.c \
+	GenomeToolsSupport.h \
+	default.style \
+	chromosomes_fit.jpg \
+	icon.png \
+	icon_window.png	
 
-mapascromosomicos_CFLAGS = -lm 
+mapascromosomicos_CFLAGS = -lm \
+	-I/usr/include/genometools/ \
+	-I/usr/local/include/genometools/ 
+
 mapascromosomicos_LDFLAGS = \
-	-Wl,--export-dynamic
+	-Wl,--export-dynamic \
+	-lgenometools
 
 mapascromosomicos_LDADD = $(MAPASCROMOSOMICOS_LIBS)
 EXTRA_DIST = $(ui_DATA)
@@ -471,6 +482,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/mapascromosomicos-Algoritmo.Po
+include ./$(DEPDIR)/mapascromosomicos-GenomeToolsSupport.Po
 include ./$(DEPDIR)/mapascromosomicos-IntList.Po
 include ./$(DEPDIR)/mapascromosomicos-gridview.Po
 include ./$(DEPDIR)/mapascromosomicos-main.Po
@@ -581,6 +593,20 @@ mapascromosomicos-mapascromosomicos.callbacks.obj: mapascromosomicos.callbacks.c
 #	$(AM_V_CC)source='mapascromosomicos.callbacks.c' object='mapascromosomicos-mapascromosomicos.callbacks.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(mapascromosomicos_CFLAGS) $(CFLAGS) -c -o mapascromosomicos-mapascromosomicos.callbacks.obj `if test -f 'mapascromosomicos.callbacks.c'; then $(CYGPATH_W) 'mapascromosomicos.callbacks.c'; else $(CYGPATH_W) '$(srcdir)/mapascromosomicos.callbacks.c'; fi`
+
+mapascromosomicos-GenomeToolsSupport.o: GenomeToolsSupport.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(mapascromosomicos_CFLAGS) $(CFLAGS) -MT mapascromosomicos-GenomeToolsSupport.o -MD -MP -MF $(DEPDIR)/mapascromosomicos-GenomeToolsSupport.Tpo -c -o mapascromosomicos-GenomeToolsSupport.o `test -f 'GenomeToolsSupport.c' || echo '$(srcdir)/'`GenomeToolsSupport.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/mapascromosomicos-GenomeToolsSupport.Tpo $(DEPDIR)/mapascromosomicos-GenomeToolsSupport.Po
+#	$(AM_V_CC)source='GenomeToolsSupport.c' object='mapascromosomicos-GenomeToolsSupport.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(mapascromosomicos_CFLAGS) $(CFLAGS) -c -o mapascromosomicos-GenomeToolsSupport.o `test -f 'GenomeToolsSupport.c' || echo '$(srcdir)/'`GenomeToolsSupport.c
+
+mapascromosomicos-GenomeToolsSupport.obj: GenomeToolsSupport.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(mapascromosomicos_CFLAGS) $(CFLAGS) -MT mapascromosomicos-GenomeToolsSupport.obj -MD -MP -MF $(DEPDIR)/mapascromosomicos-GenomeToolsSupport.Tpo -c -o mapascromosomicos-GenomeToolsSupport.obj `if test -f 'GenomeToolsSupport.c'; then $(CYGPATH_W) 'GenomeToolsSupport.c'; else $(CYGPATH_W) '$(srcdir)/GenomeToolsSupport.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/mapascromosomicos-GenomeToolsSupport.Tpo $(DEPDIR)/mapascromosomicos-GenomeToolsSupport.Po
+#	$(AM_V_CC)source='GenomeToolsSupport.c' object='mapascromosomicos-GenomeToolsSupport.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(mapascromosomicos_CFLAGS) $(CFLAGS) -c -o mapascromosomicos-GenomeToolsSupport.obj `if test -f 'GenomeToolsSupport.c'; then $(CYGPATH_W) 'GenomeToolsSupport.c'; else $(CYGPATH_W) '$(srcdir)/GenomeToolsSupport.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

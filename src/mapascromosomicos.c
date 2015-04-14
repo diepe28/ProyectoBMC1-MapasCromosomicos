@@ -20,8 +20,6 @@
 
 #include <glib/gi18n.h>
 
-
-
 /* For testing propose use the local (not installed) ui file */
 /* #define UI_FILE PACKAGE_DATA_DIR"/ui/mapascromosomicos.ui" */
 #define UI_FILE "src/mapascromosomicos.ui"
@@ -96,10 +94,12 @@ static void mapascromosomicos_open(GApplication *application, GFile **files, gin
 
 static void mapascromosomicos_init(Mapascromosomicos *object) {
 	object->priv = G_TYPE_INSTANCE_GET_PRIVATE(object, MAPASCROMOSOMICOS_TYPE_APPLICATION, MapascromosomicosPrivate);
+	gt_lib_init();
 }
 
 static void mapascromosomicos_finalize(GObject *object) {
 	G_OBJECT_CLASS(mapascromosomicos_parent_class)->finalize(object);
+	gt_lib_clean();
 }
 
 static void mapascromosomicos_class_init(MapascromosomicosClass *klass) {

@@ -1,8 +1,8 @@
 #include "Algoritmo.h"
 
-extern const double EPSILON = 0.000000001;
-extern double** mapList;
-extern int numMaps;
+const double EPSILON = 0.000000001;
+double** mapList;
+int numMaps;
 
 int equals(double a, double b){
 	return (fabs(a - b) < EPSILON);
@@ -194,8 +194,9 @@ void createMaps(double** matrix, int nGenes){
 	int startGene, nMaps = pow(2, nGenes-1); //a lo sumo, entre 2 cuando eliminemos repetidos
 	double* positions = (double*) (malloc(nGenes * sizeof(double)));
 	List* inMap; 
-	
-	createAdjacentNodes(matrix, nGenes);
+
+	if(adjacentNodes == NULL)
+		createAdjacentNodes(matrix, nGenes);
 	printAdjancentNodes(nGenes);
 	
 	mapList = (double**) malloc(nMaps * sizeof(double *));
@@ -210,6 +211,129 @@ void createMaps(double** matrix, int nGenes){
 	}
 }
 
+///////////////////////////////////////////////////////////////////////////////
+//////////////////////PREDICTION OF GENES//////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+
+int predictFor(int gene1/*row*/, int gene2/*col*/, double** mat, int nGenes, double *value){
+	List* adjancents1 = adjacentNodes[gene1];
+	List* adjancents2 = adjacentNodes[gene2];
+	Node* current = adjancents1->start;
+	int commonGene1 = -1, commonGene2 = -1;
+	double abs1, abs2, sum1, sum2;
+
+	if(adjancents1->n < 2 || adjancents2->n < 2) return 0;
+	
+	while(current){
+		// if value of the matrix at mat[current->data][gene2] is not -1, then it is a gene in common 
+		if (!equals(mat[current->data][gene2], -1) ){
+			if(commonGene1 == -1)
+				commonGene1 = current->data;
+			else{
+				commonGene2 = current->data;
+				break;
+			}
+		}
+		current = current->next;
+	}
+
+	// not possible to predict
+	if(commonGene2 == -1) return 0;
+
+	abs1 = fabs(mat[commonGene1][gene1] - mat[commonGene1][gene2]);
+	sum1 = mat[commonGene1][gene1] + mat[commonGene1][gene2];
+
+	abs2 = fabs(mat[commonGene2][gene1] - mat[commonGene2][gene2]);
+	sum2 = mat[commonGene2][gene1] + mat[commonGene2][gene2];
+
+	if(equals(abs1,abs2) || equals(abs1,sum2) ){
+		*value = abs1;
+		return 1;
+	}
+
+	if(equals(sum1,abs2) || equals(sum1,sum2) ){
+		*value = sum1;
+		return 1;
+	}
+
+	return 0;
+}
+
+int predict(double** mat, int nGenes){
+	int predictedProbs = 0, i, j;
+	double probability = -1;
+	
+	if(adjacentNodes == NULL)
+		createAdjacentNodes(mat, nGenes);
+
+	//just upper right triangle of matriz
+	for(i = 0; i < nGenes-1; i++){
+		for(j = i+1; j < nGenes; j++){
+			if(equals(mat[i][j], -1)){
+				if(predictFor(i,j,mat,nGenes, &probability)){
+					//Añadir informacion a bitacora se predijo la probabilidad i, j y es igual a probability 
+					mat[i][j] = probability;
+					predictedProbs++;
+				}
+			}
+		}
+	}
+
+	return predictedProbs;
+}
+
+/*
+#include "Algoritmo.h"
+
+extern double** mapList;
+extern int numMaps;
+
+int main ( int arc, char **argv ) {
+	int i, numGenes = 4, probsPredicted;
+	double** mat = (double**) (malloc(numGenes * sizeof(double*))); 
+	
+	for(i = 0; i < numGenes; i++){
+		mat[i] = (double*) malloc(numGenes * sizeof(double));
+	}
+
+
+	mat[0][0] = -1; 	mat[0][1] = 0.4; 	mat[0][2] = -1;		mat[0][3] = 0.2 ;	mat[0][4] = -1;
+	mat[1][0] = 0.4; 	mat[1][1] = -1; 	mat[1][2] = 0.2;	mat[1][3] = -1;		mat[1][4] = -1;
+	mat[2][0] = -1; 	mat[2][1] = 0.2; 	mat[2][2] = -1; 	mat[2][3] = -1;		mat[2][4] = 0.1;
+	mat[3][0] = 0.2; 	mat[3][1] = -1; 	mat[3][2] = -1; 	mat[3][3] = -1;		mat[3][4] = -1;
+	mat[4][0] = -1; 	mat[4][1] = -1; 	mat[4][2] = 0.1; 	mat[4][3] = -1;		mat[4][4] = -1;
+
+
+	mat[0][0] = -1; 	mat[0][1] = 0.2; 	mat[0][2] = 0.3;	mat[0][3] = 0.4;	
+	mat[1][0] = 0.2; 	mat[1][1] = -1; 	mat[1][2] = -1;		mat[1][3] = -1;		
+	mat[2][0] = 0.3; 	mat[2][1] = -1; 	mat[2][2] = -1; 	mat[2][3] = 0.1;		
+	mat[3][0] = 0.4; 	mat[3][1] = -1; 	mat[3][2] = 0.1; 	mat[3][3] = -1;		
+
+
+	mat[0][0] = 0;   	mat[0][1] = 0.05; 	mat[0][2] = 0.08;	mat[0][3] = 0.12;	
+	mat[1][0] = 0.05; 	mat[1][1] = 0; 		mat[1][2] = 0.13;	mat[1][3] = 0.17;		
+	mat[2][0] = 0.08; 	mat[2][1] = 0.13; 	mat[2][2] = 0;   	mat[2][3] = -1;		
+	mat[3][0] = 0.12; 	mat[3][1] = 0.17; 	mat[3][2] = -1; 	mat[3][3] = 0;
+	
+	probsPredicted = predict(mat, numGenes);
+	
+	createMaps(mat, numGenes);
+	for(i = 0; i < numMaps; i++){
+		printMap(mapList[i], numGenes);
+		printf ("\n\n");
+	}
+	
+
+	for(i = 0; i < numGenes; i++){
+		free(mat[i]);
+	}
+
+	free(mat);
+	return 0;
+}
+
+*/
 
 
 

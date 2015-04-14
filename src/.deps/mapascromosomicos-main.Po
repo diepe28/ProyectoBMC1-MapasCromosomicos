@@ -571,10 +571,210 @@ mapascromosomicos-main.o: main.c /usr/include/stdc-predef.h ../config.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvscale.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvscrollbar.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h mapascromosomicos.h \
+ /usr/include/genometools/genometools.h \
+ /usr/include/genometools/gt_config.h \
+ /usr/include/genometools/core/alphabet_api.h \
+ /usr/include/genometools/core/str_api.h \
+ /usr/include/genometools/core/error_api.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdbool.h \
+ /usr/include/genometools/core/assert_api.h /usr/include/stdlib.h \
+ /usr/include/i386-linux-gnu/bits/waitflags.h \
+ /usr/include/i386-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
+ /usr/include/i386-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/i386-linux-gnu/bits/stdlib-float.h \
+ /usr/include/i386-linux-gnu/bits/stdlib.h \
+ /usr/include/genometools/core/str_array_api.h \
+ /usr/include/genometools/core/types_api.h /usr/include/inttypes.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
+ /usr/include/i386-linux-gnu/bits/wchar.h \
+ /usr/include/genometools/core/array2dim_api.h \
+ /usr/include/genometools/core/ma_api.h \
+ /usr/include/genometools/core/array_api.h \
+ /usr/include/genometools/core/fptr_api.h \
+ /usr/include/genometools/core/assert_api.h \
+ /usr/include/genometools/core/basename_api.h \
+ /usr/include/genometools/core/bittab_api.h \
+ /usr/include/genometools/core/array_api.h \
+ /usr/include/genometools/core/bsearch_api.h \
+ /usr/include/genometools/core/bittab_api.h \
+ /usr/include/genometools/core/codon_api.h \
+ /usr/include/genometools/core/codon_iterator_api.h \
+ /usr/include/genometools/core/codon_iterator_encseq_api.h \
+ /usr/include/genometools/core/encseq_api.h \
+ /usr/include/genometools/core/alphabet_api.h \
+ /usr/include/genometools/core/logger_api.h \
+ /usr/include/genometools/core/timer_api.h \
+ /usr/include/genometools/core/readmode_api.h \
+ /usr/include/genometools/core/codon_iterator_api.h \
+ /usr/include/genometools/core/codon_iterator_simple_api.h \
+ /usr/include/genometools/core/countingsort_api.h \
+ /usr/include/genometools/core/cstr_api.h \
+ /usr/include/genometools/core/cstr_table_api.h \
+ /usr/include/genometools/core/disc_distri_api.h \
+ /usr/include/genometools/core/file_api.h \
+ /usr/include/genometools/core/dlist_api.h \
+ /usr/include/genometools/core/encseq_api.h \
+ /usr/include/genometools/core/endianess_api.h \
+ /usr/include/genometools/core/error_api.h \
+ /usr/include/genometools/core/fasta_api.h \
+ /usr/include/genometools/core/file_api.h \
+ /usr/include/genometools/core/fileutils_api.h \
+ /usr/include/genometools/core/fptr_api.h \
+ /usr/include/genometools/core/grep_api.h \
+ /usr/include/genometools/core/hashmap_api.h \
+ /usr/include/genometools/core/init_api.h \
+ /usr/include/genometools/core/interval_tree_api.h \
+ /usr/include/genometools/core/log_api.h \
+ /usr/include/genometools/core/logger_api.h \
+ /usr/include/genometools/core/ma_api.h \
+ /usr/include/genometools/core/md5_encoder_api.h \
+ /usr/include/genometools/core/md5_fingerprint_api.h \
+ /usr/include/genometools/core/msort_api.h \
+ /usr/include/genometools/core/option_api.h \
+ /usr/include/genometools/core/range_api.h \
+ /usr/include/genometools/core/output_file_api.h \
+ /usr/include/genometools/core/option_api.h \
+ /usr/include/genometools/core/parseutils_api.h \
+ /usr/include/genometools/core/phase_api.h \
+ /usr/include/genometools/core/strand_api.h \
+ /usr/include/genometools/core/phase_api.h \
+ /usr/include/genometools/core/qsort_r_api.h \
+ /usr/include/genometools/core/queue_api.h \
+ /usr/include/genometools/core/range_api.h \
+ /usr/include/genometools/core/readmode_api.h \
+ /usr/include/genometools/core/seq_iterator_api.h \
+ /usr/include/genometools/core/queue_api.h \
+ /usr/include/genometools/core/seq_iterator_fastq_api.h \
+ /usr/include/genometools/core/seq_iterator_api.h \
+ /usr/include/genometools/core/seq_iterator_sequence_buffer_api.h \
+ /usr/include/genometools/core/splitter_api.h \
+ /usr/include/genometools/core/str_api.h \
+ /usr/include/genometools/core/str_array_api.h \
+ /usr/include/genometools/core/strand_api.h \
+ /usr/include/genometools/core/strcmp_api.h \
+ /usr/include/genometools/core/symbol_api.h \
+ /usr/include/genometools/core/thread_api.h \
+ /usr/include/genometools/core/timer_api.h \
+ /usr/include/genometools/core/tool_api.h \
+ /usr/include/genometools/core/translator_api.h \
+ /usr/include/genometools/core/trans_table_api.h \
+ /usr/include/genometools/core/trans_table_api.h \
+ /usr/include/genometools/core/types_api.h \
+ /usr/include/genometools/core/undef_api.h \
+ /usr/include/genometools/core/unused_api.h \
+ /usr/include/genometools/core/version_api.h \
+ /usr/include/genometools/core/warning_api.h \
+ /usr/include/genometools/core/xansi_api.h \
+ /usr/include/genometools/extended/add_introns_stream_api.h \
+ /usr/include/genometools/extended/node_stream_api.h \
+ /usr/include/genometools/extended/genome_node_api.h \
+ /usr/include/genometools/extended/node_visitor_api.h \
+ /usr/include/genometools/extended/comment_node_api.h \
+ /usr/include/genometools/extended/eof_node_api.h \
+ /usr/include/genometools/extended/feature_node_api.h \
+ /usr/include/genometools/extended/meta_node_api.h \
+ /usr/include/genometools/extended/region_node_api.h \
+ /usr/include/genometools/extended/sequence_node_api.h \
+ /usr/include/genometools/extended/anno_db_gfflike_api.h \
+ /usr/include/genometools/extended/anno_db_schema_api.h \
+ /usr/include/genometools/extended/feature_index_api.h \
+ /usr/include/genometools/extended/rdb_api.h \
+ /usr/include/genometools/core/cstr_table_api.h \
+ /usr/include/genometools/extended/rdb_visitor_api.h \
+ /usr/include/genometools/extended/rdb_mysql_api.h \
+ /usr/include/genometools/extended/rdb_sqlite_api.h \
+ /usr/include/genometools/extended/anno_db_schema_api.h \
+ /usr/include/genometools/extended/array_in_stream_api.h \
+ /usr/include/genometools/extended/array_out_stream_api.h \
+ /usr/include/genometools/extended/bed_in_stream_api.h \
+ /usr/include/genometools/extended/comment_node_api.h \
+ /usr/include/genometools/extended/csa_stream_api.h \
+ /usr/include/genometools/extended/cds_stream_api.h \
+ /usr/include/genometools/extended/region_mapping_api.h \
+ /usr/include/genometools/extended/eof_node_api.h \
+ /usr/include/genometools/extended/extract_feature_stream_api.h \
+ /usr/include/genometools/extended/feature_index_api.h \
+ /usr/include/genometools/extended/feature_index_memory_api.h \
+ /usr/include/genometools/extended/feature_node_api.h \
+ /usr/include/genometools/extended/feature_node_iterator_api.h \
+ /usr/include/genometools/extended/feature_stream_api.h \
+ /usr/include/genometools/extended/genome_node_api.h \
+ /usr/include/genometools/extended/gff3_in_stream_api.h \
+ /usr/include/genometools/extended/gff3_out_stream_api.h \
+ /usr/include/genometools/extended/gff3_parser_api.h \
+ /usr/include/genometools/extended/type_checker_api.h \
+ /usr/include/genometools/extended/gff3_visitor_api.h \
+ /usr/include/genometools/extended/gtf_in_stream_api.h \
+ /usr/include/genometools/extended/id_to_md5_stream_api.h \
+ /usr/include/genometools/extended/inter_feature_stream_api.h \
+ /usr/include/genometools/extended/match_api.h \
+ /usr/include/genometools/extended/match_blast_api.h \
+ /usr/include/genometools/extended/match_api.h \
+ /usr/include/genometools/extended/match_iterator_api.h \
+ /usr/include/genometools/extended/match_open_api.h \
+ /usr/include/genometools/extended/match_sw_api.h \
+ /usr/include/genometools/extended/match_visitor_api.h \
+ /usr/include/genometools/extended/match_blast_api.h \
+ /usr/include/genometools/extended/match_open_api.h \
+ /usr/include/genometools/extended/md5_to_id_stream_api.h \
+ /usr/include/genometools/extended/merge_feature_stream_api.h \
+ /usr/include/genometools/extended/merge_stream_api.h \
+ /usr/include/genometools/extended/meta_node_api.h \
+ /usr/include/genometools/extended/node_stream_api.h \
+ /usr/include/genometools/extended/node_visitor_api.h \
+ /usr/include/genometools/extended/orf_iterator_api.h \
+ /usr/include/genometools/core/translator_api.h \
+ /usr/include/genometools/extended/rdb_api.h \
+ /usr/include/genometools/extended/rdb_sqlite_api.h \
+ /usr/include/genometools/extended/rdb_visitor_api.h \
+ /usr/include/genometools/extended/region_mapping_api.h \
+ /usr/include/genometools/extended/region_node_api.h \
+ /usr/include/genometools/extended/reverse_api.h \
+ /usr/include/genometools/extended/script_filter_api.h \
+ /usr/include/genometools/extended/select_stream_api.h \
+ /usr/include/genometools/extended/sequence_node_api.h \
+ /usr/include/genometools/extended/sort_stream_api.h \
+ /usr/include/genometools/extended/stat_stream_api.h \
+ /usr/include/genometools/extended/tag_value_map_api.h \
+ /usr/include/genometools/extended/type_checker_api.h \
+ /usr/include/genometools/extended/type_checker_obo_api.h \
+ /usr/include/genometools/extended/uniq_stream_api.h \
+ /usr/include/genometools/extended/visitor_stream_api.h \
+ /usr/include/genometools/ltr/ltr_classify_stream_api.h \
+ /usr/include/genometools/core/hashmap_api.h \
+ /usr/include/genometools/ltr/ltr_cluster_stream_api.h \
+ /usr/include/genometools/ltr/ltr_orf_annotator_stream_api.h \
+ /usr/include/genometools/ltr/ltr_refseq_match_stream_api.h \
+ /usr/include/genometools/annotationsketch/block_api.h \
+ /usr/include/genometools/annotationsketch/canvas_api.h \
+ /usr/include/genometools/annotationsketch/canvas_cairo_context_api.h \
+ /usr/include/genometools/annotationsketch/canvas_api.h \
+ /usr/include/genometools/annotationsketch/image_info_api.h \
+ /usr/include/genometools/annotationsketch/rec_map_api.h \
+ /usr/include/genometools/annotationsketch/style_api.h \
+ /usr/include/genometools/annotationsketch/color_api.h \
+ /usr/include/genometools/annotationsketch/canvas_cairo_file_api.h \
+ /usr/include/genometools/annotationsketch/graphics_api.h \
+ /usr/include/genometools/annotationsketch/color_api.h \
+ /usr/include/genometools/annotationsketch/custom_track_api.h \
+ /usr/include/genometools/annotationsketch/custom_track_gc_content_api.h \
+ /usr/include/genometools/annotationsketch/custom_track_api.h \
+ /usr/include/genometools/annotationsketch/custom_track_script_wrapper_api.h \
+ /usr/include/genometools/annotationsketch/diagram_api.h \
+ /usr/include/genometools/annotationsketch/block_api.h \
+ /usr/include/genometools/annotationsketch/graphics_api.h \
+ /usr/include/genometools/annotationsketch/image_info_api.h \
+ /usr/include/genometools/annotationsketch/layout_api.h \
+ /usr/include/genometools/annotationsketch/diagram_api.h \
+ /usr/include/genometools/annotationsketch/text_width_calculator_api.h \
+ /usr/include/genometools/annotationsketch/rec_map_api.h \
+ /usr/include/genometools/annotationsketch/style_api.h \
+ /usr/include/genometools/annotationsketch/text_width_calculator_api.h \
+ /usr/include/genometools/annotationsketch/text_width_calculator_cairo_api.h \
  /usr/include/glib-2.0/glib/gi18n.h /usr/include/libintl.h \
  /usr/include/locale.h /usr/include/i386-linux-gnu/bits/locale.h \
  /usr/include/string.h /usr/include/i386-linux-gnu/bits/string.h \
- /usr/include/i386-linux-gnu/bits/string2.h /usr/include/stdlib.h \
+ /usr/include/i386-linux-gnu/bits/string2.h \
  /usr/include/i386-linux-gnu/bits/string3.h
 
 /usr/include/stdc-predef.h:
@@ -1829,6 +2029,414 @@ mapascromosomicos-main.o: main.c /usr/include/stdc-predef.h ../config.h \
 
 mapascromosomicos.h:
 
+/usr/include/genometools/genometools.h:
+
+/usr/include/genometools/gt_config.h:
+
+/usr/include/genometools/core/alphabet_api.h:
+
+/usr/include/genometools/core/str_api.h:
+
+/usr/include/genometools/core/error_api.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.8/include/stdbool.h:
+
+/usr/include/genometools/core/assert_api.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/i386-linux-gnu/bits/waitflags.h:
+
+/usr/include/i386-linux-gnu/bits/waitstatus.h:
+
+/usr/include/alloca.h:
+
+/usr/include/i386-linux-gnu/bits/stdlib-bsearch.h:
+
+/usr/include/i386-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/i386-linux-gnu/bits/stdlib.h:
+
+/usr/include/genometools/core/str_array_api.h:
+
+/usr/include/genometools/core/types_api.h:
+
+/usr/include/inttypes.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.8/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/i386-linux-gnu/bits/wchar.h:
+
+/usr/include/genometools/core/array2dim_api.h:
+
+/usr/include/genometools/core/ma_api.h:
+
+/usr/include/genometools/core/array_api.h:
+
+/usr/include/genometools/core/fptr_api.h:
+
+/usr/include/genometools/core/assert_api.h:
+
+/usr/include/genometools/core/basename_api.h:
+
+/usr/include/genometools/core/bittab_api.h:
+
+/usr/include/genometools/core/array_api.h:
+
+/usr/include/genometools/core/bsearch_api.h:
+
+/usr/include/genometools/core/bittab_api.h:
+
+/usr/include/genometools/core/codon_api.h:
+
+/usr/include/genometools/core/codon_iterator_api.h:
+
+/usr/include/genometools/core/codon_iterator_encseq_api.h:
+
+/usr/include/genometools/core/encseq_api.h:
+
+/usr/include/genometools/core/alphabet_api.h:
+
+/usr/include/genometools/core/logger_api.h:
+
+/usr/include/genometools/core/timer_api.h:
+
+/usr/include/genometools/core/readmode_api.h:
+
+/usr/include/genometools/core/codon_iterator_api.h:
+
+/usr/include/genometools/core/codon_iterator_simple_api.h:
+
+/usr/include/genometools/core/countingsort_api.h:
+
+/usr/include/genometools/core/cstr_api.h:
+
+/usr/include/genometools/core/cstr_table_api.h:
+
+/usr/include/genometools/core/disc_distri_api.h:
+
+/usr/include/genometools/core/file_api.h:
+
+/usr/include/genometools/core/dlist_api.h:
+
+/usr/include/genometools/core/encseq_api.h:
+
+/usr/include/genometools/core/endianess_api.h:
+
+/usr/include/genometools/core/error_api.h:
+
+/usr/include/genometools/core/fasta_api.h:
+
+/usr/include/genometools/core/file_api.h:
+
+/usr/include/genometools/core/fileutils_api.h:
+
+/usr/include/genometools/core/fptr_api.h:
+
+/usr/include/genometools/core/grep_api.h:
+
+/usr/include/genometools/core/hashmap_api.h:
+
+/usr/include/genometools/core/init_api.h:
+
+/usr/include/genometools/core/interval_tree_api.h:
+
+/usr/include/genometools/core/log_api.h:
+
+/usr/include/genometools/core/logger_api.h:
+
+/usr/include/genometools/core/ma_api.h:
+
+/usr/include/genometools/core/md5_encoder_api.h:
+
+/usr/include/genometools/core/md5_fingerprint_api.h:
+
+/usr/include/genometools/core/msort_api.h:
+
+/usr/include/genometools/core/option_api.h:
+
+/usr/include/genometools/core/range_api.h:
+
+/usr/include/genometools/core/output_file_api.h:
+
+/usr/include/genometools/core/option_api.h:
+
+/usr/include/genometools/core/parseutils_api.h:
+
+/usr/include/genometools/core/phase_api.h:
+
+/usr/include/genometools/core/strand_api.h:
+
+/usr/include/genometools/core/phase_api.h:
+
+/usr/include/genometools/core/qsort_r_api.h:
+
+/usr/include/genometools/core/queue_api.h:
+
+/usr/include/genometools/core/range_api.h:
+
+/usr/include/genometools/core/readmode_api.h:
+
+/usr/include/genometools/core/seq_iterator_api.h:
+
+/usr/include/genometools/core/queue_api.h:
+
+/usr/include/genometools/core/seq_iterator_fastq_api.h:
+
+/usr/include/genometools/core/seq_iterator_api.h:
+
+/usr/include/genometools/core/seq_iterator_sequence_buffer_api.h:
+
+/usr/include/genometools/core/splitter_api.h:
+
+/usr/include/genometools/core/str_api.h:
+
+/usr/include/genometools/core/str_array_api.h:
+
+/usr/include/genometools/core/strand_api.h:
+
+/usr/include/genometools/core/strcmp_api.h:
+
+/usr/include/genometools/core/symbol_api.h:
+
+/usr/include/genometools/core/thread_api.h:
+
+/usr/include/genometools/core/timer_api.h:
+
+/usr/include/genometools/core/tool_api.h:
+
+/usr/include/genometools/core/translator_api.h:
+
+/usr/include/genometools/core/trans_table_api.h:
+
+/usr/include/genometools/core/trans_table_api.h:
+
+/usr/include/genometools/core/types_api.h:
+
+/usr/include/genometools/core/undef_api.h:
+
+/usr/include/genometools/core/unused_api.h:
+
+/usr/include/genometools/core/version_api.h:
+
+/usr/include/genometools/core/warning_api.h:
+
+/usr/include/genometools/core/xansi_api.h:
+
+/usr/include/genometools/extended/add_introns_stream_api.h:
+
+/usr/include/genometools/extended/node_stream_api.h:
+
+/usr/include/genometools/extended/genome_node_api.h:
+
+/usr/include/genometools/extended/node_visitor_api.h:
+
+/usr/include/genometools/extended/comment_node_api.h:
+
+/usr/include/genometools/extended/eof_node_api.h:
+
+/usr/include/genometools/extended/feature_node_api.h:
+
+/usr/include/genometools/extended/meta_node_api.h:
+
+/usr/include/genometools/extended/region_node_api.h:
+
+/usr/include/genometools/extended/sequence_node_api.h:
+
+/usr/include/genometools/extended/anno_db_gfflike_api.h:
+
+/usr/include/genometools/extended/anno_db_schema_api.h:
+
+/usr/include/genometools/extended/feature_index_api.h:
+
+/usr/include/genometools/extended/rdb_api.h:
+
+/usr/include/genometools/core/cstr_table_api.h:
+
+/usr/include/genometools/extended/rdb_visitor_api.h:
+
+/usr/include/genometools/extended/rdb_mysql_api.h:
+
+/usr/include/genometools/extended/rdb_sqlite_api.h:
+
+/usr/include/genometools/extended/anno_db_schema_api.h:
+
+/usr/include/genometools/extended/array_in_stream_api.h:
+
+/usr/include/genometools/extended/array_out_stream_api.h:
+
+/usr/include/genometools/extended/bed_in_stream_api.h:
+
+/usr/include/genometools/extended/comment_node_api.h:
+
+/usr/include/genometools/extended/csa_stream_api.h:
+
+/usr/include/genometools/extended/cds_stream_api.h:
+
+/usr/include/genometools/extended/region_mapping_api.h:
+
+/usr/include/genometools/extended/eof_node_api.h:
+
+/usr/include/genometools/extended/extract_feature_stream_api.h:
+
+/usr/include/genometools/extended/feature_index_api.h:
+
+/usr/include/genometools/extended/feature_index_memory_api.h:
+
+/usr/include/genometools/extended/feature_node_api.h:
+
+/usr/include/genometools/extended/feature_node_iterator_api.h:
+
+/usr/include/genometools/extended/feature_stream_api.h:
+
+/usr/include/genometools/extended/genome_node_api.h:
+
+/usr/include/genometools/extended/gff3_in_stream_api.h:
+
+/usr/include/genometools/extended/gff3_out_stream_api.h:
+
+/usr/include/genometools/extended/gff3_parser_api.h:
+
+/usr/include/genometools/extended/type_checker_api.h:
+
+/usr/include/genometools/extended/gff3_visitor_api.h:
+
+/usr/include/genometools/extended/gtf_in_stream_api.h:
+
+/usr/include/genometools/extended/id_to_md5_stream_api.h:
+
+/usr/include/genometools/extended/inter_feature_stream_api.h:
+
+/usr/include/genometools/extended/match_api.h:
+
+/usr/include/genometools/extended/match_blast_api.h:
+
+/usr/include/genometools/extended/match_api.h:
+
+/usr/include/genometools/extended/match_iterator_api.h:
+
+/usr/include/genometools/extended/match_open_api.h:
+
+/usr/include/genometools/extended/match_sw_api.h:
+
+/usr/include/genometools/extended/match_visitor_api.h:
+
+/usr/include/genometools/extended/match_blast_api.h:
+
+/usr/include/genometools/extended/match_open_api.h:
+
+/usr/include/genometools/extended/md5_to_id_stream_api.h:
+
+/usr/include/genometools/extended/merge_feature_stream_api.h:
+
+/usr/include/genometools/extended/merge_stream_api.h:
+
+/usr/include/genometools/extended/meta_node_api.h:
+
+/usr/include/genometools/extended/node_stream_api.h:
+
+/usr/include/genometools/extended/node_visitor_api.h:
+
+/usr/include/genometools/extended/orf_iterator_api.h:
+
+/usr/include/genometools/core/translator_api.h:
+
+/usr/include/genometools/extended/rdb_api.h:
+
+/usr/include/genometools/extended/rdb_sqlite_api.h:
+
+/usr/include/genometools/extended/rdb_visitor_api.h:
+
+/usr/include/genometools/extended/region_mapping_api.h:
+
+/usr/include/genometools/extended/region_node_api.h:
+
+/usr/include/genometools/extended/reverse_api.h:
+
+/usr/include/genometools/extended/script_filter_api.h:
+
+/usr/include/genometools/extended/select_stream_api.h:
+
+/usr/include/genometools/extended/sequence_node_api.h:
+
+/usr/include/genometools/extended/sort_stream_api.h:
+
+/usr/include/genometools/extended/stat_stream_api.h:
+
+/usr/include/genometools/extended/tag_value_map_api.h:
+
+/usr/include/genometools/extended/type_checker_api.h:
+
+/usr/include/genometools/extended/type_checker_obo_api.h:
+
+/usr/include/genometools/extended/uniq_stream_api.h:
+
+/usr/include/genometools/extended/visitor_stream_api.h:
+
+/usr/include/genometools/ltr/ltr_classify_stream_api.h:
+
+/usr/include/genometools/core/hashmap_api.h:
+
+/usr/include/genometools/ltr/ltr_cluster_stream_api.h:
+
+/usr/include/genometools/ltr/ltr_orf_annotator_stream_api.h:
+
+/usr/include/genometools/ltr/ltr_refseq_match_stream_api.h:
+
+/usr/include/genometools/annotationsketch/block_api.h:
+
+/usr/include/genometools/annotationsketch/canvas_api.h:
+
+/usr/include/genometools/annotationsketch/canvas_cairo_context_api.h:
+
+/usr/include/genometools/annotationsketch/canvas_api.h:
+
+/usr/include/genometools/annotationsketch/image_info_api.h:
+
+/usr/include/genometools/annotationsketch/rec_map_api.h:
+
+/usr/include/genometools/annotationsketch/style_api.h:
+
+/usr/include/genometools/annotationsketch/color_api.h:
+
+/usr/include/genometools/annotationsketch/canvas_cairo_file_api.h:
+
+/usr/include/genometools/annotationsketch/graphics_api.h:
+
+/usr/include/genometools/annotationsketch/color_api.h:
+
+/usr/include/genometools/annotationsketch/custom_track_api.h:
+
+/usr/include/genometools/annotationsketch/custom_track_gc_content_api.h:
+
+/usr/include/genometools/annotationsketch/custom_track_api.h:
+
+/usr/include/genometools/annotationsketch/custom_track_script_wrapper_api.h:
+
+/usr/include/genometools/annotationsketch/diagram_api.h:
+
+/usr/include/genometools/annotationsketch/block_api.h:
+
+/usr/include/genometools/annotationsketch/graphics_api.h:
+
+/usr/include/genometools/annotationsketch/image_info_api.h:
+
+/usr/include/genometools/annotationsketch/layout_api.h:
+
+/usr/include/genometools/annotationsketch/diagram_api.h:
+
+/usr/include/genometools/annotationsketch/text_width_calculator_api.h:
+
+/usr/include/genometools/annotationsketch/rec_map_api.h:
+
+/usr/include/genometools/annotationsketch/style_api.h:
+
+/usr/include/genometools/annotationsketch/text_width_calculator_api.h:
+
+/usr/include/genometools/annotationsketch/text_width_calculator_cairo_api.h:
+
 /usr/include/glib-2.0/glib/gi18n.h:
 
 /usr/include/libintl.h:
@@ -1842,7 +2450,5 @@ mapascromosomicos.h:
 /usr/include/i386-linux-gnu/bits/string.h:
 
 /usr/include/i386-linux-gnu/bits/string2.h:
-
-/usr/include/stdlib.h:
 
 /usr/include/i386-linux-gnu/bits/string3.h:

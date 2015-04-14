@@ -28,13 +28,22 @@ mapascromosomicos_SOURCES = \
 	gridview.c \
 	IntList.c \
 	IntList.h \
-	mapascromosomicos.callbacks.c	
+	mapascromosomicos.callbacks.c \
+	GenomeToolsSupport.c \
+	GenomeToolsSupport.h \
+	default.style \
+	chromosomes_fit.jpg \
+	icon.png \
+	icon_window.png	
 
-mapascromosomicos_CFLAGS = -lm 
+mapascromosomicos_CFLAGS = -lm \
+	-I/usr/include/genometools/ \
+	-I/usr/local/include/genometools/ 
 
 
 mapascromosomicos_LDFLAGS = \
-	-Wl,--export-dynamic
+	-Wl,--export-dynamic \
+	-lgenometools
 
 mapascromosomicos_LDADD = $(MAPASCROMOSOMICOS_LIBS)
 

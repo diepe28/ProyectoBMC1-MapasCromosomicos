@@ -10,7 +10,7 @@
   <object class="GtkWindow" id="window">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Mapas Cromosomicos</property>
+    <property name="title" translatable="yes">Visor de Mapas Cromosómicos</property>
     <property name="default_width">800</property>
     <property name="default_height">600</property>
     <child>
@@ -31,7 +31,7 @@
               <object class="GtkMenuItem" id="mifile">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_File</property>
+                <property name="label" translatable="yes">_Archivo</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="mfile">
@@ -42,6 +42,7 @@
                         <property name="label">gtk-new</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Limpiar datos de la tabla</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                       </object>
@@ -51,6 +52,7 @@
                         <property name="label">gtk-open</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Abrir un archivo .csv con datos de recombinación de genes</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                       </object>
@@ -60,6 +62,7 @@
                         <property name="label">gtk-save</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Salvar los datos actuales de la tabla en un archivo .csv</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="imisave_activate" object="gridview" swapped="no"/>
@@ -70,6 +73,7 @@
                         <property name="label">gtk-save-as</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Salvar los datos actuales de la tabla en un archivo .csv, usando la ruta especificada</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                       </object>
@@ -85,77 +89,21 @@
                         <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Salir de la aplicación</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_exit" swapped="no"/>
                       </object>
                     </child>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="menuitem2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Edit</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="menu2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem6">
-                        <property name="label">gtk-cut</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem7">
-                        <property name="label">gtk-copy</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem8">
-                        <property name="label">gtk-paste</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem9">
-                        <property name="label">gtk-delete</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="menuitem3">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_View</property>
-                <property name="use_underline">True</property>
               </object>
             </child>
             <child>
               <object class="GtkMenuItem" id="menuitem4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Help</property>
+                <property name="label" translatable="yes">_Ayuda</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu3">
@@ -166,8 +114,10 @@
                         <property name="label">gtk-about</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Acerca de</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_helpmenuitem_activate" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -185,7 +135,10 @@
           <object class="GtkScrolledWindow" id="scrolls1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">5</property>
             <property name="shadow_type">in</property>
+            <property name="min_content_height">215</property>
             <child>
               <object class="GtkViewport" id="viewport">
                 <property name="visible">True</property>
@@ -194,7 +147,7 @@
                   <object class="GtkImage" id="image">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="stock">gtk-missing-image</property>
+                    <property name="pixbuf">chromosomes_fit.jpg</property>
                   </object>
                 </child>
               </object>
@@ -210,6 +163,8 @@
           <object class="GtkBox" id="controlbar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_left">6</property>
+            <property name="margin_right">5</property>
             <property name="spacing">2</property>
             <child>
               <object class="GtkLabel" id="mapnav">
@@ -230,6 +185,7 @@
                 <child>
                   <object class="GtkToolButton" id="tbprev">
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Mapa anterior</property>
                     <property name="stock_id">gtk-go-back</property>
                     <signal name="clicked" handler="btprev_clicked" swapped="no"/>
                   </object>
@@ -241,6 +197,7 @@
                 <child>
                   <object class="GtkToolButton" id="tbnext">
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Mapa siguiente</property>
                     <property name="stock_id">gtk-go-forward</property>
                     <signal name="clicked" handler="btnext_clicked" swapped="no"/>
                   </object>
@@ -262,19 +219,9 @@
                 <child>
                   <object class="GtkToolButton" id="tbzoomin">
                     <property name="can_focus">False</property>
-                    <property name="stock_id">gtk-add</property>
+                    <property name="tooltip_text" translatable="yes">Acercar mapa</property>
+                    <property name="stock_id">gtk-zoom-in</property>
                     <signal name="clicked" handler="btzoomin_clicked" swapped="no"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="homogeneous">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkToolButton" id="btfit">
-                    <property name="can_focus">False</property>
-                    <property name="stock_id">gtk-no</property>
-                    <signal name="clicked" handler="btfit_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -284,8 +231,21 @@
                 <child>
                   <object class="GtkToolButton" id="tbzoomout">
                     <property name="can_focus">False</property>
-                    <property name="stock_id">gtk-remove</property>
+                    <property name="tooltip_text" translatable="yes">Alejar mapa</property>
+                    <property name="stock_id">gtk-zoom-out</property>
                     <signal name="clicked" handler="btzoomout_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToolButton" id="btfit">
+                    <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Ajustar mapa al ancho de la ventana</property>
+                    <property name="stock_id">gtk-zoom-fit</property>
+                    <signal name="clicked" handler="btfit_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -307,9 +267,52 @@
           </packing>
         </child>
         <child>
+          <object class="GtkBox" id="boxLabels">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="labelControles">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin_left">6</property>
+                <property name="margin_bottom">4</property>
+                <property name="label" translatable="yes">Probabilidades de recombinación y datos de los genes</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="labelNumeroDeGenes">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="margin_right">5</property>
+                <property name="margin_bottom">3</property>
+                <property name="label" translatable="yes">Número de Genes</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkBox" id="mainarea">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">5</property>
             <property name="spacing">2</property>
             <child>
               <object class="GtkScrolledWindow" id="scrolls2">
@@ -320,6 +323,7 @@
                   <object class="GtkTreeView" id="gridview">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Introduzca en cada celda la probabilidad de recombinación entre el par de genes respectivo</property>
                     <property name="search_column">0</property>
                     <property name="enable_grid_lines">both</property>
                     <child internal-child="selection">
@@ -344,6 +348,10 @@
                   <object class="GtkSpinButton" id="spinbutton">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Ajuste el número de genes con los cuales desea trabajar</property>
+                    <property name="margin_left">6</property>
+                    <property name="margin_right">12</property>
+                    <property name="margin_bottom">5</property>
                     <property name="adjustment">adjustment</property>
                     <property name="value">3</property>
                     <signal name="value-changed" handler="spinbutton_valuechanged" object="gridview" swapped="no"/>
@@ -360,6 +368,10 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Presione este botón para crear y visualizar todos los mapas de ligamiento posibles, usando los datos provistos en la tabla</property>
+                    <property name="margin_left">5</property>
+                    <property name="margin_right">6</property>
+                    <property name="margin_bottom">5</property>
                     <signal name="clicked" handler="btmap_clicked" swapped="no"/>
                   </object>
                   <packing>
@@ -370,10 +382,14 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="btcalc">
-                    <property name="label" translatable="yes">Calcular</property>
+                    <property name="label" translatable="yes">Predecir</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Presione este botón para intentar predecir datos faltantes en la tabla. Si es posible, se llenarán automáticamente las celdas respectivas</property>
+                    <property name="margin_left">5</property>
+                    <property name="margin_right">6</property>
+                    <property name="margin_bottom">5</property>
                     <signal name="clicked" handler="btcalc_clicked" swapped="no"/>
                   </object>
                   <packing>
@@ -393,20 +409,54 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child>
-          <object class="GtkTextView" id="trace">
+          <object class="GtkLabel" id="labelBitacora">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="no_show_all">True</property>
-            <property name="editable">False</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_left">5</property>
+            <property name="margin_top">3</property>
+            <property name="label" translatable="yes">Bitácora</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkViewport" id="viewport2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">5</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">5</property>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolls">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkTextView" id="trace">
+                    <property name="height_request">50</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="no_show_all">True</property>
+                    <property name="editable">False</property>
+                    <signal name="size-allocate" handler="on_trace_size_allocate" swapped="no"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">6</property>
           </packing>
         </child>
       </object>
