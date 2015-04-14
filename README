@@ -1,0 +1,47 @@
+----------------------------
+INSTRUCCIONES DE INSTALACIÓN
+----------------------------
+
+El paquete está configurado para ser construido por autotools. Seguir las siguientes instrucciones:
+
+1) Instalar algunas dependencias en caso de que falten en el sistema:
+
+apt-get install intltool
+apt-get install gtk+-3.0
+.
+.
+.
+apt-get install libgenometools0 libgenometools0-dev (*)
+
+
+2) Correr en el directorio del proyecto:
+
+./configure
+
+En caso de que falte alguna dependencia, se le advertirá que debe instalarla, con excepción de (*) que no soporta pkg-config.
+
+
+3) Si está en un sistema operativo derivado de Debian correr:
+
+make
+
+Si no está en un sistema operativo derivado de Debian, o si bien, el comando no encuentra <genometools.h>, entonces correr:
+
+make CFLAGS=-I{prefijo}/genometools/
+
+donde {prefijo} es la ruta donde su sistema operativo guarda usualmente las cabeceras de biblioteca (archivos .h).
+
+
+4) Correr
+
+sudo make install
+
+
+5) Correr
+
+mapascromosomicos
+
+
+6) Si desea desinstalar la aplicación, entonces correr en el directorio del proyecto:
+
+sudo make uninstall
