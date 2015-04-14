@@ -221,7 +221,7 @@ void gridview_load(GtkWidget *gridview, char* filepath) {
 	int n;
 	fscanf(file, "%d", &n);
 
-	gridview_set_dimensions(gridview, n - 1);
+	gridview_set_dimensions(gridview, n);
 	GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(gridview));
 
 	char *data = g_slice_alloc0(sizeof(char*)*(CELL_MAX_SIZE + 1)*n);

@@ -284,7 +284,7 @@ void imiopen_activate(GtkMenuItem *sender, gpointer args) {
 	if (res == GTK_RESPONSE_ACCEPT) {
 		GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
 		char *filename = gtk_file_chooser_get_filename(chooser);
-		gridview_load(args, filename);
+		// gridview_load(args, filename);
 		g_free(filename);
 	}
 
