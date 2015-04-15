@@ -147,7 +147,7 @@ void gridview_init(GtkWidget *gridview, int dimensions) {
 		for (j=0; j<=dimensions; j++) {
 			if (j == 0) {
 				column = gtk_tree_view_get_column(GTK_TREE_VIEW(gridview), i + 1);
-				sprintf(data, "%s", gtk_tree_view_column_get_title(column));
+				data = gtk_tree_view_column_get_title(column);
 			} else if (j == i + 1) {
 				sprintf(data, "0");
 			} else {
