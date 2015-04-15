@@ -25,6 +25,8 @@ gint global_currentMap = 0;
 gfloat global_currentImageScale = 1.0;
 
 gint global_current_log_entry = 0;
+
+static void createDummyDataFor3Genes();
 /* ---------------------------------------------------------------- */
 static void append_to_log(gchar *text)
 {
@@ -181,9 +183,10 @@ void spinbutton_valuechanged(GtkSpinButton *sender, gpointer args) {
 	g_critical("spinbutton value changed!");
 }
 /* ---------------------------------------------------------------- */
+
 void btmap_clicked(GtkButton *sender) {
 	// Freeing memory and reseting current data.
-	gint i, j = 0;
+	gint i, j, k = 0;
 	if (global_currentGeneNames != NULL && groupsData != NULL) {
 		for (i = 0; i < global_currentNumberOfGenes; i++) 
 			g_free(global_currentGeneNames[i]);
@@ -222,13 +225,16 @@ void btmap_clicked(GtkButton *sender) {
 	// Populate data y geneNames
 	getDataFromGrid(data, geneNames, numberOfGenes);
 
-	// Call algorithm
-	createMaps(data, numberOfGenes);
+	// Call algorithm. Populates groupsData, numberOfMapsPerGroup, numberOfGroups;
+	
+	createDummyDataFor3Genes ();
+	//createMaps(data, numberOfGenes);
 
 	// Convert percentages to cM
-	for (i = 0; i < numMaps; i++)
-		for (j = 0; j < numberOfGenes; j++)
-			mapList[i][j] *= 100;
+	for (i = 0; i < numberOfGroups; i++)
+		for (j = 0; j < numberOfMapsPerGroup[i]; j++)
+			for (k = 0; k < numberOfGenes; k++)
+				groupsData[i][j][k] *= 100;
 
 	// Clean input data memory
 	for (i = 0; i < numberOfGenes; i++) 
@@ -254,7 +260,6 @@ void btmap_clicked(GtkButton *sender) {
 		g_free(geneNames);
 		
 		global_currentGeneNames = NULL;
-		// TODO Falta algo?
 		append_to_log("Los datos introducidos son inconsistentes o están incompletos.\n");
 		change_zoom_controls(FALSE); 
 	}
@@ -494,5 +499,44 @@ on_helpmenuitem_activate (GtkMenuItem *menuitem,
 	g_free(authors);
 	gtk_widget_destroy(GTK_WIDGET(dialog));
 }
+
+static void createDummyDataFor3Genes() 
+{
+	numberOfGroups = 3;
+	numberOfMapsPerGroup = g_malloc(sizeof(gint) * 3);
+	numberOfMapsPerGroup[0] = 1;
+	numberOfMapsPerGroup[1] = 2;
+	numberOfMapsPerGroup[2] = 3;
+	groupsData = g_malloc(sizeof(gdouble**) * 3); // Three linkage groups
+	groupsData[0] = g_malloc(sizeof(gdouble*) * 1); // 1 map
+	groupsData[1] = g_malloc(sizeof(gdouble*) * 2); // 2 maps
+	groupsData[2] = g_malloc(sizeof(gdouble*) * 3); // 3 maps
+	// 3 genes
+	groupsData[0][0] = g_malloc(sizeof(gdouble) * 3);
+	groupsData[0][0][0] = 0.2;
+	groupsData[0][0][1] = 0.25;
+	groupsData[0][0][2] = 0.33;
+	groupsData[1][0] = g_malloc(sizeof(gdouble) * 3);
+	groupsData[1][0][0] = 0.11;
+	groupsData[1][0][1] = 0.22;
+	groupsData[1][0][2] = 0.14;
+	groupsData[1][1] = g_malloc(sizeof(gdouble) * 3);
+	groupsData[1][1][0] = 0.1;
+	groupsData[1][1][1] = 0.12;
+	groupsData[1][1][2] = 0.33;
+	groupsData[2][0] = g_malloc(sizeof(gdouble) * 3);
+	groupsData[2][0][0] = 0.04;
+	groupsData[2][0][1] = 0.1;
+	groupsData[2][0][2] = 0.3;
+	groupsData[2][1] = g_malloc(sizeof(gdouble) * 3);
+	groupsData[2][1][0] = 0.2;
+	groupsData[2][1][1] = 0.3;
+	groupsData[2][1][2] = 0.23;
+	groupsData[2][2] = g_malloc(sizeof(gdouble) * 3);
+	groupsData[2][2][0] = 0.1;
+	groupsData[2][2][1] = 0.25;
+	groupsData[2][2][2] = 0.12;
+}
+
 /* ---------------------------------------------------------------- */
 #endif
