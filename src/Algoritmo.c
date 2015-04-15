@@ -3,6 +3,7 @@
 const double EPSILON = 0.000000001;
 double** mapList;
 int numMaps;
+char resumeStr[2048];
 
 int equals(double a, double b){
 	return (fabs(a - b) < EPSILON);
@@ -58,14 +59,14 @@ List* createAdjacentNodesFor(int gene, double ** matrix, int nGenes){
 	
 	//Recorre Fila
 	for(i = gene+1; i < nGenes; i++){
-		if(matrix[gene][i] != -1) {
+		if(!equals(matrix[gene][i],-1)) {
 			addNode(list, i);
 		}
 	}
 	
 	//Recorre columna
 	for(i = 0; i < gene; i++){
-		if(matrix[i][gene] != -1) {
+		if(!equals(matrix[i][gene],-1)) {
 			addNode(list, i);
 		}		
 	}
@@ -73,7 +74,7 @@ List* createAdjacentNodesFor(int gene, double ** matrix, int nGenes){
 }
 
 int isGeneInMap(double * positions, int gene){
-	return positions[gene] != -1;
+	return !equals(positions[gene], -1);
 }
 
 void createAdjacentNodes(double** matrix, int nGenes){
@@ -84,11 +85,11 @@ void createAdjacentNodes(double** matrix, int nGenes){
 	}
 }
 
-int isPositionOcuppied(List* inMap, double* positions, double position){
+int isPositionOcuppiedOrTooFar(List* inMap, double* positions, double position){
 	Node* current = inMap->start;
 	
 	while(current){
-		if(positions[current->data] == position)
+		if(positions[current->data] == position || fabs(position - positions[current->data]) >= 0.5 )
 			return 1;
 		current = current->next;
 	}
@@ -147,7 +148,7 @@ void createMapsAux(double ** matrix, int nGenes, double* positions, int currentG
 		}else{//geneAdj not in map
 			//going to the rigth
 			geneAdjPosition = positions[currentGene] + coPercentage;
-			if(!isPositionOcuppied(inMap, positions, geneAdjPosition)){
+			if(!isPositionOcuppiedOrTooFar(inMap, positions, geneAdjPosition)){
 				positions[geneAdj->data] = geneAdjPosition;
 				lastGeneInMap = inMap->end->data;
 				addNode(inMap, geneAdj->data);
@@ -160,7 +161,7 @@ void createMapsAux(double ** matrix, int nGenes, double* positions, int currentG
 			//printList(inMap);
 			geneAdjPosition = positions[currentGene] - coPercentage;
 			//printf("viendo si el gen: %d puede estar en la posicion: %f \n", geneAdj->data, geneAdjPosition);
-			if(geneAdjPosition > 0 && !isPositionOcuppied(inMap, positions, geneAdjPosition)){
+			if(geneAdjPosition > 0 && !isPositionOcuppiedOrTooFar(inMap, positions, geneAdjPosition)){
 				//printf("it is possible to go left\n");
 				nextGene =  geneAdj->data;
 				addNode(inMap, nextGene);
@@ -173,7 +174,7 @@ void createMapsAux(double ** matrix, int nGenes, double* positions, int currentG
 	}else{// no more nodes adjacent to current gene
 		nextGene = nextGeneInMap(inMap, positions, positions[currentGene], nGenes);
 		//printf("next gene is: %d\n", nextGene);
-		if(nextGene == -1){//we got solution
+		if(equals(nextGene, -1)){//we got solution
 			printf("////////////WE GOT SOLUTION///////////\n");
 			//printMap(positions, nGenes);
 			mapList[numMaps] = (double*) malloc(nGenes * sizeof(double));
@@ -191,13 +192,17 @@ void resetPositions(double * positions, int nGenes){
 }
 
 void createMaps(double** matrix, int nGenes){
-	int startGene, nMaps = pow(2, nGenes-1); //a lo sumo, entre 2 cuando eliminemos repetidos
+	int startGene, i, nMaps = pow(2, nGenes-1); //a lo sumo, entre 2 cuando eliminemos repetidos
 	double* positions = (double*) (malloc(nGenes * sizeof(double)));
 	List* inMap; 
 
-	if(adjacentNodes == NULL)
-		createAdjacentNodes(matrix, nGenes);
+	createAdjacentNodes(matrix, nGenes);
 	printAdjancentNodes(nGenes);
+
+	//Si hay al menos nodo sin vecinos, hay algo malo. Mejor detener.
+	for(i = 0; i < nGenes; i++)
+		if(adjacentNodes[i]->n == 1)
+			return;
 	
 	mapList = (double**) malloc(nMaps * sizeof(double *));
 	numMaps = 0;
@@ -209,6 +214,11 @@ void createMaps(double** matrix, int nGenes){
 		createMapsAux(matrix, nGenes, positions, startGene, adjacentNodes[startGene]->start->next, inMap);
 		destroyList(inMap);
 	}
+
+	//liberando memoria
+	for(i = 0; i < nGenes; i++)
+		destroyList(adjacentNodes[i]);
+	free(adjacentNodes);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -239,7 +249,7 @@ int predictFor(int gene1/*row*/, int gene2/*col*/, double** mat, int nGenes, dou
 	}
 
 	// not possible to predict
-	if(commonGene2 == -1) return 0;
+	if(equals(commonGene2, -1)) return 0;
 
 	abs1 = fabs(mat[commonGene1][gene1] - mat[commonGene1][gene2]);
 	sum1 = mat[commonGene1][gene1] + mat[commonGene1][gene2];
@@ -263,16 +273,24 @@ int predictFor(int gene1/*row*/, int gene2/*col*/, double** mat, int nGenes, dou
 int predict(double** mat, int nGenes){
 	int predictedProbs = 0, i, j;
 	double probability = -1;
-	
-	if(adjacentNodes == NULL)
-		createAdjacentNodes(mat, nGenes);
+	char message[50];
 
+	resumeStr[0] = 0;
+	createAdjacentNodes(mat, nGenes);
+	printAdjancentNodes(nGenes);
+	
+	//Si hay al menos nodo sin vecinos, hay algo malo. Mejor detener.
+	for(i = 0; i < nGenes; i++)
+		if(adjacentNodes[i]->n == 1)
+			goto salida;
+	
 	//just upper right triangle of matriz
 	for(i = 0; i < nGenes-1; i++){
 		for(j = i+1; j < nGenes; j++){
 			if(equals(mat[i][j], -1)){
 				if(predictFor(i,j,mat,nGenes, &probability)){
-					//Añadir informacion a bitacora se predijo la probabilidad i, j y es igual a probability 
+					sprintf(message, "Se predice M[%d,%d] = %0.5f\n",i,j,probability);
+					strcat(resumeStr, message);
 					mat[i][j] = probability;
 					predictedProbs++;
 				}
@@ -280,6 +298,16 @@ int predict(double** mat, int nGenes){
 		}
 	}
 
+	
+	salida:
+	//liberando memoria
+	for(i = 0; i < nGenes; i++)
+		destroyList(adjacentNodes[i]);
+	free(adjacentNodes);
+		
+	if(predictedProbs == 0)
+		strcat(resumeStr, "Datos insuficientes o completos, no se predicen valores.\n");
+	
 	return predictedProbs;
 }
 
@@ -334,7 +362,6 @@ int main ( int arc, char **argv ) {
 }
 
 */
-
 
 
 

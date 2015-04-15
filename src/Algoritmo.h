@@ -13,6 +13,7 @@ List** adjacentNodes;
 extern const double EPSILON;
 extern double ** mapList;
 extern int numMaps;
+extern char resumeStr[2048];
 
 int equals(double, double);
 void printPositions(double *, int );
@@ -32,4 +33,3 @@ int predictFor(int, int, double**, int, double*);
 int predict(double** , int );
 
 #endif
-
