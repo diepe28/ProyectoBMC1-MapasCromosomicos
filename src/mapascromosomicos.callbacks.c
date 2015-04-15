@@ -514,16 +514,16 @@ static void createDummyDataFor3Genes()
 	// 3 genes
 	groupsData[0][0] = g_malloc(sizeof(gdouble) * 3);
 	groupsData[0][0][0] = 0.2;
-	groupsData[0][0][1] = 0.25;
+	groupsData[0][0][1] = -1;
 	groupsData[0][0][2] = 0.33;
 	groupsData[1][0] = g_malloc(sizeof(gdouble) * 3);
-	groupsData[1][0][0] = 0.11;
+	groupsData[1][0][0] = -1;
 	groupsData[1][0][1] = 0.22;
 	groupsData[1][0][2] = 0.14;
 	groupsData[1][1] = g_malloc(sizeof(gdouble) * 3);
 	groupsData[1][1][0] = 0.1;
 	groupsData[1][1][1] = 0.12;
-	groupsData[1][1][2] = 0.33;
+	groupsData[1][1][2] = -1;
 	groupsData[2][0] = g_malloc(sizeof(gdouble) * 3);
 	groupsData[2][0][0] = 0.04;
 	groupsData[2][0][1] = 0.1;

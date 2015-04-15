@@ -21,7 +21,6 @@ static void handle_error(GtError *err)
 
 static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gint numberOfGenes, gdouble upperBound, gint geneLength)
 {
-	// TODO Quitar cromosoma, e ignorar genes con banderas
 	GtArray *features;
 	GtGenomeNode *gene, *chromosome;
 	GtStr *seqid;
@@ -30,13 +29,15 @@ static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gi
 	features = gt_array_new(sizeof (GtGenomeNode*));
 	seqid = gt_str_new_cstr("linkage_map");
 	
-	chromosome = gt_feature_node_new(seqid, "chromosomes", 0, upperBound + geneLength, GT_STRAND_FORWARD);
-	gt_feature_node_set_attribute((GtFeatureNode*)chromosome, "Name", "Chr1");
+	chromosome = gt_feature_node_new(seqid, "chromosome", 0, upperBound + geneLength, GT_STRAND_FORWARD);
+	gt_feature_node_set_attribute((GtFeatureNode*)chromosome, "Name", "Cromosoma");
 
 	for (i = 0; i < numberOfGenes; i++) {
-		gene = gt_feature_node_new(seqid, "genes", mapData[i], mapData[i] + geneLength, GT_STRAND_FORWARD);
-		gt_feature_node_set_attribute((GtFeatureNode*)gene, "Name", geneNames[i]);
-		gt_array_add(features, gene);
+		if (mapData[i] >= 0) {
+			gene = gt_feature_node_new(seqid, "genes", mapData[i], mapData[i] + geneLength, GT_STRAND_FORWARD);
+			gt_feature_node_set_attribute((GtFeatureNode*)gene, "Name", geneNames[i]);
+			gt_array_add(features, gene);
+		}
 	}
 	
 	gt_array_add(features, chromosome);
