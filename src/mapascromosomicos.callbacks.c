@@ -3,6 +3,7 @@
 #include "Algoritmo.h"
 #include "GenomeToolsSupport.h"
 
+
 #ifndef CALLBACKS
 #define CALLBACKS
 
@@ -224,7 +225,58 @@ void btmap_clicked(GtkButton *sender) {
 }
 /* ---------------------------------------------------------------- */
 void btcalc_clicked(GtkButton *sender) {
-	g_critical("btcalc clicked!");
+	// Freeing memory and reseting current data.
+	gint i, j = 0;
+	if (global_currentGeneNames != NULL && mapList != NULL) {
+		for (i = 0; i < global_currentNumberOfGenes; i++) 
+			g_free(global_currentGeneNames[i]);
+		g_free(global_currentGeneNames);
+
+		for (i = 0; i < numMaps; i++)
+			g_free(mapList[i]);
+		g_free(mapList);
+	}
+	global_currentGeneNames = NULL;
+	global_currentNumberOfGenes = 0;
+	global_currentMap = 0;
+	global_currentImageScale = 1.0;
+	mapList = NULL;
+	numMaps = 0;
+
+	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
+	gint numberOfGenes = gtk_spin_button_get_value_as_int (spin_button);
+
+	// Retrieving data from grid.
+	gdouble** data = g_malloc(sizeof(gdouble*) * numberOfGenes);
+	gchar** geneNames = g_malloc(sizeof(gchar*) * numberOfGenes);
+	for (i = 0; i < numberOfGenes; i++) {
+		data[i] = g_malloc(sizeof(gdouble) * numberOfGenes);
+		geneNames[i] = g_malloc(sizeof(gchar) * 50);
+	}
+
+	// Populate data y geneNames
+	getDataFromGrid(data, geneNames, numberOfGenes);
+
+	gint probsPredicted = predict(data, numberOfGenes);
+	append_to_log(resumeStr);
+	if(probsPredicted > 0)
+	{
+		GtkTreeView* grid = GTK_TREE_VIEW(gtk_builder_get_object(global_builder, "gridview"));
+		GtkTreeModel* model = gtk_tree_view_get_model (grid);
+		char valueStr[10];
+		
+		//just upper right triangle of matriz
+		for(i = 0; i < numberOfGenes-1; i++){
+			for(j = i+1; j < numberOfGenes; j++){
+				sprintf(valueStr, "%0.5f",data[i][j]);
+				valueStr[1] = '.';
+				gridview_model_set_value(model, i,j+1, valueStr);
+				gridview_model_set_value(model, j,i+1, valueStr);
+			}
+		}
+	}	
+
+	
 }
 /* ---------------------------------------------------------------- */
 void btprev_clicked(GtkButton *sender) {
