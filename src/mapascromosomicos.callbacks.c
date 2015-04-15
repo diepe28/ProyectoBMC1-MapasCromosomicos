@@ -7,12 +7,15 @@
 #ifndef CALLBACKS
 #define CALLBACKS
 
+// New variables
+gdouble*** groupsData;
+gint* numberOfMapsPerGroup;
+gint numberOfGroups;
+gint global_currentGroup = 0;
+
 // Extern variables from Algoritmo.h
 gint numMaps;
 gdouble** mapList;
-
-// Extern variables from mapascromosomicos.h
-GApplication* application;
 
 // Global variables
 GtkBuilder* global_builder = NULL;
@@ -59,6 +62,28 @@ static void update_map_nav()
 	else
 		gtk_widget_set_sensitive (nextButton, TRUE);
 }
+
+static void update_group_nav() 
+{
+	GtkWidget* prevButton = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbprevGrupo"));
+	GtkWidget* nextButton = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbnextGrupo"));
+	
+	GtkLabel* group_navigation_label = GTK_LABEL(gtk_builder_get_object(global_builder, "gruposnav"));
+	gchar label_text[30];
+	g_snprintf (label_text, sizeof(label_text), "Grupo de Ligamiento %d/%d", global_currentGroup, numberOfGroups);
+	gtk_label_set_text (group_navigation_label, label_text);
+
+	if (global_currentGroup == 0 || global_currentGroup == 1)
+		gtk_widget_set_sensitive (prevButton, FALSE);
+	else
+		gtk_widget_set_sensitive (prevButton, TRUE);
+
+	if (global_currentGroup == numberOfGroups)
+		gtk_widget_set_sensitive (nextButton, FALSE);
+	else
+		gtk_widget_set_sensitive (nextButton, TRUE);
+}
+
 /* ---------------------------------------------------------------- */
 static void change_zoom_controls(gboolean enable) 
 {
@@ -139,6 +164,7 @@ void window_init(GtkBuilder *sender) {
 	GtkWidget *gridview = GTK_WIDGET(gtk_builder_get_object(sender, "gridview"));
 	gridview_init(gridview, 3);
 	update_map_nav();
+	update_group_nav();
 	change_zoom_controls(FALSE);
 
 	append_to_log("¡Bienvenidos al graficador de mapas cromosómicos!\n");
@@ -158,14 +184,18 @@ void spinbutton_valuechanged(GtkSpinButton *sender, gpointer args) {
 void btmap_clicked(GtkButton *sender) {
 	// Freeing memory and reseting current data.
 	gint i, j = 0;
-	if (global_currentGeneNames != NULL && mapList != NULL) {
+	if (global_currentGeneNames != NULL && groupsData != NULL) {
 		for (i = 0; i < global_currentNumberOfGenes; i++) 
 			g_free(global_currentGeneNames[i]);
 		g_free(global_currentGeneNames);
 
-		for (i = 0; i < numMaps; i++)
-			g_free(mapList[i]);
-		g_free(mapList);
+		for (i = 0; i < numberOfGroups; i++) {
+			for (j = 0; j < numberOfMapsPerGroup[i]; j++)
+					g_free(groupsData[i][j]);
+			g_free(groupsData[i]);
+		}
+		g_free(groupsData);
+		g_free(numberOfMapsPerGroup);
 	}
 	global_currentGeneNames = NULL;
 	global_currentNumberOfGenes = 0;
@@ -173,6 +203,10 @@ void btmap_clicked(GtkButton *sender) {
 	global_currentImageScale = 1.0;
 	mapList = NULL;
 	numMaps = 0;
+	groupsData = NULL;
+	numberOfMapsPerGroup = NULL;
+	numberOfGroups = 0;
+	global_currentGroup = 0;
 
 	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
 	gint numberOfGenes = gtk_spin_button_get_value_as_int (spin_button);
@@ -188,7 +222,7 @@ void btmap_clicked(GtkButton *sender) {
 	// Populate data y geneNames
 	getDataFromGrid(data, geneNames, numberOfGenes);
 
-	// Call algorithm to populate numMaps and mapList extern variables
+	// Call algorithm
 	createMaps(data, numberOfGenes);
 
 	// Convert percentages to cM
@@ -201,7 +235,10 @@ void btmap_clicked(GtkButton *sender) {
 		g_free(data[i]);
 	g_free(data);
 	
-	if (numMaps > 0) {
+	if (numberOfGroups > 0) {
+		numMaps = numberOfMapsPerGroup[0];
+		mapList = groupsData[0];
+		global_currentGroup = 1;
 		global_currentGeneNames = geneNames;
 		global_currentImageScale = 1.0;
 		global_currentNumberOfGenes = numberOfGenes;
@@ -217,11 +254,12 @@ void btmap_clicked(GtkButton *sender) {
 		g_free(geneNames);
 		
 		global_currentGeneNames = NULL;
-		mapList = NULL;
+		// TODO Falta algo?
 		append_to_log("Los datos introducidos son inconsistentes o están incompletos.\n");
 		change_zoom_controls(FALSE); 
 	}
 	update_map_nav();
+	update_group_nav ();
 }
 /* ---------------------------------------------------------------- */
 void btcalc_clicked(GtkButton *sender) {
@@ -290,6 +328,29 @@ void btnext_clicked(GtkButton *sender) {
 	render_current_map();
 	update_map_nav ();
 }
+
+void btprevGrupo_clicked(GtkButton *sender) {
+	//
+	global_currentGroup--;
+	numMaps = numberOfMapsPerGroup[global_currentGroup-1];
+	mapList = groupsData[global_currentGroup-1];
+	global_currentMap = 1;
+	render_current_map ();
+	update_map_nav ();
+	update_group_nav ();
+}
+
+void btnextGrupo_clicked(GtkButton *sender) {
+	global_currentGroup++;
+	numMaps = numberOfMapsPerGroup[global_currentGroup-1];
+	mapList = groupsData[global_currentGroup-1];
+	global_currentMap = 1;
+	render_current_map ();
+	update_map_nav ();
+	update_group_nav ();
+}
+
+
 /* ---------------------------------------------------------------- */
 void btzoomin_clicked(GtkButton *sender) {
 	global_currentImageScale += 0.1;

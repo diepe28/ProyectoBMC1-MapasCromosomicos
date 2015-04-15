@@ -21,6 +21,7 @@ static void handle_error(GtError *err)
 
 static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gint numberOfGenes, gdouble upperBound, gint geneLength)
 {
+	// TODO Quitar cromosoma, e ignorar genes con banderas
 	GtArray *features;
 	GtGenomeNode *gene, *chromosome;
 	GtStr *seqid;
