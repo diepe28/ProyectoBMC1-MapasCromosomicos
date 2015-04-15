@@ -269,15 +269,19 @@ void btmap_clicked(GtkButton *sender) {
 /* ---------------------------------------------------------------- */
 void btcalc_clicked(GtkButton *sender) {
 	// Freeing memory and reseting current data.
-	gint i, j = 0;
-	if (global_currentGeneNames != NULL && mapList != NULL) {
+	gint i, j, k = 0;
+	if (global_currentGeneNames != NULL && groupsData != NULL) {
 		for (i = 0; i < global_currentNumberOfGenes; i++) 
 			g_free(global_currentGeneNames[i]);
 		g_free(global_currentGeneNames);
 
-		for (i = 0; i < numMaps; i++)
-			g_free(mapList[i]);
-		g_free(mapList);
+		for (i = 0; i < numberOfGroups; i++) {
+			for (j = 0; j < numberOfMapsPerGroup[i]; j++)
+					g_free(groupsData[i][j]);
+			g_free(groupsData[i]);
+		}
+		g_free(groupsData);
+		g_free(numberOfMapsPerGroup);
 	}
 	global_currentGeneNames = NULL;
 	global_currentNumberOfGenes = 0;
@@ -285,6 +289,10 @@ void btcalc_clicked(GtkButton *sender) {
 	global_currentImageScale = 1.0;
 	mapList = NULL;
 	numMaps = 0;
+	groupsData = NULL;
+	numberOfMapsPerGroup = NULL;
+	numberOfGroups = 0;
+	global_currentGroup = 0;
 
 	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
 	gint numberOfGenes = gtk_spin_button_get_value_as_int (spin_button);
