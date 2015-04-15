@@ -159,15 +159,61 @@
             <property name="margin_right">5</property>
             <property name="spacing">2</property>
             <child>
-              <object class="GtkLabel" id="mapnav">
+              <object class="GtkLabel" id="gruposnav">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">0/0</property>
+                <property name="label" translatable="yes">Grupo de Ligamiento 0/0</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolbar" id="navtoolbarGrupos">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_right">40</property>
+                <child>
+                  <object class="GtkToolButton" id="tbprevGrupo">
+                    <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Mapa anterior</property>
+                    <property name="stock_id">gtk-go-back</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToolButton" id="tbnextGrupo">
+                    <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Mapa siguiente</property>
+                    <property name="stock_id">gtk-go-forward</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">False</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="mapnav">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Mapa 0/0</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -248,7 +294,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>

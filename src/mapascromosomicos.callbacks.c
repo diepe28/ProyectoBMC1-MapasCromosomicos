@@ -44,8 +44,8 @@ static void update_map_nav()
 	GtkWidget* nextButton = GTK_WIDGET(gtk_builder_get_object(global_builder, "tbnext"));
 	
 	GtkLabel* map_navigation_label = GTK_LABEL(gtk_builder_get_object(global_builder, "mapnav"));
-	gchar label_text[8];
-	g_snprintf (label_text, sizeof(label_text), "%d/%d", global_currentMap, numMaps);
+	gchar label_text[15];
+	g_snprintf (label_text, sizeof(label_text), "Mapa %d/%d", global_currentMap, numMaps);
 	gtk_label_set_text (map_navigation_label, label_text);
 
 	if (global_currentMap == 0 || global_currentMap == 1)
