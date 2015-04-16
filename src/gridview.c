@@ -100,7 +100,7 @@ void cell_edited(GtkCellRendererText *cellrenderer, gchar *pathstring, gchar *ne
 	gint x = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(cellrenderer), "column"));
 	gint y = atoi(pathstring);
 
-	if (y + 1 < x) {
+	if (y + 1 != x) {
 		gridview_model_set_value(model, y, x, newtext);
 		gridview_model_set_value(model, x - 1, y + 1, newtext);
 	}
