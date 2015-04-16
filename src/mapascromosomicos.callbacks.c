@@ -402,10 +402,6 @@ void iminew_activate(GtkMenuItem *sender, gpointer args) {
 /* ---------------------------------------------------------------- */
 void imiopen_activate(GtkMenuItem *sender, gpointer args) {
 	GtkSpinButton* spinButton = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
-	clean_and_reset_data();
-	change_zoom_controls(FALSE);
-	update_map_nav ();
-	update_group_nav ();
 	
 	GtkWidget *dialog = gtk_file_chooser_dialog_new(
 		"Open",
@@ -424,6 +420,10 @@ void imiopen_activate(GtkMenuItem *sender, gpointer args) {
 		char *filename = gtk_file_chooser_get_filename(chooser);
 		gridview_load(args, filename, spinButton);
 		g_free(filename);
+		clean_and_reset_data();
+		change_zoom_controls(FALSE);
+		update_map_nav ();
+		update_group_nav ();
 	}
 
 	gtk_widget_destroy(dialog);
