@@ -261,7 +261,7 @@ void btmap_clicked(GtkButton *sender) {
 		
 		global_currentGeneNames = NULL;
 		append_to_log("Los datos introducidos son inconsistentes o están incompletos.\n");
-		change_zoom_controls(FALSE); 
+		change_zoom_controls(FALSE);
 	}
 	update_map_nav();
 	update_group_nav ();
@@ -325,9 +325,10 @@ void btcalc_clicked(GtkButton *sender) {
 				gridview_model_set_value(model, j,i+1, valueStr);
 			}
 		}
-	}	
-
-	
+	}
+	change_zoom_controls(FALSE);
+	update_map_nav ();
+	update_group_nav ();
 }
 /* ---------------------------------------------------------------- */
 void btprev_clicked(GtkButton *sender) {
