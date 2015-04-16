@@ -84,12 +84,15 @@ void col0_edited(GtkCellRendererText *cellrenderer, gchar *pathstring, gchar *ne
 }
 /* ---------------------------------------------------------------- */
 void cell_edited(GtkCellRendererText *cellrenderer, gchar *pathstring, gchar *newtext, gpointer args) {
-	float value = atof(newtext);
 
-	gboolean isnan = value == 0 && strcmp("0", newtext) != 0;
-	
-	if (isnan || value < 0 || value > 0.5) {
-		return;
+	if (newtext[0] != '\0') { 
+		float value = g_ascii_strtod(newtext, NULL);
+
+		gboolean isnan = value == 0 && strcmp("0", newtext) != 0;
+
+		if (isnan || value < 0 || value > 0.5) {
+			return;
+		}
 	}
 	
 	GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(args));
