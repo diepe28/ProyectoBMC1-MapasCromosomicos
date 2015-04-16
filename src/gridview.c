@@ -216,11 +216,11 @@ void gridview_set_dimensions(GtkWidget *gridview, int dimensions) {
 		for (j=0; j<=dimensions; j++) {
 			if (j == 0) {
 				column = gtk_tree_view_get_column(GTK_TREE_VIEW(gridview), i + 1);
-				sprintf(data, "%s", gtk_tree_view_column_get_title(column));
+				g_snprintf(data, CELL_MAX_SIZE, "%s", gtk_tree_view_column_get_title(column));
 			} else if (j == i + 1) {
-				sprintf(data, "0");
+				g_snprintf(data, CELL_MAX_SIZE, "0");
 			} else {
-				sprintf(data, "");
+				g_snprintf(data, CELL_MAX_SIZE, "");
 			}
 			
 			// g_assert(!G_VALUE_HOLDS_STRING(&values[j]));
