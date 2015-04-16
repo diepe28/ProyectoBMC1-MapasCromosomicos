@@ -153,6 +153,35 @@ void static getDataFromGrid(gdouble** data, gchar** geneNames, gint numberOfGene
 
 	}
 }
+
+void static clean_and_reset_data() 
+{
+	gint i, j, k = 0;
+	if (global_currentGeneNames != NULL && groupsData != NULL) {
+		for (i = 0; i < global_currentNumberOfGenes; i++) 
+			g_free(global_currentGeneNames[i]);
+		g_free(global_currentGeneNames);
+
+		for (i = 0; i < numberOfGroups; i++) {
+			for (j = 0; j < numberOfMapsPerGroup[i]; j++)
+					g_free(groupsData[i][j]);
+			g_free(groupsData[i]);
+		}
+		g_free(groupsData);
+		g_free(numberOfMapsPerGroup);
+	}
+	global_currentGeneNames = NULL;
+	global_currentNumberOfGenes = 0;
+	global_currentMap = 0;
+	global_currentImageScale = 1.0;
+	mapList = NULL;
+	numMaps = 0;
+	groupsData = NULL;
+	numberOfMapsPerGroup = NULL;
+	numberOfGroups = 0;
+	global_currentGroup = 0;
+}
+
 // Callbacks
 /* ---------------------------------------------------------------- */
 void window_init(GtkBuilder *sender) {
@@ -187,29 +216,7 @@ void spinbutton_valuechanged(GtkSpinButton *sender, gpointer args) {
 void btmap_clicked(GtkButton *sender) {
 	// Freeing memory and reseting current data.
 	gint i, j, k = 0;
-	if (global_currentGeneNames != NULL && groupsData != NULL) {
-		for (i = 0; i < global_currentNumberOfGenes; i++) 
-			g_free(global_currentGeneNames[i]);
-		g_free(global_currentGeneNames);
-
-		for (i = 0; i < numberOfGroups; i++) {
-			for (j = 0; j < numberOfMapsPerGroup[i]; j++)
-					g_free(groupsData[i][j]);
-			g_free(groupsData[i]);
-		}
-		g_free(groupsData);
-		g_free(numberOfMapsPerGroup);
-	}
-	global_currentGeneNames = NULL;
-	global_currentNumberOfGenes = 0;
-	global_currentMap = 0;
-	global_currentImageScale = 1.0;
-	mapList = NULL;
-	numMaps = 0;
-	groupsData = NULL;
-	numberOfMapsPerGroup = NULL;
-	numberOfGroups = 0;
-	global_currentGroup = 0;
+	clean_and_reset_data();
 
 	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
 	gint numberOfGenes = gtk_spin_button_get_value_as_int (spin_button);
@@ -269,30 +276,7 @@ void btmap_clicked(GtkButton *sender) {
 /* ---------------------------------------------------------------- */
 void btcalc_clicked(GtkButton *sender) {
 	// Freeing memory and reseting current data.
-	gint i, j, k = 0;
-	if (global_currentGeneNames != NULL && groupsData != NULL) {
-		for (i = 0; i < global_currentNumberOfGenes; i++) 
-			g_free(global_currentGeneNames[i]);
-		g_free(global_currentGeneNames);
-
-		for (i = 0; i < numberOfGroups; i++) {
-			for (j = 0; j < numberOfMapsPerGroup[i]; j++)
-					g_free(groupsData[i][j]);
-			g_free(groupsData[i]);
-		}
-		g_free(groupsData);
-		g_free(numberOfMapsPerGroup);
-	}
-	global_currentGeneNames = NULL;
-	global_currentNumberOfGenes = 0;
-	global_currentMap = 0;
-	global_currentImageScale = 1.0;
-	mapList = NULL;
-	numMaps = 0;
-	groupsData = NULL;
-	numberOfMapsPerGroup = NULL;
-	numberOfGroups = 0;
-	global_currentGroup = 0;
+	gint i, j = 0;
 
 	GtkSpinButton* spin_button = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
 	gint numberOfGenes = gtk_spin_button_get_value_as_int (spin_button);
@@ -310,6 +294,7 @@ void btcalc_clicked(GtkButton *sender) {
 
 	gint probsPredicted = predict(data, numberOfGenes);
 	append_to_log(resumeStr);
+	
 	if(probsPredicted > 0)
 	{
 		GtkTreeView* grid = GTK_TREE_VIEW(gtk_builder_get_object(global_builder, "gridview"));
@@ -325,10 +310,19 @@ void btcalc_clicked(GtkButton *sender) {
 				gridview_model_set_value(model, j,i+1, valueStr);
 			}
 		}
+		clean_and_reset_data();
+		change_zoom_controls(FALSE);
+		update_map_nav ();
+		update_group_nav ();
 	}
-	change_zoom_controls(FALSE);
-	update_map_nav ();
-	update_group_nav ();
+
+	// Clean input data memory
+	for (i = 0; i < numberOfGenes; i++) 
+		g_free(data[i]);
+	g_free(data);
+	for (i = 0; i < numberOfGenes; i++) 
+		g_free(geneNames[i]);
+	g_free(geneNames);
 }
 /* ---------------------------------------------------------------- */
 void btprev_clicked(GtkButton *sender) {
@@ -396,12 +390,21 @@ void btzoomout_clicked(GtkButton *sender) {
 }
 /* ---------------------------------------------------------------- */
 void iminew_activate(GtkMenuItem *sender, gpointer args) {
+	clean_and_reset_data();
+	change_zoom_controls(FALSE);
+	update_map_nav ();
+	update_group_nav ();
 	gridview_set_dimensions(args, 3);
 	
 	g_critical("iminew clicked!");
 }
 /* ---------------------------------------------------------------- */
 void imiopen_activate(GtkMenuItem *sender, gpointer args) {
+	clean_and_reset_data();
+	change_zoom_controls(FALSE);
+	update_map_nav ();
+	update_group_nav ();
+	
 	GtkWidget *dialog = gtk_file_chooser_dialog_new(
 		"Open",
 		NULL,
@@ -471,6 +474,7 @@ void
 on_menuitem_exit (GtkMenuItem *menuitem,
                gpointer     user_data) 
 {
+	clean_and_reset_data();
 	GtkWindow* mainWindow = GTK_WINDOW(gtk_builder_get_object(global_builder, "window"));
 	GtkApplication* application = gtk_window_get_application (mainWindow);
 	g_application_quit (G_APPLICATION(application));
