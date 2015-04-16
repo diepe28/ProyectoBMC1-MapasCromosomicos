@@ -390,16 +390,18 @@ void btzoomout_clicked(GtkButton *sender) {
 }
 /* ---------------------------------------------------------------- */
 void iminew_activate(GtkMenuItem *sender, gpointer args) {
+	GtkSpinButton* spinButton = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
 	clean_and_reset_data();
 	change_zoom_controls(FALSE);
 	update_map_nav ();
 	update_group_nav ();
 	gridview_set_dimensions(args, 3);
-	
+	gtk_spin_button_set_value(spinButton, 3);
 	g_critical("iminew clicked!");
 }
 /* ---------------------------------------------------------------- */
 void imiopen_activate(GtkMenuItem *sender, gpointer args) {
+	GtkSpinButton* spinButton = GTK_SPIN_BUTTON(gtk_builder_get_object(global_builder, "spinbutton"));
 	clean_and_reset_data();
 	change_zoom_controls(FALSE);
 	update_map_nav ();
@@ -420,7 +422,7 @@ void imiopen_activate(GtkMenuItem *sender, gpointer args) {
 	if (res == GTK_RESPONSE_ACCEPT) {
 		GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
 		char *filename = gtk_file_chooser_get_filename(chooser);
-		gridview_load(args, filename);
+		gridview_load(args, filename, spinButton);
 		g_free(filename);
 	}
 

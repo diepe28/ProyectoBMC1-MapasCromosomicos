@@ -239,7 +239,7 @@ void gridview_set_dimensions(GtkWidget *gridview, int dimensions) {
 	gtk_tree_view_set_model(GTK_TREE_VIEW(gridview), GTK_TREE_MODEL(row));
 }
 /* ---------------------------------------------------------------- */
-void gridview_load(GtkWidget *gridview, char* filepath) {
+void gridview_load(GtkWidget *gridview, char* filepath, GtkSpinButton* spinButton) {
 	FILE *file;
 	if (!(file = fopen(filepath, "r"))) {
 		return;
@@ -274,6 +274,7 @@ void gridview_load(GtkWidget *gridview, char* filepath) {
 	} while (!feof(file));
 
 	fclose(file);
+	gtk_spin_button_set_value(spinButton, n-1);
 }
 /* ---------------------------------------------------------------- */
 #endif
