@@ -363,6 +363,27 @@ double* rellenarMapa(double *sourceMap, int nGenesLK, int nGenesTotal, int* lk){
 	return targetMap;
 }
 
+void exploreNodesOf(int n,double** matrix, int nGenes, int* visited, List* linkageGroup){
+	int i, j;
+
+	//explorando fila
+	for(i = n, j = n+1; j < nGenes; j++){
+		if(visited[j] == 0 && !equals(matrix[i][j],-1) && matrix[i][j] < MAX_DISTANCE){
+			addNode(linkageGroup, j);
+			visited[j] = 1;
+			exploreNodesOf(j, matrix, nGenes, visited, linkageGroup);
+		}
+	}
+	//explorando columna
+	for(j = n,i = 0; i < n; i++){
+		if(visited[i] == 0 && !equals(matrix[i][j],-1) && matrix[i][j] < MAX_DISTANCE){
+			addNode(linkageGroup, i);
+			visited[i] = 1;
+			exploreNodesOf(i, matrix, nGenes, visited, linkageGroup);
+		}
+	}
+}
+
 void createMapsForAllGenes(double** matrix, int nGenes){
 	int n,numLG = 0, i,j;
 	int* visited = (int*) (malloc(nGenes*sizeof(int)));
@@ -375,22 +396,8 @@ void createMapsForAllGenes(double** matrix, int nGenes){
 		if(visited[n] == 0){
 			visited[n] = 1;
 			linkageGroups[numLG] = newList(n);
-
-			//explorando fila
-			for(i = n, j = n+1; j < nGenes; j++){
-				if(!equals(matrix[i][j],-1) && matrix[i][j] < MAX_DISTANCE){
-					addNode(linkageGroups[numLG], j);
-					visited[j] = 1;
-				}
-			}
-			//explorando columna
-			for(j = n,i = 0; i < n; i++){
-				if(!equals(matrix[i][j],-1) && matrix[i][j] < MAX_DISTANCE){
-					addNode(linkageGroups[numLG], i);
-					visited[i] = 1;
-				}
-			}
-
+			exploreNodesOf(n, matrix, nGenes, visited, linkageGroups[numLG]); 
+			
 			// si un nodo no tiene vecinos
 			if(linkageGroups[numLG]->n == 1){
 				destroyList (linkageGroups[numLG]);
