@@ -503,6 +503,9 @@ on_menuitem_exit (GtkMenuItem *menuitem,
 	g_application_quit (G_APPLICATION(application));
 }
 /* ---------------------------------------------------------------- */
+
+const gchar* authors[4] = { "Olger Calderón Achío", "Wilberth Castro Fuentes", "Diego Pérez Arroyo", NULL};
+
 void
 on_helpmenuitem_activate (GtkMenuItem *menuitem,
                gpointer     user_data) 
@@ -517,22 +520,8 @@ on_helpmenuitem_activate (GtkMenuItem *menuitem,
     g_object_unref(pixbuf);
 	pixbuf = NULL; 
 	
-	gchar **authors = g_malloc(sizeof(gchar*) * 4);
-	authors[0] = g_malloc(sizeof(gchar) * 30);
-	authors[1] = g_malloc(sizeof(gchar) * 30);
-	authors[2] = g_malloc(sizeof(gchar) * 30);
-	authors[3] = NULL;
-	g_stpcpy(authors[0], "Olger Calderón Achío");
-	g_stpcpy(authors[1], "Wilberth Castro Fuentes");
-	g_stpcpy(authors[2], "Diego Pérez Arroyo");
 	gtk_about_dialog_set_authors(dialog, authors);
-
 	gtk_dialog_run(GTK_DIALOG (dialog));
-	g_free(authors[0]);
-	g_free(authors[1]);
-	g_free(authors[2]);
-	g_free(authors[3]);
-	g_free(authors);
 	gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 /* ---------------------------------------------------------------- */
