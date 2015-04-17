@@ -44,7 +44,16 @@
 	
 	
 	\subsection{Literatura consultada}
-	
+	El paper de Stutervant y el de Morgan, más el primero que el segundo, nos sientan las bases de los mapas cromosómicos de genes ligados. Nos explica cómo se llego a la idea de que la probabilidad de crossover estaba relacionada con la distancia de los genes en los cromosomas.  Morgan define conceptos que son fundamentales tener claros; estos dos papers son la base que había que tener clara antes de si quiera tratar de pensar en la solución al problema. Sin embargo, una vez que se han leído y entendido, para los efectos del proyecto, no proporcionan mucha ayuda. Reafirma la teoría vista en clase. No trata temas como probabilidades faltantes, mapeo de genes no ligados y otros detalles.
+
+	El paper de más ayuda fue el llamado “Efficient and accurate construction of genetic linkage maps from noisy and missing genotyping data”. Una vez leído el título pensamos que iba a resolver todos nuestras dudas, porque parece ser justo el mismo tema del proyecto: construcción eficiente de mapas de ligamiento, manejo de datos faltantes. Empero, en realidad el problema que trata es distinto. El objetivo de los autores es construir el mejor mapa de ligamiento posible de forma eficiente. Parten de una población de individuos, en los cuales hay genes que se expresan de una u otra forma. Estiman la probabilidad de crossover entre genes al determinar el número de veces que un gen se expresa de la misma forma en todos los individuos.
+
+	Una vez determinadas las probabilidades de crossover entre los genes entonces pareciera encontrarse en el punto inicial de nuestro proyecto. El siguiente paso del paper es hacer clustering para determinar los grupos de ligamiento de genes. Es importante destacar en este punto que gracias a lo leído nos dimos cuenta que la probabilidad de crossover entre 2 genes ligados está entre [0 – 0.5] esto porque si la probabilidad es de 0.5 significa que los genes se expresan independientemente y por lo general estarían ubicados en diferentes cromosomas. Del paper entendimos que básicamente se determinan los grupos de genes ligados al realizar un recorrido en profundidad del grafo (matriz inicial del proyecto) ignorando las aristas con valor a 0.5 o muy cercanas a dicho valor. El resultado son componentes conexos del grafo original, cada uno de ellos es un grupo de ligamiento.
+
+	Es en este punto en que el paper nos deja de ser útil. Los siguientes pasos se centran en determinar el orden óptimo de los genes para que el mapa sea de menor tamaño. Varios métodos son presentados e incluso uno propio por parte de los autores. Mas, para nuestros efectos no eran de ayuda pues el problema del proyecto es generar todos los posibles mapas no sólo el óptimo. De igual forma cuando se  trataba sobre datos faltantes el paper no nos fue de utilidad porque de nuevo el enfoque de los autores difiere del nuestro.
+
+	El paper “Efficient and accurate construction of genetic linkage maps from noisy and missing genotyping data” es el mismo que el anterior sólo que en una edición un año después por parte de los mismos autores. No nos aporta nada que no lo haya hecho su predecesor.
+
 	
 	
 	\section{Segunda Parte: Aplicación Creada}
