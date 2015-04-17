@@ -1,14 +1,14 @@
 #include "IntList.h"
 
 Node * newNode(int value){
-	Node * node = (Node*) malloc(sizeof(Node*));
+	Node * node = (Node*) malloc(sizeof(Node));
 	node->data = value;
 	node->next = NULL;
 	return node;
 }
 
 List * newList(int value){
-	List * list = (List*) malloc(sizeof(List*));
+	List * list = (List*) malloc(sizeof(List));
 	list->start = newNode(value);
 	list->end = list->start;
 	list->n = 1;

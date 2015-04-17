@@ -366,18 +366,20 @@ double* rellenarMapa(double *sourceMap, int nGenesLK, int nGenesTotal, int* lk){
 void createMapsForAllGenes(double** matrix, int nGenes){
 	int n,numLG = 0, i,j;
 	int* visited = (int*) (malloc(nGenes*sizeof(int)));
-	List** linkageGroups = (List**) (malloc(nGenes/2 * sizeof(List*)));
+	List** linkageGroups = (List**) (malloc(nGenes * sizeof(List*)));
 	
-	memset(visited, 0, nGenes);
+	for(i = 0; i < nGenes; visited[i++] = 0);
 
-	//Clustering (!) genes into linkage groups
+	//Clustering (!) genes into linkage groups	
 	for(n = 0; n < nGenes-1; n++){
-		if(!visited[n]){
+		if(visited[n] == 0){
 			visited[n] = 1;
 			linkageGroups[numLG] = newList(n);
 
 			//explorando fila
+			printf("i: %d , j: %d , nGenes: %d\n", n , n+1, nGenes);
 			for(i = n, j = n+1; j < nGenes; j++){
+				printf("1:? %d    2?: %d \n", equals(matrix[i][j],-1), matrix[i][j] < MAX_DISTANCE );
 				if(!equals(matrix[i][j],-1) && matrix[i][j] < MAX_DISTANCE){
 					addNode(linkageGroups[numLG], j);
 					visited[j] = 1;
@@ -393,7 +395,8 @@ void createMapsForAllGenes(double** matrix, int nGenes){
 			numLG++;
 		}
 	}
-
+	free(visited);
+	
 	groupsData = (double***) (malloc(numLG * sizeof(double**)));
 	numberOfMapsPerGroup = (int*) (malloc(numLG * sizeof(int)));
 	numberOfGroups = numLG;
@@ -419,9 +422,11 @@ void createMapsForAllGenes(double** matrix, int nGenes){
 			//printPositions(completeMap, nGenes);
 			free(mapList[j]);
 		}
-		free(mapList);		
+		free(mapList);
+		destroyList (linkageGroups[i]);
 	}
 
+	free(linkageGroups);
 	for(i = 0; i < numberOfGroups; i++){
 		double** LG = groupsData[i];
 		int mapsPerGroup = numberOfMapsPerGroup[i];
