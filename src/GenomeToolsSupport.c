@@ -23,7 +23,7 @@ static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gi
 {
 	GtArray *features;
 	GtGenomeNode *gene, *chromosome;
-	GtStr *seqid;
+	GtStr *seqid, *gene_name;
 	gint i = 0;
 
 	features = gt_array_new(sizeof (GtGenomeNode*));
@@ -35,7 +35,10 @@ static GtArray* create_array_of_features(gdouble* mapData, gchar** geneNames, gi
 	for (i = 0; i < numberOfGenes; i++) {
 		if (mapData[i] >= 0) {
 			gene = gt_feature_node_new(seqid, "genes", mapData[i], mapData[i] + geneLength, GT_STRAND_FORWARD);
-			gt_feature_node_set_attribute((GtFeatureNode*)gene, "Name", geneNames[i]);
+			gene_name = gt_str_new_cstr(geneNames[i]);
+			if (gt_str_length(gene_name) > 0)
+				gt_feature_node_set_attribute((GtFeatureNode*)gene, "Name", geneNames[i]);
+			gt_str_delete(gene_name);
 			gt_array_add(features, gene);
 		}
 	}
