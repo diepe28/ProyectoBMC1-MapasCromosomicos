@@ -25,6 +25,7 @@ int indexInListOf(List*, int);
 void printList(List*);
 void destroyList(List*);
 void deleteFrom(List*,int,double*);
+int* listToArray(List*);
 
 
 #endif

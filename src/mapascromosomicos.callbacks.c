@@ -233,8 +233,9 @@ void btmap_clicked(GtkButton *sender) {
 	getDataFromGrid(data, geneNames, numberOfGenes);
 
 	// Call algorithm. Populates groupsData, numberOfMapsPerGroup, numberOfGroups;
+	createMapsForAllGenes(data, numberOfGenes);
 	
-	createDummyDataFor3Genes ();
+	//createDummyDataFor3Genes ();
 	//createMaps(data, numberOfGenes);
 
 	// Convert percentages to cM

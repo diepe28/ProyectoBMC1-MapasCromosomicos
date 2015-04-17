@@ -1,9 +1,15 @@
 #include "Algoritmo.h"
+#include "GenomeToolsSupport.h"
+#define MAX_DISTANCE 0.499999999
 
 const double EPSILON = 0.000000001;
 double** mapList;
 int numMaps;
 char resumeStr[2048];
+
+double*** groupsData;
+int* numberOfMapsPerGroup;
+int numberOfGroups;
 
 int equals(double a, double b){
 	return (fabs(a - b) < EPSILON);
@@ -191,7 +197,7 @@ void resetPositions(double * positions, int nGenes){
 	for(; i < nGenes; positions[i++] = -1);
 }
 
-void createMaps(double** matrix, int nGenes){
+void createMapsForLG (double** matrix, int nGenes){
 	int startGene, i, nMaps = pow(2, nGenes-1); //a lo sumo, entre 2 cuando eliminemos repetidos
 	double* positions = (double*) (malloc(nGenes * sizeof(double)));
 	List* inMap; 
@@ -201,9 +207,12 @@ void createMaps(double** matrix, int nGenes){
 
 	//Si hay al menos nodo sin vecinos, hay algo malo. Mejor detener.
 	for(i = 0; i < nGenes; i++)
-		if(adjacentNodes[i]->n == 1)
+		if(adjacentNodes[i]->n == 1){
+			printf("el nodo %d no tiene vecinos\n", i);
 			return;
+		}
 	
+	// maybe if map list is not null, destroy it
 	mapList = (double**) malloc(nMaps * sizeof(double *));
 	numMaps = 0;
 	
@@ -311,6 +320,124 @@ int predict(double** mat, int nGenes){
 	return predictedProbs;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+//////////////////////CLUSTERING OF LINKAGE GROUPS/////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+double ** createMatrixForLG(List* lg, double** matrix, int nGenes){
+	int * arrayLG = listToArray(lg), n, i, j;
+	double** mat = (double**) (malloc(lg->n*sizeof(double*)));
+
+	//Asigna memoria y Diagonal en 0
+	for(i = 0; i < lg->n; i++){
+		mat[i] = (double*)(malloc(lg->n*sizeof(double*)));
+		mat[i][i] = 0;
+	}
+
+	//Recorre arrayLG y asigna en posicion correcta
+	for(i = 0; i < lg->n; i++){
+		for(j = i+1; j < lg->n; j++){
+			mat[i][j] = mat[j][i] = matrix[arrayLG[i]][arrayLG[j]];;
+		}
+	}
+	
+	for(i = 0; i < lg->n; i++){
+		for(j = 0; j < lg->n; j++){
+			printf("%f  ",mat[i][j]);
+		}
+		printf("\n");
+	}
+
+	return mat;
+}
+
+//dado el mapa de un LG lo transforma en un mapa con -1s en cada gen que no sea parte del LG
+double* rellenarMapa(double *sourceMap, int nGenesLK, int nGenesTotal, int* lk){
+	double * targetMap = (double*) (malloc(nGenesTotal * sizeof(double)));
+	int i;
+	for(i = 0; i < nGenesTotal; targetMap[i++] = -1);
+
+	for(i = 0; i < nGenesLK; i++){
+		targetMap[lk[i]] = sourceMap[i];
+	}
+
+	return targetMap;
+}
+
+void createMapsForAllGenes(double** matrix, int nGenes){
+	int n,numLG = 0, i,j;
+	int* visited = (int*) (malloc(nGenes*sizeof(int)));
+	List** linkageGroups = (List**) (malloc(nGenes/2 * sizeof(List*)));
+	
+	memset(visited, 0, nGenes);
+
+	//Clustering (!) genes into linkage groups
+	for(n = 0; n < nGenes-1; n++){
+		if(!visited[n]){
+			visited[n] = 1;
+			linkageGroups[numLG] = newList(n);
+
+			//explorando fila
+			for(i = n, j = n+1; j < nGenes; j++){
+				if(!equals(matrix[i][j],-1) && matrix[i][j] < MAX_DISTANCE){
+					addNode(linkageGroups[numLG], j);
+					visited[j] = 1;
+				}
+			}
+			//explorando columna
+			for(j = n,i = 0; i < n; i++){
+				if(!equals(matrix[i][j],-1) && matrix[i][j] < MAX_DISTANCE){
+					addNode(linkageGroups[numLG], i);
+					visited[i] = 1;
+				}
+			}
+			numLG++;
+		}
+	}
+
+	groupsData = (double***) (malloc(numLG * sizeof(double**)));
+	numberOfMapsPerGroup = (int*) (malloc(numLG * sizeof(int)));
+	numberOfGroups = numLG;
+	                               
+	double** matForLG;
+	double * completeMap;
+
+	//adding data to groups data
+	for(i = 0; i < numLG; i++){
+		//Creating maps for linkage group[i]
+		//printList(linkageGroups[i]);
+		matForLG = createMatrixForLG(linkageGroups[i], matrix, nGenes);
+		createMapsForLG(matForLG, linkageGroups[i]->n);
+		groupsData[i] = (double**) (malloc(numMaps*sizeof(double*)));
+		numberOfMapsPerGroup[i] = numMaps;
+
+		//Completing each map to the original numberOfgenes
+		for(j = 0; j < numMaps; j++){
+			printPositions(mapList[j], linkageGroups[i]->n);			
+			completeMap = rellenarMapa(mapList[j],linkageGroups[i]->n, nGenes, listToArray(linkageGroups[i]));
+			groupsData[i][j] = completeMap; 
+			printf("relleno: \n");
+			//printPositions(completeMap, nGenes);
+			free(mapList[j]);
+		}
+		free(mapList);		
+	}
+
+	for(i = 0; i < numberOfGroups; i++){
+		double** LG = groupsData[i];
+		int mapsPerGroup = numberOfMapsPerGroup[i];
+		for(j = 0; j < mapsPerGroup; j++){
+			double * map = LG[j];
+			printPositions (map, nGenes);
+		}
+	}
+	
+	                               
+	
+}
+
+
+
+
 /*
 #include "Algoritmo.h"
 
@@ -362,7 +489,6 @@ int main ( int arc, char **argv ) {
 }
 
 */
-
 
 
 

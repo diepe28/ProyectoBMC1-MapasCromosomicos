@@ -80,6 +80,16 @@ void deleteFrom(List* this, int value, double * positions){
 	}
 }
 
+int* listToArray(List* this){
+	Node* current = this->start;
+	int* array = (int*) (malloc(this->n* sizeof(int))), i;
 
+	while(current){
+		array[i++] = current->data;
+		current = current->next;
+	}
+
+	return array;
+}
 
 
