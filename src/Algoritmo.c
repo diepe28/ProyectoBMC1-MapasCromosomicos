@@ -377,9 +377,7 @@ void createMapsForAllGenes(double** matrix, int nGenes){
 			linkageGroups[numLG] = newList(n);
 
 			//explorando fila
-			printf("i: %d , j: %d , nGenes: %d\n", n , n+1, nGenes);
 			for(i = n, j = n+1; j < nGenes; j++){
-				printf("1:? %d    2?: %d \n", equals(matrix[i][j],-1), matrix[i][j] < MAX_DISTANCE );
 				if(!equals(matrix[i][j],-1) && matrix[i][j] < MAX_DISTANCE){
 					addNode(linkageGroups[numLG], j);
 					visited[j] = 1;
@@ -392,15 +390,24 @@ void createMapsForAllGenes(double** matrix, int nGenes){
 					visited[i] = 1;
 				}
 			}
-			numLG++;
+
+			// si un nodo no tiene vecinos
+			if(linkageGroups[numLG]->n == 1){
+				destroyList (linkageGroups[numLG]);
+			}else{
+				numLG++;
+			}
 		}
 	}
 	free(visited);
+	numberOfGroups = numLG;
+
+	// no tiene sentido continuar
+	if(numberOfGroups == 0) return;
 	
 	groupsData = (double***) (malloc(numLG * sizeof(double**)));
 	numberOfMapsPerGroup = (int*) (malloc(numLG * sizeof(int)));
-	numberOfGroups = numLG;
-	                               
+		                              
 	double** matForLG;
 	double * completeMap;
 
