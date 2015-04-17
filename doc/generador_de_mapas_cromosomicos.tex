@@ -115,12 +115,65 @@
 	\subsection{Imágenes ilustrativas de la aplicación}
 	
 	
-	\subsection{Problemas resueltos por nuestra aplicación}
+	\subsection{Algunos problemas resueltos por nuestra aplicación}
 	
+	\subsubsection{Ejercicio \#1}
+	
+	Éste es un problema super sencillo encontrado en \cite{carrinnes2003handbook}. Se tienen 3 genes, $a$, $b$ y $c$.
+	
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{images/e_1.png}
+	\end{center}
+	
+	Ésta es la respuesta esperada:
+	
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{images/e_2.png}
+	\end{center}
+	
+	Y éste es el mapa generado por nuestra aplicación:
+	
+	\begin{center}
+		\includegraphics[scale=0.5]{images/e_3.png}
+	\end{center}
+	
+	\subsubsection{Ejercicio \#2}
+	
+	Acá tenemos un ejercicio un poco más complicado del mismo libro. Éste requiere calcular las probabilidades de recombinación a partir de datos observados. Se tiene el siguiente enunciado:
+	
+	\begin{center}
+		\includegraphics[scale=0.8]{images/e_4.png}
+	\end{center}
+	
+	\begin{center}
+		\includegraphics[scale=0.8]{images/e_5.png}
+	\end{center}
+	
+	Así podemos decir que los machos tienen el siguiente genoma: no-tan no-scalloped vermillion. Y las hembras el siguiente: tan scalloped no-vermillion. Son en total mil datos.
+	                                                     
+	Las dos clases del final (tan scalloped vermillion y wild-type) corresponden a casos de doble ``crossover''. Esto se puede deducir porque son las que presentan un menor número de ocurrencias  \cite{carrinnes2003handbook}. De acá mismo podemos deducir que el gen vermillion es el que está fuera de lugar si se compara un tipo de doble ``crossover'' contra un tipo parental. Por ejemplo: si se compara (tan scalloped), tipo parental, contra (tan scalloped vermillion), tipo de doble ``crossover'', el gen que no hace ``match'' es vermillion. Un razonamiento similar aplica para cualquier pareja de clase parental y doble ``crossover''. Y ésto nos dice que precisamente el gen vermillion está entre el de tan y el de scalloped. Por lo tanto vamos a calcular la probabilidad de ``crossover'' de tan-vermillion y vermillion-scalloped.
+	
+	Primero entre tan-vermillion: $(18 + 20 + 2 + 3) / 1000 = 0.043$. Y ahora entre vermillion-scalloped: $(84 + 80 + 2 + 3) / 1000 = 0.169$. Introducimos los datos en nuestra aplicación, y nos topamos con el siguiente resultado:
+	
+	\begin{center}
+		\includegraphics[scale=0.5]{images/e_6.png}
+	\end{center}
+	
+	\begin{center}
+		\includegraphics[scale=0.5]{images/e_7.png}
+	\end{center}
+	
+	La aplicación nos genera dos pares de mapas equivalentes. Gracias a nuestro conocimiento de que vermillion es el gen del medio podemos decir que el primer mapa es el correcto. Y nótese que si calculamos la probabilidad de ``crossover'' de tan-scalloped, nos topamos que: $(18 + 20 + 84 + 80) / 1000 =  0,202$, lo cuál se acerca a $0.043 + 0.169 = 0.212$. Ésto soporta la elección de nuestro mapa.
+	
+	Resultados esperados:
+	
+	\begin{center}
+		\includegraphics[scale=1]{images/e_8.png}
+	\end{center}
 	
 	\subsection{Problemas que trascienden el alcance del proyecto}
 	
-	Nuestro proyecto hace una serie de suposiciones que simplifica un poco su alcance. Por ejemplo los eventos de recombinación son simples. Sólo hay un intercambio en un evento de meiosis. Cuando hay más de un ``crossover'' en el mismo evento meiótico, puede que haya que transformar las probabilidades de recombinación a una cantidad de cM distinta. Funciones que realizan estas transformaciones son las de Haldane y Kosambi. Por ejemplo la función de Haldane sobre una probabilidad de $0.27$, retorna 39 cM, mientras que la de Kosambi 30cM \cite{terwilliger1994handbook}.
+	Nuestro proyecto hace una serie de suposiciones que simplifica un poco su alcance. Por ejemplo no aplicamos ciertas funciones de transformación. Cuando hay más de un ``crossover'' en el mismo evento meiótico, puede que haya que transformar las probabilidades de recombinación a una cantidad de cM distinta. Funciones que realizan estas transformaciones son las de Haldane y Kosambi. Por ejemplo la función de Haldane sobre una probabilidad de $0.27$, retorna 39 cM, mientras que la de Kosambi 30cM \cite{terwilliger1994handbook}.
 	
 	El tema se puede tornar tan complicado como se quiera, y hay aspectos que se vuelven más difíciles de modelar. Entre algunos de estos aspectos se puede mencionar las probabilidades de mutación y desequilibrio de ligamiento. El paquete LINKAGE contempla mucho de estos problemas y más \cite{terwilliger1994handbook}.
 	
