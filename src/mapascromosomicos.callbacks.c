@@ -265,7 +265,7 @@ void btmap_clicked(GtkButton *sender) {
 			change_zoom_controls(FALSE);
 		}
 			
-		append_to_log("Mapas generados correctamente.\n");
+		append_to_log("Datos procesados correctamente.\n");
 	}
 	else {
 		// Clear unstored geneNames
