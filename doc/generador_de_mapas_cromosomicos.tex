@@ -10,6 +10,8 @@
 \setlength{\parskip}{\baselineskip}
 \setlength{\parindent}{0pt}
 
+\graphicspath{{images/}}
+
 \begin{document}
 
 	\include{title_page}
@@ -114,6 +116,91 @@
 	
 	\subsection{Imágenes ilustrativas de la aplicación}
 	
+	Al abrir la aplicación, por omisión muestra una tabla con una configuración para tres genes, como se muestra en la figura 4. 
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=350px, keepaspectratio=false]{report1}
+				\caption{Configuración por omisión}
+	\end{figure}
+	
+	Aunque es posible incluir más genes en el modelo, esto se logra por medio del control que se encuentra sobre el botón "Mapear", es posible incrementar o decrementar en 1 el número por medio del control o digitar directamente en la casilla con el teclado. El rango valido es [2, 20].
+	
+	Para iniciar con el proceso es necesario introducir las probabilidades de recombinación entre al menos un par de genes. Mientras más completa esté la tabla, más específico será el resultado.
+	
+	Se permiten probabilidades dentro de un rango de [0, 0.5] y al editar un valor de la tabla, haciendo click sobre él, su homólogo es actualizado automáticamente, por ejemplo, si se edita la primer celda vacía de la segunda fila, el nuevo valor aparecerá también en la primer celda vacía de la primera fila.
+	
+	También es posible editar el nombre de los genes, pero solamente haciendo click sobre su nombre en la fila que los representa, al hacerlo, su nombre en la columna correspondiente es actualizado automáticamente, como se ve en la figura 5.
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=350px, keepaspectratio=false]{report2}
+				\caption{Tabla con 4 genes, un valor y nombre del G1 en edición}
+	\end{figure}
+	
+	A lo largo del procedimiento, la aplicación mostrará notificaciones en el panel de texto inferior.
+	
+	A continuación se muestra con un ejemplo (los nombres de genes y probabilidades de recombinación se han tomado del ejercicio \#2), el uso de la aplicación.
+	
+	Después de establecer el modelo a partir del cual se desea graficar, se debe presionar el botón "Mapear", para el modelo correspondiente al ejercicio \#2 se obtendría una tabla y un primer mapa (visible al mapear) como los que se ven en la figura 6.
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=350px, keepaspectratio=false]{report3}
+				\caption{Primer mapa generado a partir de la tabla para el ejercicio \#2}
+	\end{figure}
+	
+	Para ese ejercicio solo se obtiene un grupo de ligamiento, aunque en caso de obtener más, sus posibles mapas se visualizarían navegando con las fechas al lado de la etiqueta correspondiente.
+	
+	Al elegjir el grupo de ligamiento de interés, se puede navegar entre sus posibles mapas usando el otro par de flechas. Para el ejercicio \#2 tenemos cuatro mapas (dos más sus inversos), el primero es el que vemos en la figura 6 y el segundo en la figura 7.
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=350px, keepaspectratio=false]{report4}
+				\caption{Segundo mapa generado a partir de la tabla para el ejercicio \#2}
+	\end{figure}
+	
+	Además es posible escalar los mapas utilizando los otros tres botones de la barra de herramientas, + (aumemntar), - (disminuir) y el último reinicia el mapa al tamaño original.
+	
+	En caso de desear guardar los mapas, esto se puede hacer llendo a la barra de menú superior, en el menú ``Archivo'' se encuentra la opción de ``Guardar'', al elegirla aparece una ventana de diálogo para seleccionar la hubicación de los mapas, así como se muestra en las figuras 8 y 9. El formato del archivo será CSV.
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=350px, keepaspectratio=false]{report5}
+				\caption{Opción de menú para guardar los mapas}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=350px, keepaspectratio=false]{report6}
+				\caption{Ventana de diálogo para guardar los mapas}
+	\end{figure}
+	
+	De forma similar es posible abrir los mapas guardados, esto se hace llendo a la barra de menú superior, en el menú ``Archivo'', la opción ``Abrir'', al elegirla aparece una ventana de diálogo para seleccionar la hubicación de los mapas, así como se muestra en la figura 10.
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=350px, keepaspectratio=false]{report7}
+				\caption{Ventana de diálogo para abrir los mapas}
+	\end{figure}
+	
+	O bien, también es posible reestablecer el modelo a la configuración por defecto utilizando la opción ``Nuevo'' que se ve en la figura 5.
+	
+	La aplicación cuenta también con información de autoría, se encuentra en el menú de ayuda, la información es la que se muestra en las figuras 11 y 12.
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=300px, keepaspectratio=false]{report8}
+				\caption{Ventana de información de la aplicación}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[width=300px, keepaspectratio=false]{report9}
+				\caption{Ventana de información de los autores}
+	\end{figure}
+	
+	Al finalizar la sesión de trabajo, es posible salir de la aplicación presionando la opción ``Salir'' (que se ve en la figura 8) o la -x- en la barra de título.
 	
 	\subsection{Algunos problemas resueltos por nuestra aplicación}
 	

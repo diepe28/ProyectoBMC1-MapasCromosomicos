@@ -1,0 +1,46 @@
+\begin{thebibliography}{1}
+
+\bibitem{gremme2013genometools}
+Gordon Gremme, Sascha Steinbiss, and Stefan Kurtz.
+\newblock Genometools: a comprehensive software library for efficient
+  processing of structured genome annotations.
+\newblock {\em Computational Biology and Bioinformatics, IEEE/ACM Transactions
+  on}, 10(3):645--656, 2013.
+
+\bibitem{lodish2008molecular}
+Harvey Lodish.
+\newblock {\em Molecular cell biology}.
+\newblock Macmillan, 2008.
+
+\bibitem{morgan1916critique}
+Thomas~Hunt Morgan.
+\newblock {\em A Critique of the Theory of Evolution}.
+\newblock Princeton University Press, 1916.
+
+\bibitem{morgan1919physical}
+Thomas~Hunt Morgan.
+\newblock {\em The physical basis of heredity}.
+\newblock JB Lippincott, 1919.
+
+\bibitem{setubal1997introduction}
+Joao~Carlos Setubal and Joao Meidanis.
+\newblock {\em Introduction to computational molecular biology}.
+\newblock PWS Pub., 1997.
+
+\bibitem{carrinnes2003handbook}
+Carr Steven~M and Innes David~J.
+\newblock {\em Biology 2250 Principles of Genetics}.
+\newblock Memorial, University of Newfoundland, 2003.
+
+\bibitem{sturtevant1913linear}
+Alfred~Henry Sturtevant.
+\newblock The linear arrangement of six sex-linked factors in drosophila, as
+  shown by their mode of association.
+\newblock {\em Journal of experimental zoology}, 14(1):43--59, 1913.
+
+\bibitem{terwilliger1994handbook}
+Joseph~Douglas Terwilliger.
+\newblock {\em Handbook of human genetic linkage}.
+\newblock JHU Press, 1994.
+
+\end{thebibliography}

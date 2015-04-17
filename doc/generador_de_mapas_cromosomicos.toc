@@ -1,0 +1,16 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{2}
+\contentsline {section}{\numberline {2}Primera Parte: Acerca de los Mapas Cromos\IeC {\'o}micos}{2}
+\contentsline {subsection}{\numberline {2.1}Algunos conceptos importantes}{2}
+\contentsline {subsection}{\numberline {2.2}Unidades de medida}{4}
+\contentsline {subsection}{\numberline {2.3}Mapas gen\IeC {\'e}ticos y mapas f\IeC {\'\i }sicos}{5}
+\contentsline {subsection}{\numberline {2.4}Gregor Mendel}{5}
+\contentsline {subsection}{\numberline {2.5}Literatura consultada}{5}
+\contentsline {section}{\numberline {3}Segunda Parte: Aplicaci\IeC {\'o}n Creada}{6}
+\contentsline {subsection}{\numberline {3.1}Detalles t\IeC {\'e}cnicos de implementaci\IeC {\'o}n}{6}
+\contentsline {subsection}{\numberline {3.2}Im\IeC {\'a}genes ilustrativas de la aplicaci\IeC {\'o}n}{6}
+\contentsline {subsection}{\numberline {3.3}Algunos problemas resueltos por nuestra aplicaci\IeC {\'o}n}{10}
+\contentsline {subsubsection}{\numberline {3.3.1}Ejercicio \#1}{10}
+\contentsline {subsubsection}{\numberline {3.3.2}Ejercicio \#2}{13}
+\contentsline {subsection}{\numberline {3.4}Problemas que trascienden el alcance del proyecto}{15}
+\contentsline {section}{\numberline {4}Conclusiones}{15}
