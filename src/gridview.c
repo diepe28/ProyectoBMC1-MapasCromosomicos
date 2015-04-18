@@ -250,6 +250,7 @@ void gridview_load(GtkWidget *gridview, char* filepath, GtkSpinButton* spinButto
 
 	int n;
 	fscanf(file, "%d", &n);
+	gtk_spin_button_set_value(spinButton, n-1);
 
 	gridview_set_dimensions(gridview, n - 1);
 	GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(gridview));
@@ -260,6 +261,7 @@ void gridview_load(GtkWidget *gridview, char* filepath, GtkSpinButton* spinButto
 
 	int i = 0;
 	int j;
+	
 	do {
 		fscanf(file, "%s", data);
 
@@ -277,7 +279,7 @@ void gridview_load(GtkWidget *gridview, char* filepath, GtkSpinButton* spinButto
 	} while (!feof(file));
 
 	fclose(file);
-	gtk_spin_button_set_value(spinButton, n-1);
+	
 }
 /* ---------------------------------------------------------------- */
 #endif
