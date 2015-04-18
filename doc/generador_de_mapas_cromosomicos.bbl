@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{gremme2013genometools}
 Gordon Gremme, Sascha Steinbiss, and Stefan Kurtz.
@@ -11,6 +11,11 @@ Gordon Gremme, Sascha Steinbiss, and Stefan Kurtz.
 Harvey Lodish.
 \newblock {\em Molecular cell biology}.
 \newblock Macmillan, 2008.
+
+\bibitem{morgan1910sex}
+Thomas~H Morgan.
+\newblock Sex limited inheritance in drosophila.
+\newblock {\em Science, New Series}, 32(812):120--122, 1910.
 
 \bibitem{morgan1916critique}
 Thomas~Hunt Morgan.
@@ -42,5 +47,18 @@ Alfred~Henry Sturtevant.
 Joseph~Douglas Terwilliger.
 \newblock {\em Handbook of human genetic linkage}.
 \newblock JHU Press, 1994.
+
+\bibitem{wu2007efficient}
+Yonghui Wu, Prasanna Bhat, Timothy~J Close, and Stefano Lonardi.
+\newblock Efficient and accurate construction of genetic linkage maps from
+  noisy and missing genotyping data.
+\newblock In {\em Algorithms in Bioinformatics}, pages 395--406. Springer,
+  2007.
+
+\bibitem{wu2008efficient}
+Yonghui Wu, Prasanna~R Bhat, Timothy~J Close, and Stefano Lonardi.
+\newblock Efficient and accurate construction of genetic linkage maps from the
+  minimum spanning tree of a graph.
+\newblock {\em PLoS genetics}, 4(10):e1000212, 2008.
 
 \end{thebibliography}

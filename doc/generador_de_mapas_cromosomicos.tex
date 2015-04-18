@@ -85,20 +85,22 @@
 	
 	Los mapas físicos reflejan la distancias reales, y operan a un nivel mayor de detalle. Usualmente se usan otras técnicas distintas para construirlos. Finalmente otro recurso que opera a un nivel mayor de detalle sería la secuenciación \cite{setubal1997introduction}.
 	
-	\subsection{Gregor Mendel}
-	
+	\subsection{¿Por qué Gregor Mendel no reportó el fenómeno de recombinación?}
+		Cabe preguntarse ¿porqué Gregor Mendel, el padre la genética, no descubrió lo que Morgan y Sturtevant relatan en sus papers muchos años después \cite{morgan1910sex} y \cite{sturtevant1913linear}? Mendel en sus reportes concluyó que las características heredadas son independientes unas de las otras, sin ninguna relación entre sí. Lo cual sabemos que no siempre es cierto.
+		
+		Cuando los genes están ligados usualmente se expresan juntos (tienden a actuar todos como un sólo gen) sin embargo, durante la meiosis puede haber recombinación, lo cual resulta en que genes ligados se separen en un individuo particular. Por lo general un grupo de ligamiento se encuentra en un cromosoma \cite{wu2007efficient}[p3] y cuando los genes están ubicados en diferentes cromosomas se heredan independientemente uno del otro. La razón por la cual Mendel no reportó el fenómeno de recombinación es porque las características seleccionadas para su análisis estaban en diferentes grupos de ligamiento, por ello siempre se iban a expresar independientemente. 
 	
 	
 	\subsection{Literatura consultada}
-	El paper de Stutervant y el de Morgan, más el primero que el segundo, nos sientan las bases de los mapas cromosómicos de genes ligados. Nos explica cómo se llego a la idea de que la probabilidad de crossover estaba relacionada con la distancia de los genes en los cromosomas.  Morgan define conceptos que son fundamentales tener claros; estos dos papers son la base que había que tener clara antes de si quiera tratar de pensar en la solución al problema. Sin embargo, una vez que se han leído y entendido, para los efectos del proyecto, no proporcionan mucha ayuda. Reafirma la teoría vista en clase. No trata temas como probabilidades faltantes, mapeo de genes no ligados y otros detalles.
+	El paper de Sturtevant \cite{sturtevant1913linear} y el de Morgan \cite{morgan1910sex}, más el primero que el segundo, nos sientan las bases de los mapas cromosómicos de genes ligados. Nos explica cómo se llego a la idea de que la probabilidad de crossover estaba relacionada con la distancia de los genes en los cromosomas.  Morgan define conceptos que son fundamentales tener claros; estos dos papers son la base que había que tener clara antes de si quiera tratar de pensar en la solución al problema. Sin embargo, una vez que se han leído y entendido, para los efectos del proyecto, no proporcionan mucha ayuda. Reafirma la teoría vista en clase. No trata temas como probabilidades faltantes, mapeo de genes no ligados y otros detalles.
 
-	El paper de más ayuda fue el llamado “Efficient and accurate construction of genetic linkage maps from noisy and missing genotyping data”. Una vez leído el título pensamos que iba a resolver todos nuestras dudas, porque parece ser justo el mismo tema del proyecto: construcción eficiente de mapas de ligamiento, manejo de datos faltantes. Empero, en realidad el problema que trata es distinto. El objetivo de los autores es construir el mejor mapa de ligamiento posible de forma eficiente. Parten de una población de individuos, en los cuales hay genes que se expresan de una u otra forma. Estiman la probabilidad de crossover entre genes al determinar el número de veces que un gen se expresa de la misma forma en todos los individuos.
+	El paper de más ayuda fue el llamado \textit{Efficient and accurate construction of genetic linkage maps from noisy and missing genotyping data} \cite{wu2007efficient}. Una vez leído el título pensamos que iba a resolver todos nuestras dudas, porque parece ser justo el mismo tema del proyecto: construcción eficiente de mapas de ligamiento, manejo de datos faltantes. Empero, en realidad el problema que trata es distinto. El objetivo de los autores es construir el mejor mapa de ligamiento posible de forma eficiente. Parten de una población de individuos, en los cuales hay genes que se expresan de una u otra forma. Estiman la probabilidad de crossover entre genes al determinar el número de veces que un gen se expresa de la misma forma en todos los individuos.
 
 	Una vez determinadas las probabilidades de crossover entre los genes entonces pareciera encontrarse en el punto inicial de nuestro proyecto. El siguiente paso del paper es hacer clustering para determinar los grupos de ligamiento de genes. Es importante destacar en este punto que gracias a lo leído nos dimos cuenta que la probabilidad de crossover entre 2 genes ligados está entre [0 – 0.5] esto porque si la probabilidad es de 0.5 significa que los genes se expresan independientemente y por lo general estarían ubicados en diferentes cromosomas. Del paper entendimos que básicamente se determinan los grupos de genes ligados al realizar un recorrido en profundidad del grafo (matriz inicial del proyecto) ignorando las aristas con valor a 0.5 o muy cercanas a dicho valor. El resultado son componentes conexos del grafo original, cada uno de ellos es un grupo de ligamiento.
 
 	Es en este punto en que el paper nos deja de ser útil. Los siguientes pasos se centran en determinar el orden óptimo de los genes para que el mapa sea de menor tamaño. Varios métodos son presentados e incluso uno propio por parte de los autores. Mas, para nuestros efectos no eran de ayuda pues el problema del proyecto es generar todos los posibles mapas no sólo el óptimo. De igual forma cuando se  trataba sobre datos faltantes el paper no nos fue de utilidad porque de nuevo el enfoque de los autores difiere del nuestro.
 
-	El paper “Efficient and accurate construction of genetic linkage maps from noisy and missing genotyping data” es el mismo que el anterior sólo que en una edición un año después por parte de los mismos autores. No nos aporta nada que no lo haya hecho su predecesor.
+	El paper llamado \textit{Efficient and accurate construction of genetic linkage maps from the minimum spanning tree of a graph} \cite{wu2008efficient} es el mismo que el anterior sólo que en una edición un año después por parte de los mismos autores. No nos aporta nada que no lo haya hecho su predecesor.
 
 	
 	
@@ -117,11 +119,12 @@
 	\subsection{Imágenes ilustrativas de la aplicación}
 	
 	Al abrir la aplicación, por omisión muestra una tabla con una configuración para tres genes, como se muestra en la figura 4. 
-	
+		
 	\begin{figure}[h!]
-		\centering
-			\includegraphics[width=350px, keepaspectratio=false]{report1}
-				\caption{Configuración por omisión}
+	  \begin{center}
+	    \includegraphics[width=350px, keepaspectratio=false]{report1}
+	  \end{center}
+	  \caption{Configuración por omisión}
 	\end{figure}
 	
 	Aunque es posible incluir más genes en el modelo, esto se logra por medio del control que se encuentra sobre el botón "Mapear", es posible incrementar o decrementar en 1 el número por medio del control o digitar directamente en la casilla con el teclado. El rango valido es [2, 20].
@@ -130,7 +133,7 @@
 	
 	Se permiten probabilidades dentro de un rango de [0, 0.5] y al editar un valor de la tabla, haciendo click sobre él, su homólogo es actualizado automáticamente, por ejemplo, si se edita la primer celda vacía de la segunda fila, el nuevo valor aparecerá también en la primer celda vacía de la primera fila.
 	
-	También es posible editar el nombre de los genes, pero solamente haciendo click sobre su nombre en la fila que los representa, al hacerlo, su nombre en la columna correspondiente es actualizado automáticamente, como se ve en la figura 5.
+	También es posible editar el nombre de los genes, pero solamente haciendo click sobre su nombre en la fila que los representa, al hacerlo, su nombre en la columna correspondiente es actualizado automáticamente, como se ve en la figura 8.
 	
 	\begin{figure}[h!]
 		\centering
@@ -138,6 +141,7 @@
 				\caption{Tabla con 4 genes, un valor y nombre del G1 en edición}
 	\end{figure}
 	
+	\pagebreak
 	A lo largo del procedimiento, la aplicación mostrará notificaciones en el panel de texto inferior.
 	
 	A continuación se muestra con un ejemplo (los nombres de genes y probabilidades de recombinación se han tomado del ejercicio \#2), el uso de la aplicación.
@@ -149,34 +153,35 @@
 			\includegraphics[width=350px, keepaspectratio=false]{report3}
 				\caption{Primer mapa generado a partir de la tabla para el ejercicio \#2}
 	\end{figure}
-	
+	\pagebreak
+		
 	Para ese ejercicio solo se obtiene un grupo de ligamiento, aunque en caso de obtener más, sus posibles mapas se visualizarían navegando con las fechas al lado de la etiqueta correspondiente.
 	
-	Al elegjir el grupo de ligamiento de interés, se puede navegar entre sus posibles mapas usando el otro par de flechas. Para el ejercicio \#2 tenemos cuatro mapas (dos más sus inversos), el primero es el que vemos en la figura 6 y el segundo en la figura 7.
+	Al elegir el grupo de ligamiento de interés, se puede navegar entre sus posibles mapas usando el otro par de flechas. Para el ejercicio \#2 tenemos cuatro mapas (dos más sus inversos), el primero es el que vemos en la figura 6 y el segundo en la figura 7.
 	
 	\begin{figure}[h!]
 		\centering
-			\includegraphics[width=350px, keepaspectratio=false]{report4}
+			\includegraphics[scale=0.47, keepaspectratio=true]{report4}
 				\caption{Segundo mapa generado a partir de la tabla para el ejercicio \#2}
 	\end{figure}
-	
+
 	Además es posible escalar los mapas utilizando los otros tres botones de la barra de herramientas, + (aumemntar), - (disminuir) y el último reinicia el mapa al tamaño original.
 	
-	En caso de desear guardar los mapas, esto se puede hacer llendo a la barra de menú superior, en el menú ``Archivo'' se encuentra la opción de ``Guardar'', al elegirla aparece una ventana de diálogo para seleccionar la hubicación de los mapas, así como se muestra en las figuras 8 y 9. El formato del archivo será CSV.
+	En caso de desear guardar los mapas, esto se puede hacer yendo a la barra de menú superior, en el menú ``Archivo'' se encuentra la opción de ``Guardar'', al elegirla aparece una ventana de diálogo para seleccionar la hubicación de los mapas, así como se muestra en las figuras 8 y 9. El formato del archivo será CSV.
 	
 	\begin{figure}[h!]
 		\centering
-			\includegraphics[width=350px, keepaspectratio=false]{report5}
+			\includegraphics[scale=0.5, keepaspectratio=true]{report5}
 				\caption{Opción de menú para guardar los mapas}
 	\end{figure}
 	
 	\begin{figure}[h!]
 		\centering
-			\includegraphics[width=350px, keepaspectratio=false]{report6}
+			\includegraphics[scale=0.5, keepaspectratio=true]{report6}
 				\caption{Ventana de diálogo para guardar los mapas}
 	\end{figure}
 	
-	De forma similar es posible abrir los mapas guardados, esto se hace llendo a la barra de menú superior, en el menú ``Archivo'', la opción ``Abrir'', al elegirla aparece una ventana de diálogo para seleccionar la hubicación de los mapas, así como se muestra en la figura 10.
+	De forma similar es posible abrir los mapas guardados, esto se hace yendo a la barra de menú superior, en el menú ``Archivo'', la opción ``Abrir'', al elegirla aparece una ventana de diálogo para seleccionar la ubicación de los mapas, así como se muestra en la figura 10.
 	
 	\begin{figure}[h!]
 		\centering
@@ -190,20 +195,22 @@
 	
 	\begin{figure}[h!]
 		\centering
-			\includegraphics[width=300px, keepaspectratio=false]{report8}
+			\includegraphics[scale=0.72, keepaspectratio=false]{report8}
 				\caption{Ventana de información de la aplicación}
 	\end{figure}
-	
+	\pagebreak
 	\begin{figure}[h!]
 		\centering
 			\includegraphics[width=300px, keepaspectratio=false]{report9}
 				\caption{Ventana de información de los autores}
 	\end{figure}
+
 	
-	Al finalizar la sesión de trabajo, es posible salir de la aplicación presionando la opción ``Salir'' (que se ve en la figura 8) o la -x- en la barra de título.
+	Al finalizar la sesión de trabajo, es posible salir de la aplicación presionando la opción ``Salir'' (que se ve en la figura 8) o la -x- en la barra de título.	
+\pagebreak
 	
 	\subsection{Algunos problemas resueltos por nuestra aplicación}
-	
+
 	\subsubsection{Ejercicio \#1}
 	
 	Éste es un problema super sencillo encontrado en \cite{carrinnes2003handbook}. Se tienen 3 genes, $a$, $b$ y $c$.
@@ -272,6 +279,7 @@
 	
 	Por el lado de programación, nos adentramos de nuevo al mundo de programación en C, recordando así el potencial del lenguaje. Al encontrar una biblioteca como Genome Tools, nos dimos cuenta de que existe una comunidad que realiza aplicaciones para bioinformáticos. Ellos siguen estándares y apuestan en C como en el lenguaje apropiado para la implementación. No está de más conocer la existencia de tan útil proyecto. Por otra parte se sacó provecho de las herramientas libres de GNOME, donde GTK+ resalta con un kit muy completo de componentes gráficos.
 	
+	\pagebreak
 	\bibliographystyle{plain}
 	\bibliography{refs}
 	

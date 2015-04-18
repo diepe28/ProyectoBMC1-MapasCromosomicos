@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.9.1)  17 APR 2015 17:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.27)  17 APR 2015 19:36
 entering extended mode
 **generador_de_mapas_cromosomicos.tex
 
-(C:\Users\wcastro\Documents\U\bmc\proyecto1\doc\generador_de_mapas_cromosomicos
-.tex
+(C:\Users\Diego\Desktop\ProyectoBMC1-MapasCromosomicos\doc\generador_de_mapas_c
+romosomicos.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -334,12 +334,13 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks18
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
+(C:\Users\Diego\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(C:\Users\wcastro\Documents\U\bmc\proyecto1\doc\generador_de_mapas_cromosomicos
-.aux (C:\Users\wcastro\Documents\U\bmc\proyecto1\doc\title_page.aux))
+(C:\Users\Diego\Desktop\ProyectoBMC1-MapasCromosomicos\doc\generador_de_mapas_c
+romosomicos.aux
+(C:\Users\Diego\Desktop\ProyectoBMC1-MapasCromosomicos\doc\title_page.aux))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
@@ -353,7 +354,7 @@ LaTeX Font Info:    ... okay on input line 15.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
 
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\Diego\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count94
 \scratchdimen=\dimen114
@@ -401,7 +402,7 @@ LaTeX Font Info:    ... okay on input line 15.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(C:\Users\wcastro\Documents\U\bmc\proyecto1\doc\title_page.tex
+(C:\Users\Diego\Desktop\ProyectoBMC1-MapasCromosomicos\doc\title_page.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 37.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -415,16 +416,17 @@ Package pdftex.def Info: logo_tec.jpg used on input line 54.
  [1
 
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/wcastro/Document
-s/U/bmc/proyecto1/doc/logo_tec.jpg>])
-(C:\Users\wcastro\Documents\U\bmc\proyecto1\doc\generador_de_mapas_cromosomicos
-.toc)
+{C:/Users/Diego/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/Di
+ego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/logo_tec.jpg>])
+(C:\Users\Diego\Desktop\ProyectoBMC1-MapasCromosomicos\doc\generador_de_mapas_c
+romosomicos.toc)
 \tf@toc=\write3
  [1
 
 ] <images/1.jpg, id=15, 398.48875pt x 364.36125pt>
 File: images/1.jpg Graphic file (type jpg)
- <use images/1.jpg>
+
+<use images/1.jpg>
 Package pdftex.def Info: images/1.jpg used on input line 42.
 (pdftex.def)             Requested size: 234.8775pt x 214.76pt.
 
@@ -446,179 +448,164 @@ Package pdftex.def Info: images/3.png used on input line 61.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/1.jpg> <C:/Users/wcas
-tro/Documents/U/bmc/proyecto1/doc/images/2.jpg>] [4 <C:/Users/wcastro/Documents
-/U/bmc/proyecto1/doc/images/3.png>] [5]
+[3 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/1.jpg> <C:
+/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/2.jpg>] [4 <C:/U
+sers/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/3.png>] [5]
 <images/report1.png, id=35, 602.25pt x 472.76625pt>
 File: images/report1.png Graphic file (type png)
  <use images/report1.png>
-Package pdftex.def Info: images/report1.png used on input line 123.
+Package pdftex.def Info: images/report1.png used on input line 125.
 (pdftex.def)             Requested size: 351.31378pt x 275.79166pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [6] <images/report2.png, id=41, 602.25pt x 472.76625pt>
 File: images/report2.png Graphic file (type png)
 
 <use images/report2.png>
-Package pdftex.def Info: images/report2.png used on input line 137.
+Package pdftex.def Info: images/report2.png used on input line 140.
 (pdftex.def)             Requested size: 351.31378pt x 275.79166pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/report3.png, id=42, 602.25pt x 472.76625pt>
+[7 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report1.pn
+g>] <images/report3.png, id=46, 602.25pt x 472.76625pt>
 File: images/report3.png Graphic file (type png)
- <use images/report3.png>
-Package pdftex.def Info: images/report3.png used on input line 149.
+
+<use images/report3.png>
+Package pdftex.def Info: images/report3.png used on input line 153.
 (pdftex.def)             Requested size: 351.31378pt x 275.79166pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/report4.png, id=43, 602.25pt x 472.76625pt>
+[8 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report2.pn
+g>] <images/report4.png, id=51, 602.25pt x 472.76625pt>
 File: images/report4.png Graphic file (type png)
- <use images/report4.png>
-Package pdftex.def Info: images/report4.png used on input line 159.
-(pdftex.def)             Requested size: 351.31378pt x 275.79166pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[7 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/report1.png>]
-<images/report5.png, id=48, 602.25pt x 472.76625pt>
+<use images/report4.png>
+Package pdftex.def Info: images/report4.png used on input line 164.
+(pdftex.def)             Requested size: 283.05753pt x 222.20016pt.
+ [9 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report3.p
+ng> <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report4.p
+ng>]
+<images/report5.png, id=57, 602.25pt x 472.76625pt>
 File: images/report5.png Graphic file (type png)
  <use images/report5.png>
-Package pdftex.def Info: images/report5.png used on input line 169.
-(pdftex.def)             Requested size: 351.31378pt x 275.79166pt.
+Package pdftex.def Info: images/report5.png used on input line 174.
+(pdftex.def)             Requested size: 301.12425pt x 236.38254pt.
 
-[8 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/report2.png> <C:/User
-s/wcastro/Documents/U/bmc/proyecto1/doc/images/report3.png>]
-<images/report6.png, id=54, 685.05937pt x 534.49687pt>
+<images/report6.png, id=58, 685.05937pt x 534.49687pt>
 File: images/report6.png Graphic file (type png)
 
 <use images/report6.png>
-Package pdftex.def Info: images/report6.png used on input line 175.
-(pdftex.def)             Requested size: 351.31378pt x 274.10677pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[9 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/report4.png> <C:/User
-s/wcastro/Documents/U/bmc/proyecto1/doc/images/report5.png>]
-<images/report7.png, id=60, 685.05937pt x 534.49687pt>
+Package pdftex.def Info: images/report6.png used on input line 180.
+(pdftex.def)             Requested size: 342.52884pt x 267.24777pt.
+ [10 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report5.
+png> <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report6.
+png>]
+<images/report7.png, id=64, 685.05937pt x 534.49687pt>
 File: images/report7.png Graphic file (type png)
 
 <use images/report7.png>
-Package pdftex.def Info: images/report7.png used on input line 183.
+Package pdftex.def Info: images/report7.png used on input line 188.
 (pdftex.def)             Requested size: 351.31378pt x 274.10677pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<images/report8.png, id=61, 394.47375pt x 271.0125pt>
+ <images/report8.png, id=65, 394.47375pt x 271.0125pt>
 File: images/report8.png Graphic file (type png)
- <use images/report8.png>
-Package pdftex.def Info: images/report8.png used on input line 193.
-(pdftex.def)             Requested size: 301.1261pt x 206.8814pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<images/report9.png, id=62, 394.47375pt x 271.0125pt>
+<use images/report8.png>
+Package pdftex.def Info: images/report8.png used on input line 198.
+(pdftex.def)             Requested size: 284.02087pt x 195.12885pt.
+ [11 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report7.
+png> <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report8.
+png>]
+<images/report9.png, id=71, 394.47375pt x 271.0125pt>
 File: images/report9.png Graphic file (type png)
  <use images/report9.png>
-Package pdftex.def Info: images/report9.png used on input line 199.
+Package pdftex.def Info: images/report9.png used on input line 204.
 (pdftex.def)             Requested size: 301.1261pt x 206.8814pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<images/e_1.png, id=63, 357.58594pt x 125.71968pt>
+[12 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/report9.p
+ng>] <images/e_1.png, id=77, 357.58594pt x 125.71968pt>
 File: images/e_1.png Graphic file (type png)
  <use images/e_1.png>
-Package pdftex.def Info: images/e_1.png used on input line 212.
+Package pdftex.def Info: images/e_1.png used on input line 219.
 (pdftex.def)             Requested size: 234.8775pt x 82.57814pt.
 
-[10 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/report6.png>]
-[11 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/report7.png> <C:/Use
-rs/wcastro/Documents/U/bmc/proyecto1/doc/images/report8.png> <C:/Users/wcastro/
-Documents/U/bmc/proyecto1/doc/images/e_1.png>]
-<images/e_2.png, id=74, 214.55156pt x 75.28125pt>
+<images/e_2.png, id=78, 214.55156pt x 75.28125pt>
 File: images/e_2.png Graphic file (type png)
  <use images/e_2.png>
-Package pdftex.def Info: images/e_2.png used on input line 218.
+Package pdftex.def Info: images/e_2.png used on input line 225.
 (pdftex.def)             Requested size: 234.8775pt x 82.41446pt.
 
-<images/e_3.png, id=75, 599.99156pt x 469.00218pt>
+<images/e_3.png, id=79, 599.99156pt x 469.00218pt>
 File: images/e_3.png Graphic file (type png)
  <use images/e_3.png>
-Package pdftex.def Info: images/e_3.png used on input line 224.
+Package pdftex.def Info: images/e_3.png used on input line 231.
 (pdftex.def)             Requested size: 299.99504pt x 234.50052pt.
 
-[12 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/report9.png> <C:/Use
-rs/wcastro/Documents/U/bmc/proyecto1/doc/images/e_2.png> <C:/Users/wcastro/Docu
-ments/U/bmc/proyecto1/doc/images/e_3.png>]
-<images/e_4.png, id=83, 381.67593pt x 39.14626pt>
+[13 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/e_1.png> 
+<C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/e_2.png> <C:/
+Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/e_3.png>]
+<images/e_4.png, id=86, 381.67593pt x 39.14626pt>
 File: images/e_4.png Graphic file (type png)
  <use images/e_4.png>
-Package pdftex.def Info: images/e_4.png used on input line 232.
+Package pdftex.def Info: images/e_4.png used on input line 239.
 (pdftex.def)             Requested size: 305.34116pt x 31.31703pt.
 
-<images/e_5.png, id=84, 348.55219pt x 132.495pt>
+<images/e_5.png, id=87, 348.55219pt x 132.495pt>
 File: images/e_5.png Graphic file (type png)
  <use images/e_5.png>
-Package pdftex.def Info: images/e_5.png used on input line 236.
+Package pdftex.def Info: images/e_5.png used on input line 243.
 (pdftex.def)             Requested size: 278.8421pt x 105.99612pt.
 
-<images/e_6.png, id=85, 599.99156pt x 469.755pt>
+<images/e_6.png, id=88, 599.99156pt x 469.755pt>
 File: images/e_6.png Graphic file (type png)
  <use images/e_6.png>
-Package pdftex.def Info: images/e_6.png used on input line 246.
+Package pdftex.def Info: images/e_6.png used on input line 253.
 (pdftex.def)             Requested size: 299.99504pt x 234.87692pt.
- [13 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/e_4.png> <C:/Users/
-wcastro/Documents/U/bmc/proyecto1/doc/images/e_5.png>]
-<images/e_7.png, id=91, 602.25pt x 466.74374pt>
+ [14 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/e_4.png>
+ <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/e_5.png>]
+<images/e_7.png, id=94, 602.25pt x 466.74374pt>
 File: images/e_7.png Graphic file (type png)
  <use images/e_7.png>
-Package pdftex.def Info: images/e_7.png used on input line 250.
+Package pdftex.def Info: images/e_7.png used on input line 257.
 (pdftex.def)             Requested size: 301.12425pt x 233.37129pt.
 
-<images/e_8.png, id=92, 239.39438pt x 73.02281pt>
+<images/e_8.png, id=95, 239.39438pt x 73.02281pt>
 File: images/e_8.png Graphic file (type png)
  <use images/e_8.png>
-Package pdftex.def Info: images/e_8.png used on input line 258.
+Package pdftex.def Info: images/e_8.png used on input line 265.
 (pdftex.def)             Requested size: 239.39378pt x 73.02261pt.
- [14 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/e_6.png> <C:/Users/
-wcastro/Documents/U/bmc/proyecto1/doc/images/e_7.png>]
-(C:\Users\wcastro\Documents\U\bmc\proyecto1\doc\generador_de_mapas_cromosomicos
-.bbl [15 <C:/Users/wcastro/Documents/U/bmc/proyecto1/doc/images/e_8.png>])
-[16]
-(C:\Users\wcastro\Documents\U\bmc\proyecto1\doc\generador_de_mapas_cromosomicos
-.aux (C:\Users\wcastro\Documents\U\bmc\proyecto1\doc\title_page.aux)) ) 
+ [15 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/e_6.png>
+ <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/e_7.png>] [1
+6 <C:/Users/Diego/Desktop/ProyectoBMC1-MapasCromosomicos/doc/images/e_8.png>]
+(C:\Users\Diego\Desktop\ProyectoBMC1-MapasCromosomicos\doc\generador_de_mapas_c
+romosomicos.bbl) [17]
+(C:\Users\Diego\Desktop\ProyectoBMC1-MapasCromosomicos\doc\generador_de_mapas_c
+romosomicos.aux
+(C:\Users\Diego\Desktop\ProyectoBMC1-MapasCromosomicos\doc\title_page.aux)) ) 
 Here is how much of TeX's memory you used:
- 2660 strings out of 493921
- 35673 string characters out of 3147277
- 102654 words of memory out of 3000000
- 5915 multiletter control sequences out of 15000+200000
+ 2664 strings out of 493921
+ 36008 string characters out of 3147330
+ 102668 words of memory out of 3000000
+ 5919 multiletter control sequences out of 15000+200000
  7829 words of font info for 28 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,6n,32p,1943b,242s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti1
-0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on generador_de_mapas_cromosomicos.pdf (17 pages, 1382236 bytes)
+ 27i,6n,32p,1943b,261s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on generador_de_mapas_cromosomicos.pdf (18 pages, 1382702 bytes)
 .
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
+ 140 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

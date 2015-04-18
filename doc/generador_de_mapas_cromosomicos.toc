@@ -4,13 +4,13 @@
 \contentsline {subsection}{\numberline {2.1}Algunos conceptos importantes}{2}
 \contentsline {subsection}{\numberline {2.2}Unidades de medida}{4}
 \contentsline {subsection}{\numberline {2.3}Mapas gen\IeC {\'e}ticos y mapas f\IeC {\'\i }sicos}{5}
-\contentsline {subsection}{\numberline {2.4}Gregor Mendel}{5}
+\contentsline {subsection}{\numberline {2.4}\IeC {\textquestiondown }Por qu\IeC {\'e} Gregor Mendel no report\IeC {\'o} el fen\IeC {\'o}meno de recombinaci\IeC {\'o}n?}{5}
 \contentsline {subsection}{\numberline {2.5}Literatura consultada}{5}
 \contentsline {section}{\numberline {3}Segunda Parte: Aplicaci\IeC {\'o}n Creada}{6}
 \contentsline {subsection}{\numberline {3.1}Detalles t\IeC {\'e}cnicos de implementaci\IeC {\'o}n}{6}
-\contentsline {subsection}{\numberline {3.2}Im\IeC {\'a}genes ilustrativas de la aplicaci\IeC {\'o}n}{6}
-\contentsline {subsection}{\numberline {3.3}Algunos problemas resueltos por nuestra aplicaci\IeC {\'o}n}{10}
-\contentsline {subsubsection}{\numberline {3.3.1}Ejercicio \#1}{10}
-\contentsline {subsubsection}{\numberline {3.3.2}Ejercicio \#2}{13}
-\contentsline {subsection}{\numberline {3.4}Problemas que trascienden el alcance del proyecto}{15}
-\contentsline {section}{\numberline {4}Conclusiones}{15}
+\contentsline {subsection}{\numberline {3.2}Im\IeC {\'a}genes ilustrativas de la aplicaci\IeC {\'o}n}{7}
+\contentsline {subsection}{\numberline {3.3}Algunos problemas resueltos por nuestra aplicaci\IeC {\'o}n}{13}
+\contentsline {subsubsection}{\numberline {3.3.1}Ejercicio \#1}{13}
+\contentsline {subsubsection}{\numberline {3.3.2}Ejercicio \#2}{14}
+\contentsline {subsection}{\numberline {3.4}Problemas que trascienden el alcance del proyecto}{16}
+\contentsline {section}{\numberline {4}Conclusiones}{16}
